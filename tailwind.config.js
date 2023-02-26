@@ -16,14 +16,18 @@ module.exports = {
           600: '#005CBF',
           700: '#004999',
           800: '#003773',
-          900: '#002B59',
-          1000: '#010917'
+          900: '#002B59'
+        },
+        secondary: {
+          500: '#ACB8DE',
+          700: '#021331',
+          900: '#010917'
         }
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        grotesk: ['Space Grotesk', 'sans-serif']
       }
-    },
-    fontFamily: {
-      poppins: ['Poppins', 'sans-serif'],
-      grotesk: ['Space Grotesk', 'sans-serif']
     }
   },
   plugins: []

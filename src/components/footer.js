@@ -27,7 +27,7 @@ const navButton = navLink.map((val, idx) => (
 
 export default function Footer () {
   return (
-    <div className='bg-primary-1000 text-primary-50'>
+    <div className='bg-secondary-900 text-primary-50'>
       <footer className='container mx-auto items-center'>
         <section className='flex flex-col md:flex-row md:justify-between py-7'>
           <a href='#' className='mx-auto md:m-0'>
@@ -39,9 +39,9 @@ export default function Footer () {
         </section>
         <hr className='w-full'/>
         <section className='flex items-center md:justify-between py-7 font-poppins flex-col-reverse md:flex-row'>
-            <p className='text-center md:text-left'>Copyright © 2023 <span className='text-primary-500'>
+            <span className='text-center md:text-left'>Copyright © 2023 <span className='text-primary-500'>
               Raps Company</span>, All rights reserved.
-            </p>
+            </span>
             <span className='text-primary-500 mb-3 md:mb-0'>instagram Twitter</span>
         </section>
       </footer>
