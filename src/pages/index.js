@@ -20,7 +20,7 @@ export default function Home () {
         <section className='m-12 md:m-0'>
           <Image src={dl} alt='DiamondLock' className='mx-auto bg-secondary-500 bg-opacity-20 border-[20px] border-secondary-500 p-7'></Image>
         </section>
-        <h2 className='absolute bottom-0 font-grotesk font-outline-1 text-white'>BUY 1 GET 1 <span className='text-transparent'>BUY 1 GET 1</span> BUY 1 GET 1</h2>
+        <h2 className='absolute bottom-0 text-center font-grotesk font-outline-1 text-white'>BUY 1 GET 1 <span className='text-transparent'>BUY 1 GET 1</span> BUY 1 GET 1</h2>
       </div>
       <h1 className='text-primary-50 w-full mt-5'>
         <Icon icon="material-symbols:arrow-circle-down-outline" className='mx-auto'/>

@@ -14,7 +14,7 @@ export default function App ({ Component, pageProps }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
         <title>Raps Company</title>
       </Head>
-      <div className='absolute w-full'>
+      <div className='absolute w-full z-50'>
         <Navbar/>
       </div>
       <Component {...pageProps} />
