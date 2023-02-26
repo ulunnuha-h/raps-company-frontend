@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.cdnfonts.com/css/space-grotesk');
+
+@layer components{
+    .responsive-nav{
+        @apply flex-col md:flex-row fixed w-screen left-0 md:relative md:h-auto md:w-auto mt-12 md:mt-0
+    }
+
+}
