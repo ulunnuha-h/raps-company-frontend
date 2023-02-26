@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logo from '../../public/assets/logo.svg'
 import Image from 'next/image'
+import { Icon } from '@iconify/react'
 
 const navLink = [
   {
@@ -44,7 +45,7 @@ export default function Navbar () {
           <Image src={logo} alt="logo"/>
         </a>
         <button className='block md:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
-          <i class="fa-solid fa-bars"></i>
+          <Icon icon="octicon:three-bars" />
         </button>
         <ul className={`md:flex font-poppins responsive-nav ${openStyle()}`}>
           {navButton}
