@@ -32,18 +32,20 @@ export default function Navbar () {
   const navButton = navLink.map((val, idx) => (
     <li
       key={idx}
-      className="ml-3 text-white hover:bg-red-600 active:bg-red-900 rounded-sm transition-all md:py-0 py-3 px-2">
+      className="md:ml-3 text-white hover:bg-primary-600 active:bg-primary-900 rounded-sm transition-all md:py-0 py-3 px-2">
       <a href={val.href}>{val.name}</a>
     </li>
   ))
 
   return (
-    <div className='container mx-auto'>
-      <nav className='flex justify-between py-7 px-3'>
+    <div className='fixed w-full'>
+      <nav className='flex justify-between py-7 px-7 md:px-3 container mx-auto'>
         <a href='#'>
           <Image src={logo} alt="logo"/>
         </a>
-        <button className='block md:hidden' onClick={openHandler}>Open</button>
+        <button className='block md:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
+          <i class="fa-solid fa-bars"></i>
+        </button>
         <ul className={`md:flex font-poppins responsive-nav ${openStyle()}`}>
           {navButton}
         </ul>

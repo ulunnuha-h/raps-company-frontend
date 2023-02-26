@@ -7,7 +7,7 @@
 
 @layer components{
     .responsive-nav{
-        @apply flex-col md:flex-row fixed w-screen left-0 md:relative md:h-auto md:w-auto mt-12 md:mt-0
+        @apply flex-col md:flex-row absolute w-screen left-0 md:relative md:h-auto md:w-auto mt-12 md:mt-0 bg-primary-700 md:bg-transparent
     }
 
 }
