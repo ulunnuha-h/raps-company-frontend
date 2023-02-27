@@ -6,10 +6,13 @@
 
 @layer base{
     h1{
-        @apply text-3xl font-medium md:text-6xl
+        @apply text-3xl font-bold md:text-6xl
     }
     h2{
-        @apply text-2xl font-medium md:text-5xl
+        @apply text-2xl font-bold md:text-5xl
+    }
+    h3{
+        @apply text-xl font-bold md:text-4xl
     }
     p{
         @apply font-poppins text-primary-50 md:text-2xl text-base
