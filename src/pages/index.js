@@ -5,6 +5,7 @@ import dl from '../../public/assets/dl.png'
 import bgl from '../../public/assets/bgl.png'
 import priceBg from '../../public/assets/price-bg.png'
 import { Icon } from '@iconify/react'
+import langkahTransaksi from '@/config/langkahTransaksi'
 
 export default function Home () {
   return (
@@ -29,6 +30,7 @@ export default function Home () {
           <Icon icon="material-symbols:arrow-circle-down-outline" className='mx-auto'/>
         </h1>
       </main>
+
       {/* Diamond Lock Section */}
       <main className='bg-secondary-700 p-12'>
         <div
@@ -50,6 +52,7 @@ export default function Home () {
           </section>
         </div>
       </main>
+
       {/* Blue Gem Lock */}
       <main className='bg-secondary-700 p-12'>
         <div
@@ -66,12 +69,33 @@ export default function Home () {
               NOW ONLY <span className='text-primary-500'>Rp 330.000</span>
             </h2>
             <section className='flex justify-between items-center'>
-              <span className='font-grotesk text-xl'>"Sama Jumlahnya, Beda Harganya"</span>
+              <span className='font-grotesk text-xl'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
               <button className='btn-primary py-3 px-12 font-bold'>Beli</button>
             </section>
           </section>
           <Image src={bgl} className='p-12 px-16 bg-secondary-500 -translate-x-12 -translate-y-12' alt='bgl'></Image>
         </div>
+      </main>
+
+      {/* Langkah-langkah jual beli */}
+      <main className='bg-secondary-700 p-12'>
+        <h3 className='font-grotesk text-primary-50 text-center mb-7'>3 Langkah mudah untuk Jual/Beli Diamond Lock</h3>
+        <div className='flex justify-between'>
+        {langkahTransaksi.map((val, idx) => (
+          <section
+            key={idx}
+            className='basis-1/3 flex flex-col items-center justify-end bg-secondary-500 bg-opacity-20 mx-5 2xl:mx-12 py-16 px-7'>
+            <Image src={val.img.src} alt='illustration' width={'200'} height={'200'}></Image>
+            <h5 className='text-white font-grotesk my-3'>{val.name}</h5>
+            <p className='text-base text-center'>{val.desc}</p>
+          </section>
+        ))}
+        </div>
+      </main>
+
+      {/* Testimoni Pelanggan */}
+      <main className='bg-secondary-700 p-12'>
+        <h3 className='font-grotesk text-primary-50 text-center mb-7'>Testimoni pelanggan kami</h3>
       </main>
     </>
   )
