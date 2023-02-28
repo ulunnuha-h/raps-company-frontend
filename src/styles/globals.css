@@ -12,7 +12,7 @@
         @apply text-2xl font-bold md:text-5xl
     }
     h3{
-        @apply text-xl font-bold md:text-4xl
+        @apply text-xl font-bold md:text-[40px]
     }
     h4{
         @apply text-lg font-bold md:text-3xl
@@ -45,5 +45,16 @@
 
     .btn-secondary{
         @apply border-primary-50 border-2 text-primary-50 font-grotesk text-xl hover:bg-primary-50 hover:text-primary-900 active:brightness-75 transition-all
+    }
+
+    .input-field{
+        @apply bg-transparent border-2 p-3 outline-none text-white placeholder:text-neutral-500
+    }
+}
+
+@layer utilities {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      @apply appearance-none;
     }
 }
