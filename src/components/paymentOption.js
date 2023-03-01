@@ -1,7 +1,7 @@
 import paymentMethod from '@/config/paymentMethod'
 import Image from 'next/image'
 
-const paymentOption = (setMetodeBayar) => {
+const paymentOption = (metodeBayar, setMetodeBayar) => {
   return paymentMethod.map((val, idx) => (
     <div key={idx} className='mt-5'>
       <label className='flex'>{val.category}</label>
@@ -16,6 +16,7 @@ const paymentOption = (setMetodeBayar) => {
               className='peer hidden'
               onChange={() => setMetodeBayar(val.idx)}
               required
+              checked = {val.idx === metodeBayar}
               />
             <Image
               src={val.img}

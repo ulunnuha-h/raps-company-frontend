@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import bg from '../../../public/assets/backgroundPolos.jpg'
 import { Icon } from '@iconify/react'
 import Step1 from './step1'
@@ -8,6 +8,14 @@ import Step3 from './step3'
 export default function Penjualan () {
   const [action, setAction] = useState(0)
   const [children, setChildren] = useState()
+  const [formData, setFormData] = useState({})
+
+  const formDataHandler = useCallback((data) => {
+    let newData = formData
+    newData = { ...newData, ...data }
+    console.log(newData)
+    setFormData(newData)
+  }, [formData])
 
   const actionIndicator = (targetAction, styleIfTrue, styleIfFalse) => {
     if (action > targetAction) {
@@ -22,19 +30,22 @@ export default function Penjualan () {
       setAction(action + 1)
       window.scroll(0, 0)
     }
-    // const prevAction = () => setAction(action - 1)
+    const prevAction = () => {
+      setAction(action - 1)
+      window.scroll(0, 0)
+    }
     switch (action) {
       case 0:
-        setChildren(<Step1 nextAction={nextAction}/>)
+        setChildren(<Step1 {...{ nextAction, formDataHandler, formData }}/>)
         break
       case 1:
-        setChildren(<Step2 nextAction={nextAction}/>)
+        setChildren(<Step2 {...{ nextAction, prevAction, formDataHandler, formData }}/>)
         break
       case 2:
         setChildren(<Step3/>)
         break
     }
-  }, [action])
+  }, [action, formData, formDataHandler])
 
   return (
     <main

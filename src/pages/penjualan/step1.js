@@ -1,21 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import paymentOption from '@/components/paymentOption'
 
-export default function Step1 ({ nextAction }) {
-  const [jumlah, setJumlah] = useState()
-  const [whatsapp, setWhatsapp] = useState()
-  const [norekening, setNorekening] = useState()
-  const [metodeBayar, setMetodeBayar] = useState()
+export default function Step1 ({ nextAction, formDataHandler, formData }) {
+  const [jumlah, setJumlah] = useState(formData.jumlah || '')
+  const [whatsapp, setWhatsapp] = useState(formData.whatsapp || '')
+  const [norekening, setNorekening] = useState(formData.norekening || '')
+  const [metodeBayar, setMetodeBayar] = useState(formData.metodeBayar)
+  const [hargaDl, setHargaDl] = useState()
+
+  useEffect(() => {
+    setHargaDl(3200)
+  }, [])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(metodeBayar)
+
+    formDataHandler({
+      jumlah,
+      whatsapp,
+      norekening,
+      metodeBayar
+    })
     nextAction()
   }
 
   return (
     <main className='container mx-auto pt-16'>
-      <div className='p-7 bg-[#ACB8DE] bg-opacity-20'>
+      <div className='p-12 bg-[#ACB8DE] bg-opacity-20'>
         <h3 className='text-white font-grotesk mb-7'>Form Penjualan Diamond Lock</h3>
         <form className='flex flex-col text-primary-50 font-poppins' onSubmit={submitHandler}>
           {/* Input jumlah diamond lock dan nomor whatsapp */}
@@ -29,10 +40,10 @@ export default function Step1 ({ nextAction }) {
                 placeholder='Masukkan Jumlah Diamond Lock'
                 required
                 />
-              <span>Nominal yang akan didapatkan: <b>Rp. 3.000.000</b></span>
+              <span>Nominal yang akan didapatkan: <b>Rp. {(jumlah * hargaDl || 0).toLocaleString('en-US')}</b></span>
             </span>
             <span className='flex flex-col w-2/5'>
-              <label>Nomor Whatsapp</label>
+              <label>Nomor Whatsapp (Contoh: 082xxxxxxxxx)</label>
               <input
                 type='number'
                 className='input-field my-2'
@@ -46,7 +57,7 @@ export default function Step1 ({ nextAction }) {
           {/* Memilih metode pembayaran */}
           <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
           <section>
-            {paymentOption(setMetodeBayar)}
+            {paymentOption(metodeBayar, setMetodeBayar)}
           </section>
           {/* Input no rekening atau e-wallet */}
           <span className='flex flex-col w-2/5 mt-5'>

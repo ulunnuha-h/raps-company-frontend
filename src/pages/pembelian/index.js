@@ -7,7 +7,7 @@ import Step3 from './step3'
 import Step4 from './step4'
 
 export default function Penjualan () {
-  const [action, setAction] = useState(3)
+  const [action, setAction] = useState(2)
   const [children, setChildren] = useState()
 
   const actionIndicator = (targetAction, styleIfTrue, styleIfFalse) => {

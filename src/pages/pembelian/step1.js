@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 export default function Step1 ({ nextAction }) {
   const [jumlah, setJumlah] = useState()
   const [whatsapp, setWhatsapp] = useState()
-  // const [norekening, setNorekening] = useState()
 
   const submitHandler = (e) => {
     e.preventDefault()

@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Step2 ({ nextAction }) {
-  console.log(nextAction)
+export default function Step2 ({ nextAction, prevAction, formDataHandler, formData }) {
+  const [file, setFile] = useState(formData.file || { name: '' })
+  const fileHandler = (e) => {
+    console.log(e.target.files[0])
+    setFile(e.target.files[0])
+  }
+
   const submitHandler = e => {
     e.preventDefault()
+    formDataHandler({ file })
     nextAction()
+  }
+
+  const prevHandler = () => {
+    formDataHandler({ file })
+    prevAction()
   }
 
   return (
@@ -26,10 +37,21 @@ export default function Step2 ({ nextAction }) {
           <span className='text-sm'>Ukuran maksimal file : 5 mb, Format file : .png atau .jpg</span>
           <span className='my-5 border-2 w-full h-56 flex justify-center items-center flex-col text-center'>
             <label className='mb-3' htmlFor='file'>Drag and drop files here or click to upload</label>
-            <input type='file' className='p-3 border-[1px]' id='file' name='file'></input>
+            <input
+              type='file'
+              className='p-3 border-[1px]'
+              id='file'
+              name='file'
+              onChange={fileHandler}
+              accept=".jpg, .jpeg, .png"
+              files={[file]}
+              ></input>
           </span>
         </section>
-        <button className='btn-primary px-12 py-4 self-end font-bold' type='submit'>Jual</button>
+        <section className='flex justify-between'>
+          <button className='btn-primary px-12 py-4 font-bold' type='button' onClick={prevHandler}>Kembali</button>
+          <button className='btn-primary px-12 py-4 font-bold' type='submit'>Jual</button>
+        </section>
       </form>
     </main>
   )
