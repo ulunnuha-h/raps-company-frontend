@@ -51,6 +51,10 @@
         @apply border-primary-50 border-2 text-primary-50 font-grotesk text-xl hover:bg-primary-50 hover:text-primary-900 active:brightness-75 transition-all
     }
 
+    .btn-radio{
+        @apply bg-red-800 checked:bg-green-700
+    }
+
     .input-field{
         @apply bg-transparent border-2 p-3 outline-none text-white placeholder:text-neutral-500
     }
