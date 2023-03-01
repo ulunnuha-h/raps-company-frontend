@@ -4,6 +4,10 @@
 
 @import url('https://fonts.cdnfonts.com/css/poppins');
 
+*{
+    scroll-behavior: smooth;
+}
+
 @layer base{
     h1{
         @apply text-3xl font-bold md:text-6xl

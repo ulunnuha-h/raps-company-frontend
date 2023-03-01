@@ -36,7 +36,7 @@ export default function Home () {
         <div
           style={ { backgroundImage: `url(${priceBg.src})` } }
           className='container my-12 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover'>
-          <Image src={dl} className='p-12 bg-secondary-500 translate-x-12 -translate-y-12' alt='dl'></Image>
+          <Image src={dl} className='p-12 bg-secondary-500 translate-x-12 -translate-y-12' alt='dl' width='300'></Image>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Take</h2>
             <h2 className='font-grotesk my-7 text-primary-500'>Rp. 3000</h2>
@@ -58,7 +58,7 @@ export default function Home () {
         <div
           style={ { backgroundImage: `url(${priceBg.src})` } }
           className='container my-12 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover'>
-          <section className='translate-y-28'>
+          <section className='translate-y-32'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap -rotate-90 font-grotesk ml-6'>Blue Gem Lock</h3>
           </section>
           <section className='text-center text-primary-50 font-grotesk flex flex-col w-1/2'>
@@ -73,7 +73,7 @@ export default function Home () {
               <button className='btn-primary py-3 px-12 font-bold'>Beli</button>
             </section>
           </section>
-          <Image src={bgl} className='p-12 px-16 bg-secondary-500 -translate-x-12 -translate-y-12' alt='bgl'></Image>
+          <Image src={bgl} className='p-12 bg-secondary-500 -translate-x-12 -translate-y-12' alt='bgl' width='300'></Image>
         </div>
       </main>
 
