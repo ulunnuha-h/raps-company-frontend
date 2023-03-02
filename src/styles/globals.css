@@ -58,6 +58,10 @@
     .input-field{
         @apply bg-transparent border-2 p-3 outline-none text-white placeholder:text-neutral-500
     }
+
+    .testimoni-card{
+        @apply text-primary-50 bg-secondary-500 bg-opacity-10 border-[10px] border-secondary-500 py-7
+    }
 }
 
 @layer utilities {

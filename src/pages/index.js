@@ -6,6 +6,7 @@ import bgl from '../../public/assets/bgl.png'
 import priceBg from '../../public/assets/price-bg.png'
 import { Icon } from '@iconify/react'
 import langkahTransaksi from '@/config/langkahTransaksi'
+import TestimoniSlide from '@/components/testimoniSlide'
 
 export default function Home () {
   return (
@@ -94,8 +95,11 @@ export default function Home () {
       </main>
 
       {/* Testimoni Pelanggan */}
-      <main className='bg-secondary-700 p-12'>
+      <main className='bg-secondary-700 lg:p-12 p-2 py-5'>
         <h3 className='font-grotesk text-primary-50 text-center mb-7'>Testimoni pelanggan kami</h3>
+        <div>
+          <TestimoniSlide/>
+        </div>
       </main>
     </>
   )
