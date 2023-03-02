@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 
 export default function Step1 ({ nextAction }) {
-  const [jumlah, setJumlah] = useState()
+  const [world, setWorld] = useState()
+  // const [name, setName] = useState()
+  const [growId, setGrwowId] = useState()
   const [whatsapp, setWhatsapp] = useState()
+  const [jumlah, setJumlah] = useState()
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -19,11 +22,10 @@ export default function Step1 ({ nextAction }) {
             <span className='flex flex-col w-2/5'>
               <label>World</label>
               <input
-                type='number'
+                type='text'
                 className='input-field my-2'
-                value={jumlah} onChange={e => setJumlah(e.target.value)}
-                placeholder='Masukkan World'
-                />
+                value={world} onChange={e => setWorld(e.target.value)}
+                placeholder='Masukkan World'/>
             </span>
             <span className='flex flex-col w-2/5'>
               <label>Nomor GrowId</label>
@@ -31,9 +33,8 @@ export default function Step1 ({ nextAction }) {
                 type='number'
                 className='input-field my-2'
                 placeholder='Masukkan GrowId'
-                value={whatsapp}
-                onChange={e => setWhatsapp(e.target.value) }
-                />
+                value={growId}
+                onChange={e => setGrwowId(e.target.value) }/>
             </span>
           </section>
           {/* Input nama dan nomor whatsapp */}
