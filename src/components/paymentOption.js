@@ -5,7 +5,7 @@ const paymentOption = (metodeBayar, setMetodeBayar) => {
   return paymentMethod.map((val, idx) => (
     <div key={idx} className='mt-5'>
       <label className='flex'>{val.category}</label>
-      <section className='flex flex-wrap gap-6'>
+      <section className='flex flex-wrap lg:gap-6 gap-2'>
         {val.list.map((val, idx) => (
           <label htmlFor={val.name} className='my-3 cursor-pointer' key={idx}>
             <input
@@ -19,7 +19,7 @@ const paymentOption = (metodeBayar, setMetodeBayar) => {
               />
             <Image
               src={val.img}
-              className='peer-checked:bg-opacity-100 peer-checked:border-[5px] bg-secondary-500 bg-opacity-50 hover:bg-opacity-100 p-5 object-contain h-[100px] w-[180px] transition-all'
+              className='peer-checked:bg-opacity-100 peer-checked:border-[5px] bg-secondary-500 bg-opacity-50 hover:bg-opacity-100 p-5 object-contain h-[100px] lg:w-[180px] transition-all'
               alt={val.name}
               width='150'
               height='100'/>

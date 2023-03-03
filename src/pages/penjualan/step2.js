@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
 
 const allowedFormat = [
@@ -11,15 +11,18 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   const [file, setFile] = useState(formData.file || { name: '' })
   const [errorMessage, setErrorMessage] = useState('')
 
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [errorMessage])
+
   const fileHandler = (e) => {
     const { size, type } = e.target.files[0]
+    console.log(size)
     const sizeOnMb = size / 1024 ** 2
     if (sizeOnMb > 5) {
       setErrorMessage('Ukuran file terlalu besar')
-      window.scroll(0, 0)
     } else if (!allowedFormat.some(val => val === type)) {
       setErrorMessage('Format file tidak sesuai')
-      window.scroll(0, 0)
     } else {
       setErrorMessage('')
       setFile(e.target.files[0])
@@ -29,8 +32,11 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   const submitHandler = e => {
     e.preventDefault()
     if (file.name !== '') {
+      setErrorMessage('')
       formDataHandler({ file })
       nextAction()
+    } else {
+      setErrorMessage('Silakan upload screenshot bukti penjualan')
     }
   }
 
@@ -52,9 +58,9 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
             </p>)
           : null
         }
-        <section className='bg-secondary-500 text-primary-900 p-12 mb-7'>
+        <section className='bg-secondary-500 text-primary-900 p-5 lg:p-12 mb-7'>
           <h3 className='font-grotesk text-center mb-5'>Tutorial Mengirim Diamond Lock</h3>
-          <ol className='ml-5 font-poppins text-xl list-decimal'>
+          <ol className='ml-5 font-poppins text-sm lg:text-xl list-decimal'>
             <li>Pastikan kamu membawa DL yang akan dijual di inventory kamu.</li>
             <li>Buka aplikasi Growtopia dan kunjungi world sesuai informasi berikut:
               <ol className='list-disc ml-5'>
@@ -74,7 +80,7 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
             <label className='mb-3' htmlFor='file'>Drag and drop files here or click to upload</label>
             <input
               type='file'
-              className='p-3 border-[1px]'
+              className='p-3 border-[1px] w-3/4 lg:w-fit'
               id='file'
               name='file'
               onChange={fileHandler}
@@ -84,9 +90,9 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
           </span>
         </section>
         <section className='flex justify-between'>
-          <button className='btn-primary px-12 py-4 font-bold' type='button' onClick={prevHandler}>Kembali</button>
+          <button className='btn-primary px-5 lg:px-12 py-4 font-bold' type='button' onClick={prevHandler}>Kembali</button>
           <button
-            className='btn-primary px-12 py-4 font-bold'
+            className='btn-primary px-5 lg:px-12 py-4 font-bold'
             type='submit'
             disabled={errorMessage !== ''}>Jual</button>
         </section>

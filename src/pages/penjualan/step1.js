@@ -44,7 +44,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
         <form className='flex flex-col text-primary-50 font-poppins' onSubmit={submitHandler}>
           {/* Input jumlah diamond lock dan nomor whatsapp */}
           <section className='flex md:gap-12 gap-3 mb-7 flex-col md:flex-row'>
-            <span className='flex flex-col w-2/5'>
+            <span className='flex flex-col lg:w-2/5 w-full mb-2'>
               <label>Jumlah Diamond Lock</label>
               <input
                 type='number'
@@ -54,7 +54,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 />
               <span>Nominal yang akan didapatkan: <b>Rp. {(jumlah * hargaDl || 0).toLocaleString('en-US')}</b></span>
             </span>
-            <span className='flex flex-col w-2/5'>
+            <span className='flex flex-col lg:w-2/5 mb-2'>
               <label>Nomor Whatsapp (Contoh: 082xxxxxxxxx)</label>
               <input
                 type='number'
@@ -71,7 +71,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
             {paymentOption(metodeBayar, setMetodeBayar)}
           </section>
           {/* Input no rekening atau e-wallet */}
-          <span className='flex flex-col w-2/5 mt-5'>
+          <span className='flex flex-col lg:w-2/5 my-5'>
             <label>Nomor Rekening Bank/Dompet Digital</label>
             <input
               type='text'

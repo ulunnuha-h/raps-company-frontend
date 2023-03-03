@@ -6,7 +6,7 @@ import Step2 from './step2'
 import Step3 from './step3'
 
 export default function Penjualan () {
-  const [action, setAction] = useState(0)
+  const [action, setAction] = useState(1)
   const [children, setChildren] = useState()
   const [formData, setFormData] = useState({})
 
@@ -52,12 +52,12 @@ export default function Penjualan () {
         style={ { backgroundImage: `url(${bg.src})` }}
         className='bg-no-repeat bg-[#021331] pt-12 bg-cover'>
         <div className='pt-16 container mx-auto'>
-            <section className='flex justify-between'>
+            <section className='flex justify-between px-2 lg:px-0 items-center'>
               <p className='basis-1/3 text-left'>Isi Form</p>
               <p className={`basis-1/3 text-center ${actionIndicator(0, '', 'text-neutral-500')}`}>Upload Bukti Diamond Lock</p>
               <p className={`basis-1/3 text-right ${actionIndicator(1, '', 'text-neutral-500')}`}>Jual</p>
             </section>
-            <section className='flex justify-between w-full items-center px-5'>
+            <section className='flex justify-between w-full items-center lg:px-5 px-9'>
               <h2 className='-mx-5 z-10 text-primary-500'>
                   <Icon icon="material-symbols:square" />
               </h2>
