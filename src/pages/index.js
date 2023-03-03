@@ -1,91 +1,123 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
-import background from '../../public/assets/background.jpg'
+import starBg from '../../public/assets/backgroundPolos.jpg'
+import bg from '../../public/parallax/cities.svg'
 import dl from '../../public/assets/dl.png'
 import bgl from '../../public/assets/bgl.png'
 import priceBg from '../../public/assets/price-bg.png'
 import { Icon } from '@iconify/react'
 import langkahTransaksi from '@/config/langkahTransaksi'
 import TestimoniSlide from '@/components/testimoniSlide'
+import InfiniteScrollText from '@/components/infiniteScrollText'
 
 export default function Home () {
+  const [parallaxProgres, setParallaxProgres] = useState(120)
+  const handleScroll = useCallback(() => {
+    const { scrollY, innerHeight } = window
+    if (scrollY < 1.4 * innerHeight) {
+      const percent = (scrollY / (1.4 * innerHeight) * 30)
+      setParallaxProgres(120 + percent)
+    }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [parallaxProgres, handleScroll])
+
   return (
     <>
       {/* Hero Section */}
-      <main className='bg-cover bg-bottom h-[140vh]' style={ { backgroundImage: `url(${background.src})` }}>
-        <div className='container mx-auto h-screen flex items-center justify-center flex-col-reverse md:flex-row' id='hero' >
+      <main className='bg-cover lg:h-[140vh] relative bg-no-repeat lg:bg-fixed' style={{ backgroundImage: `url(${starBg.src})` }}>
+        <div className='z-10 container mx-auto h-screen flex items-center justify-center flex-col-reverse md:flex-row relative' id='hero' >
           <section className='md:basis-1/2 md:mr-12 mx-7'>
             <h1 className='text-primary-50 font-grotesk md:mb-5 text-center md:text-left'>JUAL/BELI DIAMOND LOCK OPEN 24 JAM</h1>
             <p className='md:mb-12 mb-5 text-center md:text-left'>Dapatkan Diamond Lock dengan harga terbaik!</p>
-            <section className='flex justify-center md:justify-start'>
+            <section className='flex justify-center md:justify-start mb-9 lg:mb-0'>
               <button className='btn-secondary px-10 py-2 mr-5'>Jual</button>
               <button className='btn-primary px-10 py-2'>Beli</button>
             </section>
           </section>
           <section className='m-12 md:m-0'>
-            <Image src={dl} alt='DiamondLock' className='mx-auto bg-secondary-500 bg-opacity-20 border-[20px] border-secondary-500 p-7'></Image>
+            <span className='mx-auto bg-secondary-500 bg-opacity-20 border-[20px] border-secondary-500 block'>
+              <Image src={dl} alt='DiamondLock' className='p-7 lg:p-10 lg:pb-0 lg:pt-16 lg:animate-bounce'></Image>
+            </span>
           </section>
-          <h2 className='absolute bottom-0 text-center font-grotesk font-outline-1 text-white'>BUY 1 GET 1 <span className='text-transparent'>BUY 1 GET 1</span> BUY 1 GET 1</h2>
+          <InfiniteScrollText/>
         </div>
-        <h1 className='text-primary-50 w-full mt-5'>
+        <h1 className='text-primary-50 w-full mt-5 z-10 relative'>
           <Icon icon="material-symbols:arrow-circle-down-outline" className='mx-auto'/>
         </h1>
+        <Image
+          src={bg}
+          className='bottom-0 object-cover lg:block hidden absolute'
+          width='100px'
+          height='80px'
+          alt='parallax'
+          style={{ height: `${parallaxProgres}vh` }}
+          />
       </main>
 
       {/* Diamond Lock Section */}
-      <main className='bg-secondary-700 p-12'>
+      <main className='bg-secondary-700 lg:p-12 p-5'>
+        <h3 className='font-grotesk text-primary-50 text-center block lg:hidden'>Diamond Lock (DL)</h3>
         <div
           style={ { backgroundImage: `url(${priceBg.src})` } }
-          className='container my-12 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover'>
-          <Image src={dl} className='p-12 bg-secondary-500 translate-x-12 -translate-y-12' alt='dl' width='300'></Image>
+          className='container lg:my-12 my-7 mx-auto flex lg:justify-between justify-around items-center border-[10px] border-secondary-500 relative bg-cover py-6 px-4'>
+          <span className='p-6 bg-secondary-500 translate-x-12 -translate-y-12 lg:block hidden'>
+            <Image src={dl} className='p-6 lg:animate-pulse' alt='dl' width='300'></Image>
+          </span>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Take</h2>
-            <h2 className='font-grotesk my-7 text-primary-500'>Rp. 3000</h2>
-            <button className='btn-secondary px-14 py-3'>Jual</button>
+            <h2 className='font-grotesk lg:my-7 my-3 text-primary-500'>Rp. 3000</h2>
+            <button className='btn-secondary lg:px-14 px-7 lg:py-3 py-1'>Jual</button>
           </section>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Price</h2>
-            <h2 className='font-grotesk my-7 text-primary-500'>Rp. 3400</h2>
-            <button className='btn-primary px-14 py-3'>Beli</button>
+            <h2 className='font-grotesk lg:my-7 my-3 text-primary-500'>Rp. 3400</h2>
+            <button className='btn-primary lg:px-14 px-7 lg:py-3 py-1'>Beli</button>
           </section>
-          <section className='h-[260px]'>
+          <section className='h-[260px] lg:block hidden'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap rotate-90 font-grotesk mr-6'>Diamond Lock</h3>
           </section>
         </div>
       </main>
 
       {/* Blue Gem Lock */}
-      <main className='bg-secondary-700 p-12'>
+      <main className='bg-secondary-700 p-5 lg:p-12'>
+        <h3 className='font-grotesk text-primary-50 text-center block lg:hidden'>Blue Gem Lock (BGL)</h3>
         <div
           style={ { backgroundImage: `url(${priceBg.src})` } }
-          className='container my-12 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover'>
-          <section className='translate-y-32'>
+          className='container my-12 mt-7 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover lg:flex-row flex-col-reverse'>
+          <section className='translate-y-32 lg:block hidden'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap -rotate-90 font-grotesk ml-6'>Blue Gem Lock</h3>
           </section>
           <section className='text-center text-primary-50 font-grotesk flex flex-col w-1/2'>
             <h3 className='self-start mb-3'>1 BGL = 100 DL
-              <span className='text-primary-500 relative line-through ml-3'>Rp 340.000</span>
+              <span className='text-primary-500 relative line-through lg:ml-3'>Rp 340.000</span>
             </h3>
-            <h2 className='self-end mb-9'>
-              NOW ONLY <span className='text-primary-500'>Rp 330.000</span>
+            <h2 className='lg:self-end mb-9'>
+              NOW ONLY<br className='block lg:hidden'></br> <span className='text-primary-500'>Rp 330.000</span>
             </h2>
-            <section className='flex justify-between items-center'>
-              <span className='font-grotesk text-xl'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
+            <section className='flex justify-center lg:justify-between items-center mb-5 lg:mb-0'>
+              <span className='font-grotesk text-xl hidden lg:block'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
               <button className='btn-primary py-3 px-12 font-bold'>Beli</button>
             </section>
           </section>
-          <Image src={bgl} className='p-12 bg-secondary-500 -translate-x-12 -translate-y-12' alt='bgl' width='300'></Image>
+          <span className='lg:p-9 p-3 bg-secondary-500 lg:-translate-x-12 lg:-translate-y-12 w-3/4 lg:w-fit my-5 lg:my-0'>
+            <Image src={bgl} className='p-6 lg:animate-pulse' alt='bgl' width='300'></Image>
+          </span>
         </div>
       </main>
 
       {/* Langkah-langkah jual beli */}
-      <main className='bg-secondary-700 p-12'>
+      <main className='bg-secondary-700 lg:p-12 p-5'>
         <h3 className='font-grotesk text-primary-50 text-center mb-7'>3 Langkah mudah untuk Jual/Beli Diamond Lock</h3>
-        <div className='flex justify-between'>
+        <div className='flex justify-between lg:flex-row flex-col lg:gap-9 gap-5 container mx-auto'>
         {langkahTransaksi.map((val, idx) => (
           <section
             key={idx}
-            className='basis-1/3 flex flex-col items-center justify-end bg-secondary-500 bg-opacity-20 mx-5 2xl:mx-12 py-16 px-7'>
+            className='basis-1/3 flex flex-col items-center justify-end bg-secondary-500 bg-opacity-20 lg:py-16 p-7'>
             <Image src={val.img.src} alt='illustration' width={'200'} height={'200'}></Image>
             <h5 className='text-white font-grotesk my-3'>{val.name}</h5>
             <p className='text-base text-center'>{val.desc}</p>

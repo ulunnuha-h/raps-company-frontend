@@ -1,0 +1,9 @@
+.animate-scrollText{
+    animation: scrollText 5s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes scrollText {
+    from   { transform: translateX(0px); }
+    to { transform: translateX(-540.7px); }
+  }

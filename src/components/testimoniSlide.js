@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import testimoni from '@/config/testimoni'
 import { Icon } from '@iconify/react'
-import Image from 'next/image'
+import TestimoniCard from './testimoniCard'
 
 const TestimoniSlide = () => {
   const slider = useRef()
@@ -44,26 +44,6 @@ const TestimoniSlide = () => {
           <Icon icon="material-symbols:navigate-next" />
       </h1>
     </main>
-  )
-}
-
-const TestimoniCard = ({ val }) => {
-  return (
-    <div className='w-full lg:w-1/3 inline-block px-2 snap-center'>
-      <section className='testimoni-card flex flex-col items-center px-5 py-9 box-border w-full whitespace-normal'>
-        <h2>
-          <Icon icon="material-symbols:format-quote" />
-        </h2>
-        <p className='text-center my-9 mx-2'>{val.text}</p>
-        <section className='flex gap-2'>
-          <Image src={val.emote} alt='emote1' width='48' height='48'></Image>
-          <aside className='flex flex-col'>
-            <span className='font-bold'>{val.title}</span>
-            <span className='text-xs'>{val.subtitle}</span>
-          </aside>
-        </section>
-      </section>
-    </div>
   )
 }
 

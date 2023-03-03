@@ -10,22 +10,22 @@
 
 @layer base{
     h1{
-        @apply text-3xl font-bold md:text-6xl
+        @apply text-3xl font-bold lg:text-6xl
     }
     h2{
-        @apply text-2xl font-bold md:text-5xl
+        @apply text-2xl font-bold lg:text-5xl
     }
     h3{
-        @apply text-xl font-bold md:text-[40px]
+        @apply text-xl font-bold lg:text-[40px]
     }
     h4{
-        @apply text-lg font-bold md:text-3xl
+        @apply text-lg font-bold lg:text-3xl
     }
     h5{
-        @apply text-base font-bold md:text-2xl
+        @apply text-base font-bold lg:text-2xl
     }
     p{
-        @apply font-poppins text-primary-50 md:text-2xl text-base
+        @apply font-poppins text-primary-50 lg:text-2xl text-base
     }
     .font-outline-1 {
         -webkit-text-stroke: 1px white;
@@ -40,7 +40,7 @@
 
 @layer components{
     .responsive-nav{
-        @apply flex-col md:flex-row absolute w-screen left-0 md:relative md:h-auto md:w-auto mt-8 md:mt-0 bg-primary-700 md:bg-transparent
+        @apply flex-col lg:flex-row absolute w-screen left-0 lg:relative lg:h-auto lg:w-auto mt-10 lg:mt-0 bg-secondary-900 lg:bg-transparent p-5 lg:p-0
     }
 
     .btn-primary{
@@ -48,7 +48,7 @@
     }
 
     .btn-secondary{
-        @apply border-primary-50 border-2 text-primary-50 font-grotesk text-xl hover:bg-primary-50 hover:text-primary-900 active:brightness-75 transition-all
+        @apply border-primary-50 border-2 text-primary-50 font-grotesk text-xl hover:bg-primary-50 hover:bg-opacity-50 active:brightness-75 transition-all
     }
 
     .btn-radio{

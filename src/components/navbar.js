@@ -24,9 +24,9 @@ export default function Navbar () {
   const openHandler = () => setOpen(!open)
   const openStyle = () => {
     if (open) {
-      return ''
+      return 'top-0 opacity-100'
     } else {
-      return 'hidden'
+      return '-top-96 opacity-0 lg:top-0 lg:opacity-100'
     }
   }
 
@@ -40,8 +40,8 @@ export default function Navbar () {
   const [showBg, setShowBg] = useState(false)
   const [showBtn, setShowBtn] = useState(false)
 
-  const bgStyle = () => (showBg ? 'bg-secondary-700' : '')
-  const btnStyle = () => (showBtn ? '' : 'hidden')
+  const bgStyle = () => (showBg ? 'bg-secondary-900 lg:bg-secondary-700' : 'lg:bg-transparent bg-secondary-900')
+  const btnStyle = () => (showBtn ? 'w-full' : 'lg:w-0 block')
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -63,26 +63,28 @@ export default function Navbar () {
   const navButton = navLink.map((val, idx) => (
     <li
       key={idx}
-      className="md:ml-3 text-white flex items-center my-2">
-      <a href={val.href} className='hover:bg-primary-600 active:bg-primary-900 transition-all md:py-0 py-3 px-2 rounded-sm'>
+      className="lg:ml-3 text-white flex items-center lg:my-2 my-1 transition-all">
+      <a
+        href={val.href}
+        className='hover:bg-secondary-700 lg:hover:font-bold active:bg-primary-900 transition-all lg:py-0 py-3 px-2 rounded-sm mx-auto lg:m-0 w-full text-center'>
         {val.name}
       </a>
     </li>
   ))
 
   return (
-    <div className={`fixed w-full ${bgStyle()}`}>
-      <nav className='flex justify-between py-3 px-7 md:px-3 container mx-auto transition-all'>
-        <a href='#' className='flex'>
+    <div className={`fixed w-full ${bgStyle()} duration-300`}>
+      <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all'>
+        <a href='#' className='flex z-10'>
           <Image src={logo} alt="logo"/>
         </a>
-        <button className='block md:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
-          <Icon icon="octicon:three-bars" />
+        <button className='block lg:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
+          <h2><Icon icon="octicon:three-bars" /></h2>
         </button>
-        <ul className={`md:flex font-poppins responsive-nav ${openStyle()}`}>
+        <ul className={`lg:flex font-poppins responsive-nav duration-300 ${openStyle()}`}>
           {navButton}
-          <section className={`${btnStyle()}`}>
-            <button className='btn-secondary px-7 py-1 mx-5 text-base'>Jual</button>
+          <section className={`${btnStyle()} flex justify-center gap-5 lg:ml-5 lg:mt-0 mt-5 m-0 transition-all overflow-hidden duration-300`}>
+            <button className='btn-secondary px-7 py-1 text-base'>Jual</button>
             <button className='btn-primary px-7 py-1 text-base'>Beli</button>
           </section>
         </ul>
