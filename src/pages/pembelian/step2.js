@@ -1,47 +1,72 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import paymentOption from '@/components/paymentOption'
+import { Icon } from '@iconify/react'
 
-export default function Step2 ({ nextAction }) {
-  const [metodeBayar, setMetodeBayar] = useState()
+export default function Step2 ({ formDataHandler, formData, prevAction }) {
+  const [metodeBayar, setMetodeBayar] = useState('')
+  const [hargaDl, setHargaDl] = useState(0)
+  const [hargaBgl, setHargaBgl] = useState(0)
+  const { dl, bgl, total } = formData
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    setHargaBgl(330000)
+    setHargaDl(3400)
+  }, [])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(metodeBayar)
+    if (metodeBayar === '') {
+      setError(true)
+    } else {
+      setError(false)
+      formDataHandler({ metodeBayar })
+    }
   }
 
   return (
-    <form className='container mx-auto py-16 flex gap-6' onSubmit={submitHandler}>
-      <div className='p-12 bg-[#ACB8DE] bg-opacity-20 w-3/5'>
+    <form className='container mx-auto py-16 flex lg:flex-row flex-col gap-6' onSubmit={submitHandler}>
+      <div className='form-card lg:w-3/5'>
         <h3 className='text-white font-grotesk mb-7'>Form Penjualan Diamond Lock</h3>
+        <p className={`error-card ${error ? 'flex' : 'hidden'}`}>
+          <Icon icon="material-symbols:error" className='text-3xl'/>
+          <span>Silakan isi pilih salah satu metode pembayaran</span>
+        </p>
         <section className='flex flex-col text-primary-50 font-poppins'>
           <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
             <section>
               {paymentOption(metodeBayar, setMetodeBayar)}
             </section>
-            <button className='btn-primary px-6 py-3 self-start font-bold mt-5' type='submit'>Kembali</button>
+            <button className='btn-primary px-6 py-3 self-start font-bold mt-5 hidden lg:block' type='button' onClick={prevAction}>Kembali</button>
         </section>
       </div>
-      <div className=' w-2/5 h-fit'>
+      <div className='lg:w-2/5 h-fit mx-2 lg:mx-0'>
         <section className='p-12 bg-[#ACB8DE] bg-opacity-20'>
           <h3 className='text-white font-grotesk mb-7'>Order</h3>
           <table className='w-full text-primary-50 text-2xl'>
+            <tbody>
             <tr>
-              <td>1</td>
+              <td>{bgl}</td>
               <td>BGL</td>
-              <td className='text-end'>Rp. 330.000</td>
+              <td className='text-end'>Rp. {(hargaBgl * bgl).toLocaleString()}</td>
             </tr>
             <tr className='border-b-2'>
-              <td className='py-5'>90</td>
+              <td className='py-5'>{dl}</td>
               <td>DL</td>
-              <td className='text-end'>Rp.306.000</td>
+              <td className='text-end'>Rp. {(hargaDl * dl).toLocaleString()}</td>
             </tr>
             <tr>
               <td colSpan='2' className='py-5'>Total</td>
-              <td className='text-end'>Rp. 636.000</td>
+              <td className='text-end'>Rp. {total.toLocaleString()}</td>
             </tr>
+            </tbody>
           </table>
         </section>
         <button className='btn-primary px-6 py-3 font-bold mt-5 w-full' type='submit'>Bayar</button>
+        <button
+          className='btn-primary px-6 py-3 self-start font-bold mt-5 block lg:hidden w-full'
+          type='button'
+          onClick={prevAction}>Kembali</button>
       </div>
     </form>
   )

@@ -4,11 +4,10 @@ import { Icon } from '@iconify/react'
 import Step1 from './step1'
 import Step2 from './step2'
 import Step3 from './step3'
-import Step4 from './step4'
 
 export default function Penjualan () {
   const [action, setAction] = useState(0)
-  const [children, setChildren] = useState()
+  const [children, setChildren] = useState('')
   const [formData, setFormData] = useState({})
 
   const formDataHandler = useCallback((data) => {
@@ -40,16 +39,13 @@ export default function Penjualan () {
         setChildren(<Step1 {...{ nextAction, formDataHandler, formData }}/>)
         break
       case 1:
-        setChildren(<Step2 {...{ prevAction, formDataHandler, formData }}/>)
+        setChildren(<Step2 {...{ nextAction, prevAction, formDataHandler, formData }}/>)
         break
       case 2:
-        setChildren(<Step3 {...{ nextAction }}/>)
-        break
-      case 3:
-        setChildren(<Step4/>)
+        setChildren(<Step3/>)
         break
     }
-  }, [action, formDataHandler, formData])
+  }, [action, formData, formDataHandler])
 
   return (
     <main
@@ -58,8 +54,8 @@ export default function Penjualan () {
         <div className='pt-16 container mx-auto'>
             <section className='flex justify-between px-2 lg:px-0 items-center'>
               <p className='basis-1/3 text-left'>Isi Form</p>
-              <p className={`basis-1/3 text-center ${actionIndicator(0, '', 'text-neutral-500')}`}>Pilih Metode Pembayaran</p>
-              <p className={`basis-1/3 text-right ${actionIndicator(1, '', 'text-neutral-500')}`}>Bayar</p>
+              <p className={`basis-1/3 text-center ${actionIndicator(0, '', 'text-neutral-500')}`}>Upload Bukti Diamond Lock</p>
+              <p className={`basis-1/3 text-right ${actionIndicator(1, '', 'text-neutral-500')}`}>Jual</p>
             </section>
             <section className='flex justify-between w-full items-center lg:px-5 px-9'>
               <h2 className='-mx-5 z-10 text-primary-500'>
