@@ -15,7 +15,6 @@ const paymentOption = (metodeBayar, setMetodeBayar) => {
               value={val.idx}
               className='peer hidden'
               onChange={() => setMetodeBayar(val.idx)}
-              required
               checked = {val.idx === metodeBayar}
               />
             <Image

@@ -54,8 +54,8 @@ export default function Penjualan () {
         <div className='pt-16 container mx-auto'>
             <section className='flex justify-between'>
               <p className='basis-1/3 text-left'>Isi Form</p>
-              <p className='basis-1/3 text-center'>Upload Bukti Diamond Lock</p>
-              <p className='basis-1/3 text-right'>Jual</p>
+              <p className={`basis-1/3 text-center ${actionIndicator(0, '', 'text-neutral-500')}`}>Upload Bukti Diamond Lock</p>
+              <p className={`basis-1/3 text-right ${actionIndicator(1, '', 'text-neutral-500')}`}>Jual</p>
             </section>
             <section className='flex justify-between w-full items-center px-5'>
               <h2 className='-mx-5 z-10 text-primary-500'>

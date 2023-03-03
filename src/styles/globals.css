@@ -44,7 +44,7 @@
     }
 
     .btn-primary{
-        @apply border-primary-50 border-2 bg-primary-50 text-primary-900 font-grotesk text-xl hover:brightness-75 active:brightness-50 transition-all
+        @apply border-primary-50 border-2 bg-primary-50 text-primary-900 font-grotesk text-xl hover:brightness-75 active:brightness-50 transition-all disabled:hover:brightness-50 disabled:brightness-50
     }
 
     .btn-secondary{
@@ -61,6 +61,14 @@
 
     .testimoni-card{
         @apply text-primary-50 bg-secondary-500 bg-opacity-10 border-[10px] border-secondary-500 py-7
+    }
+
+    .form-card{
+        @apply p-12 bg-[#ACB8DE] bg-opacity-20
+    }
+
+    .error-card{
+        @apply flex items-center gap-1 bg-red-600 w-fit p-2 mb-5 font-poppins
     }
 }
 

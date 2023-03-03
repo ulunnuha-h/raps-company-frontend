@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import paymentOption from '@/components/paymentOption'
+import { Icon } from '@iconify/react'
+import phoneNumberFormatter from '@/utilities/phoneNumberFormatter'
 
 export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [jumlah, setJumlah] = useState(formData.jumlah || '')
@@ -7,6 +9,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [norekening, setNorekening] = useState(formData.norekening || '')
   const [metodeBayar, setMetodeBayar] = useState(formData.metodeBayar)
   const [hargaDl, setHargaDl] = useState()
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     setHargaDl(3200)
@@ -15,19 +18,29 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    formDataHandler({
-      jumlah,
-      whatsapp,
-      norekening,
-      metodeBayar
-    })
-    nextAction()
+    if (jumlah === '' || norekening === '' || whatsapp === '' || metodeBayar === undefined) {
+      setError(true)
+      window.scroll(0, 0)
+    } else {
+      formDataHandler({
+        jumlah,
+        whatsapp: phoneNumberFormatter(whatsapp),
+        norekening,
+        metodeBayar
+      })
+      setError(false)
+      nextAction()
+    }
   }
 
   return (
     <main className='container mx-auto pt-16'>
-      <div className='p-12 bg-[#ACB8DE] bg-opacity-20'>
+      <div className='form-card'>
         <h3 className='text-white font-grotesk mb-7'>Form Penjualan Diamond Lock</h3>
+        <p className={`error-card ${error ? 'flex' : 'hidden'}`}>
+          <Icon icon="material-symbols:error" className='text-3xl'/>
+          <span>Silakan isi seluruh kolom form dan pilih metode pembayaran</span>
+        </p>
         <form className='flex flex-col text-primary-50 font-poppins' onSubmit={submitHandler}>
           {/* Input jumlah diamond lock dan nomor whatsapp */}
           <section className='flex md:gap-12 gap-3 mb-7 flex-col md:flex-row'>
@@ -38,7 +51,6 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 className='input-field my-2'
                 value={jumlah} onChange={e => setJumlah(e.target.value)}
                 placeholder='Masukkan Jumlah Diamond Lock'
-                required
                 />
               <span>Nominal yang akan didapatkan: <b>Rp. {(jumlah * hargaDl || 0).toLocaleString('en-US')}</b></span>
             </span>
@@ -50,7 +62,6 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 placeholder='Masukkan Nomor Whatsapp'
                 value={whatsapp}
                 onChange={e => setWhatsapp(e.target.value) }
-                required
                 />
             </span>
           </section>
@@ -70,7 +81,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
               onChange={e => setNorekening(e.target.value)}
             />
           </span>
-          <button className='btn-primary px-6 py-4 self-end font-bold' type='submit'>Selanjutnya</button>
+          <button className='btn-primary px-6 py-4 self-end font-bold' type='submit'>Selanjutnya </button>
         </form>
       </div>
     </main>

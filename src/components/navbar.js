@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import logo from '../../public/assets/logo.svg'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import { useRouter } from 'next/router'
 
 const navLink = [
   {
@@ -39,6 +40,7 @@ export default function Navbar () {
   // ShowBg untuk mengindikasikan munculnya background dan ShowBtn untuk munculnya button pada navbar
   const [showBg, setShowBg] = useState(false)
   const [showBtn, setShowBtn] = useState(false)
+  const [urlParam, setUrlParam] = useState('')
 
   const bgStyle = () => (showBg ? 'bg-secondary-900 lg:bg-secondary-700' : 'lg:bg-transparent bg-secondary-900')
   const btnStyle = () => (showBtn ? 'w-full' : 'lg:w-0 block')
@@ -51,14 +53,20 @@ export default function Navbar () {
       setShowBg(false)
     }
 
-    if (clientWindowHeight > 400) {
+    if (clientWindowHeight > 400 || urlParam !== '/') {
       setShowBtn(true)
     } else {
       setShowBtn(false)
     }
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [clientWindowHeight])
+  }, [clientWindowHeight, urlParam])
+
+  const router = useRouter()
+
+  useEffect(() => {
+    setUrlParam(router.pathname)
+  }, [router])
 
   const navButton = navLink.map((val, idx) => (
     <li
