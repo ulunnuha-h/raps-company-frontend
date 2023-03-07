@@ -1,31 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import logo from '../../public/assets/logo.svg'
-
-const navLink = [
-  {
-    name: 'Beranda',
-    href: '#'
-  },
-  {
-    name: 'Langkah',
-    href: '#'
-  },
-  {
-    name: 'Testimoni',
-    href: '#'
-  }
-]
+import navLink from '@/config/navLink'
+import { getAllSocialMedia } from '@/data/platforms'
+import { Icon } from '@iconify/react'
+import Link from 'next/link'
 
 const navButton = navLink.map((val, idx) => (
     <li
       key={idx}
       className="text-white hover:font-bold active:bg-primary-900 rounded-sm transition-all md:ml-7 px-2 my-5 md:my-0">
-      <a href={val.href}>{val.name}</a>
+      <Link href={val.href} scroll={false}>{val.name}</Link>
     </li>
 ))
 
 export default function Footer () {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getAllSocialMedia()
+      .then(val => setData(val.data))
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <div className='bg-secondary-900 text-primary-50'>
       <footer className='container mx-auto items-center'>
@@ -42,7 +39,13 @@ export default function Footer () {
             <span className='text-center lg:text-left'>Copyright © 2023 <span className='text-primary-500'>
               Raps Company</span>, All rights reserved.
             </span>
-            <span className='text-primary-500 mb-3 lg:mb-0'>instagram Twitter</span>
+            <span className='text-primary-500 mb-3 lg:mb-0 flex gap-4 flex-col lg:flex-row'>
+              {data.map((val, idx) => (
+                <a key={idx} href={val.link} className='flex items-center gap-1' target='_blank'>
+                  <Icon icon={`fa6-brands:${val.platform.toLowerCase()}`} className='text-2xl'/> {val.username}
+                </a>
+              ))}
+            </span>
         </section>
       </footer>
     </div>

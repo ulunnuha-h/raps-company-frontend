@@ -9,6 +9,7 @@ import { Icon } from '@iconify/react'
 import langkahTransaksi from '@/config/langkahTransaksi'
 import TestimoniSlide from '@/components/testimoniSlide'
 import InfiniteScrollText from '@/components/infiniteScrollText'
+import Link from 'next/link'
 
 export default function Home () {
   const [parallaxProgres, setParallaxProgres] = useState(120)
@@ -34,8 +35,8 @@ export default function Home () {
             <h1 className='text-primary-50 font-grotesk md:mb-5 text-center md:text-left'>JUAL/BELI DIAMOND LOCK OPEN 24 JAM</h1>
             <p className='md:mb-12 mb-5 text-center md:text-left'>Dapatkan Diamond Lock dengan harga terbaik!</p>
             <section className='flex justify-center md:justify-start mb-9 lg:mb-0'>
-              <button className='btn-secondary px-10 py-2 mr-5'>Jual</button>
-              <button className='btn-primary px-10 py-2'>Beli</button>
+              <Link href='/penjualan' className='btn-secondary px-10 py-2 mr-5'>Jual</Link>
+              <Link href='/pembelian' className='btn-primary px-10 py-2'>Beli</Link>
             </section>
           </section>
           <section className='m-12 md:m-0'>
@@ -69,13 +70,13 @@ export default function Home () {
           </span>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Take</h2>
-            <h2 className='font-grotesk lg:my-7 my-3 text-primary-500'>Rp. 3000</h2>
-            <button className='btn-secondary lg:px-14 px-7 lg:py-3 py-1'>Jual</button>
+            <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. 3000</h2>
+            <Link href='/penjualan' className='btn-secondary lg:px-14 px-7 lg:py-3 py-1'>Jual</Link>
           </section>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Price</h2>
-            <h2 className='font-grotesk lg:my-7 my-3 text-primary-500'>Rp. 3400</h2>
-            <button className='btn-primary lg:px-14 px-7 lg:py-3 py-1'>Beli</button>
+            <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. 3400</h2>
+            <Link href='/pembelian' className='btn-primary lg:px-14 px-7 lg:py-3 py-1'>Beli</Link>
           </section>
           <section className='h-[260px] lg:block hidden'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap rotate-90 font-grotesk mr-6'>Diamond Lock</h3>
@@ -92,22 +93,24 @@ export default function Home () {
           <section className='translate-y-32 lg:block hidden'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap -rotate-90 font-grotesk ml-6'>Blue Gem Lock</h3>
           </section>
-          <section className='text-center text-primary-50 font-grotesk flex flex-col w-1/2'>
-            <h3 className='self-start mb-3'>1 BGL = 100 DL
-              <span className='text-primary-500 relative line-through lg:ml-3'>Rp 340.000</span>
+          <section className='text-center text-primary-50 font-grotesk flex flex-col lg:w-1/2'>
+            <h3 className='self-start mb-3 flex flex-col lg:flex-row'>
+              <span>1 BGL = 100 DL</span>
+              <span className='text-primary-500 relative line-through lg:ml-3'> Rp 340.000 </span>
             </h3>
             <h2 className='lg:self-end mb-9'>
               NOW ONLY<br className='block lg:hidden'></br> <span className='text-primary-500'>Rp 330.000</span>
             </h2>
             <section className='flex justify-center lg:justify-between items-center mb-5 lg:mb-0'>
               <span className='font-grotesk text-xl hidden lg:block'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
-              <button className='btn-primary py-3 px-12 font-bold'>Beli</button>
+              <Link href='/pembelian' className='btn-primary py-3 px-12 font-bold'>Beli</Link>
             </section>
           </section>
           <span className='lg:p-9 p-3 bg-secondary-500 lg:-translate-x-12 lg:-translate-y-12 w-3/4 lg:w-fit my-5 lg:my-0'>
             <Image src={bgl} className='p-6 lg:animate-pulse' alt='bgl' width='300'></Image>
           </span>
         </div>
+        <span id='langkah'/>
       </main>
 
       {/* Langkah-langkah jual beli */}
@@ -124,6 +127,7 @@ export default function Home () {
           </section>
         ))}
         </div>
+        <span id='testimoni'/>
       </main>
 
       {/* Testimoni Pelanggan */}

@@ -1,7 +1,8 @@
 const phoneNumberFormatter = (number) => {
-  if (number[0] === '0') number = number.slice(1)
-
-  number = '+62' + number
+  if (number[0] === '0') {
+    number = number.slice(1)
+    number = '+62' + number
+  }
   return number
 }
 

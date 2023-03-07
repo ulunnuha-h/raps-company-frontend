@@ -14,14 +14,47 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [dl, setDl] = useState(formData.dl || 0)
   const [bgl, setBgl] = useState(formData.bgl || 0)
   const [error, setError] = useState(false)
-  const [isDl, setIsDl] = useState(true)
+  const [isDl, setIsDl] = useState(formData.isDl !== undefined ? formData.isDl : true)
 
   const jumlahHandler = e => {
     const { value } = e.target
-    setJumlah(value)
-    setDl(value % 100)
-    setBgl(Math.floor(value / 100))
-    setTotal((value % 100) * hargaDl + Math.floor(value / 100) * hargaBgl)
+    if (isDl) {
+      setJumlah(value)
+      setDl(value % 100)
+      setBgl(Math.floor(value / 100))
+      setTotal((value % 100) * hargaDl + Math.floor(value / 100) * hargaBgl)
+    } else {
+      setJumlah(value)
+      setBgl(value)
+      setDl(0)
+      setTotal(value * hargaBgl)
+    }
+  }
+
+  const totalHandler = e => {
+    const { value } = e.target
+    if (isDl) {
+      setTotal(value)
+      const jumlahBgl = Math.floor(value / hargaBgl)
+      const jumlahDl = ((value % hargaBgl) / hargaDl)
+      const jumlah = (jumlahBgl * 100 + jumlahDl).toFixed(2)
+      setJumlah(jumlah)
+      setDl(Math.floor(jumlahDl))
+      setBgl(Math.floor(jumlahBgl))
+    } else {
+      setTotal(value)
+      setBgl(Math.floor(value / hargaBgl))
+      setJumlah((value / hargaBgl).toFixed(2))
+      setDl(0)
+    }
+  }
+
+  const isDlHandler = (value) => {
+    setIsDl(value)
+    setBgl(0)
+    setDl(0)
+    setTotal(0)
+    setJumlah(0)
   }
 
   useEffect(() => {
@@ -31,7 +64,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    if (world === '' || name === '' || growId === '' || whatsapp === '' || jumlah === '' || total === '') {
+    if (world === '' || name === '' || growId === '' || whatsapp === '' || jumlah === '' || total === '' || total === 0) {
       setError(true)
       window.scroll(0, 0)
     } else {
@@ -44,7 +77,8 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
         jumlah,
         total,
         dl,
-        bgl
+        bgl,
+        isDl
       })
       nextAction()
     }
@@ -53,10 +87,10 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   return (
     <main className='container mx-auto py-16'>
       <div className='form-card'>
-        <h3 className='text-white font-grotesk mb-7'>Form Penjualan Diamond Lock</h3>
+        <h3 className='text-white font-grotesk mb-7'>Form Pembelian Diamond Lock</h3>
         <p className={`error-card ${error ? 'flex' : 'hidden'}`}>
           <Icon icon="material-symbols:error" className='text-3xl'/>
-          <span>Silakan isi seluruh kolom form dan pilih metode pembayaran</span>
+          <span>Silakan isi seluruh kolom form</span>
         </p>
         <form className='flex flex-col text-primary-50 font-poppins' onSubmit={submitHandler}>
           {/* Input world dan growid */}
@@ -91,7 +125,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 />
             </span>
             <span className='flex flex-col w-full lg:w-2/5'>
-              <label>Nomor Whatsapp</label>
+              <label>Nomor Whatsapp (contoh : 082xxxxxxxxx)</label>
               <input
                 type='text'
                 className='input-field my-2'
@@ -107,11 +141,11 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
               <label className='mb-3'>Jenis Pembelian</label>
               <ul className='flex gap-5'>
                 <li>
-                    <input type='radio' id='dl' name='Jenis Pembelian' checked={isDl} className='cursor-pointer' onChange={() => setIsDl(true)}></input>
+                    <input type='radio' id='dl' name='Jenis Pembelian' checked={isDl} className='cursor-pointer' onChange={() => isDlHandler(true)}></input>
                     <label htmlFor='dl' className='mx-1'>Diamond Lock (DL)</label>
                 </li>
                 <li>
-                    <input type='radio' id='bgl' name='Jenis Pembelian' checked={!isDl} className='cursor-pointer' onChange={() => setIsDl(false)}></input>
+                    <input type='radio' id='bgl' name='Jenis Pembelian' checked={!isDl} className='cursor-pointer' onChange={() => isDlHandler(false)}></input>
                     <label htmlFor='bgl' className='mx-1'>
                         <span>Blue Gem Lock (BGL)</span><br/>
                         <span className='lg:ml-[80px] text-sm'>1 BGL = 100 DL</span>
@@ -142,7 +176,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 type='number'
                 className='input-field my-2'
                 value={total}
-                onChange={e => setTotal(e.target.value) }
+                onChange={totalHandler}
                 />
                 <section className='flex gap-2'>
                     <span>DL : {dl}</span>

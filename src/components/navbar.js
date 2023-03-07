@@ -3,21 +3,8 @@ import logo from '../../public/assets/logo.svg'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useRouter } from 'next/router'
-
-const navLink = [
-  {
-    name: 'Beranda',
-    href: '#'
-  },
-  {
-    name: 'Langkah',
-    href: '#'
-  },
-  {
-    name: 'Testimoni',
-    href: '#'
-  }
-]
+import Link from 'next/link'
+import navLink from '@/config/navLink'
 
 export default function Navbar () {
   // Open untuk mengindikasikan navbar responsive terbuka atau tidak
@@ -72,28 +59,29 @@ export default function Navbar () {
     <li
       key={idx}
       className="lg:ml-3 text-white flex items-center lg:my-2 my-1 transition-all">
-      <a
+      <Link
         href={val.href}
-        className='hover:bg-secondary-700 lg:hover:font-bold active:bg-primary-900 transition-all lg:py-0 py-3 px-2 rounded-sm mx-auto lg:m-0 w-full text-center'>
+        className='hover:bg-secondary-700 lg:hover:font-bold active:bg-primary-900 transition-all lg:py-0 py-3 px-2 rounded-sm mx-auto lg:m-0 w-full text-center'
+        scroll={false}>
         {val.name}
-      </a>
+      </Link>
     </li>
   ))
 
   return (
     <div className={`fixed w-full ${bgStyle()} duration-300`}>
       <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all'>
-        <a href='#' className='flex z-10'>
+        <Link href='/' className='flex z-10'>
           <Image src={logo} alt="logo"/>
-        </a>
+        </Link>
         <button className='block lg:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
           <h2><Icon icon="octicon:three-bars" /></h2>
         </button>
         <ul className={`lg:flex font-poppins responsive-nav duration-300 ${openStyle()}`}>
           {navButton}
           <section className={`${btnStyle()} flex justify-center gap-5 lg:ml-5 lg:mt-0 mt-5 m-0 transition-all overflow-hidden duration-300`}>
-            <button className='btn-secondary px-7 py-1 text-base'>Jual</button>
-            <button className='btn-primary px-7 py-1 text-base'>Beli</button>
+            <Link href='/penjualan' className='btn-secondary px-7 py-1 text-base h-fit'>Jual</Link>
+            <Link href='/pembelian' className='btn-primary px-7 py-1 text-base h-fit'>Beli</Link>
           </section>
         </ul>
       </nav>

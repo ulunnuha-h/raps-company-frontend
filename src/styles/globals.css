@@ -1,12 +1,16 @@
 @tailwind base;
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    scroll-behavior:smooth ;
+}
+
 @tailwind components;
 @tailwind utilities;
 
 @import url('https://fonts.cdnfonts.com/css/poppins');
-
-*{
-    scroll-behavior: smooth;
-}
 
 @layer base{
     h1{
@@ -36,11 +40,14 @@
     .font-outline-4 {
         -webkit-text-stroke: 4px white;
     }
+    html{
+        scroll-behavior: smooth;
+    }
 }
 
 @layer components{
     .responsive-nav{
-        @apply flex-col lg:flex-row absolute w-screen left-0 lg:relative lg:h-auto lg:w-auto mt-10 lg:mt-0 bg-secondary-900 lg:bg-transparent p-5 lg:p-0
+        @apply flex-col lg:flex-row items-center absolute w-screen left-0 lg:relative lg:h-auto lg:w-auto mt-10 lg:mt-0 bg-secondary-900 lg:bg-transparent p-5 lg:p-0
     }
 
     .btn-primary{

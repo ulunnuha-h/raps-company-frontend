@@ -33,34 +33,9 @@ const paymentMethod = [
         img: '/assets/paymentMethod/4.png'
       },
       {
-        name: 'mandiri',
-        idx: 5,
-        img: '/assets/paymentMethod/5.png'
-      },
-      {
         name: 'bni',
-        idx: 6,
+        idx: 5,
         img: '/assets/paymentMethod/6.png'
-      },
-      {
-        name: 'permata',
-        idx: 7,
-        img: '/assets/paymentMethod/7.png'
-      }
-    ]
-  },
-  {
-    category: 'Direct Debit',
-    list: [
-      {
-        name: 'bcaklikpay',
-        idx: 8,
-        img: '/assets/paymentMethod/8.png'
-      },
-      {
-        name: 'brimo',
-        idx: 9,
-        img: '/assets/paymentMethod/9.png'
       }
     ]
   }
