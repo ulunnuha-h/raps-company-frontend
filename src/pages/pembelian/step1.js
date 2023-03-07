@@ -16,6 +16,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [error, setError] = useState(false)
   const [isDl, setIsDl] = useState(formData.isDl !== undefined ? formData.isDl : true)
 
+  // Fungsi yang dijalankan ketika kolom jumlah berubah
   const jumlahHandler = e => {
     const { value } = e.target
     if (isDl) {
@@ -31,6 +32,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
     }
   }
 
+  // Fungsi yang dijalankan ketika kolom total diubah
   const totalHandler = e => {
     const { value } = e.target
     if (isDl) {
@@ -49,6 +51,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
     }
   }
 
+  // Fungsi yang dijalankan ketika pilihan dl atau bgl diubah
   const isDlHandler = (value) => {
     setIsDl(value)
     setBgl(0)
@@ -189,4 +192,18 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
       </div>
     </main>
   )
+}
+
+Step1.defaultProps = {
+  formData: {
+    world: '',
+    name: '',
+    growId: '',
+    whatsapp: '',
+    jumlah: 0,
+    total: 0,
+    dl: 0,
+    bgl: 0,
+    isDl: true
+  }
 }

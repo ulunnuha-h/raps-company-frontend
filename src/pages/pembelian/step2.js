@@ -71,3 +71,17 @@ export default function Step2 ({ formDataHandler, formData, prevAction }) {
     </form>
   )
 }
+
+Step2.defaultProps = {
+  formData: {
+    world: '',
+    name: '',
+    growId: '',
+    whatsapp: '',
+    jumlah: 0,
+    total: 0,
+    dl: 0,
+    bgl: 0,
+    isDl: true
+  }
+}

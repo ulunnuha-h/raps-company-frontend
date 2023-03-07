@@ -100,3 +100,13 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
     </main>
   )
 }
+
+Step2.defaultProps = {
+  formData: {
+    jumlah: 0,
+    whatsapp: '',
+    norekening: '',
+    metodeBayar: null,
+    file: null
+  }
+}
