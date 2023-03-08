@@ -4,17 +4,17 @@ const paymentMethod = [
     list: [
       {
         name: 'qris',
-        idx: 0,
+        idx: 1,
         img: '/assets/paymentMethod/0.png'
       },
       {
         name: 'gopay',
-        idx: 1,
+        idx: 2,
         img: '/assets/paymentMethod/1.png'
       },
       {
         name: 'shopeepay',
-        idx: 2,
+        idx: 3,
         img: '/assets/paymentMethod/2.png'
       }
     ]
@@ -24,17 +24,17 @@ const paymentMethod = [
     list: [
       {
         name: 'bca',
-        idx: 3,
+        idx: 4,
         img: '/assets/paymentMethod/3.png'
       },
       {
         name: 'bri',
-        idx: 4,
+        idx: 5,
         img: '/assets/paymentMethod/4.png'
       },
       {
         name: 'bni',
-        idx: 5,
+        idx: 6,
         img: '/assets/paymentMethod/6.png'
       }
     ]

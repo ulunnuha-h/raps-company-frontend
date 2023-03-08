@@ -10,6 +10,11 @@ export default function Penjualan () {
   const [action, setAction] = useState(0)
   const [children, setChildren] = useState()
   const [formData, setFormData] = useState({})
+  const [transactionData, setTransactionData] = useState({})
+
+  const transactionDataHandler = (data) => {
+    setTransactionData(data)
+  }
 
   const formDataHandler = useCallback((data) => {
     let newData = formData
@@ -40,16 +45,16 @@ export default function Penjualan () {
         setChildren(<Step1 {...{ nextAction, formDataHandler, formData }}/>)
         break
       case 1:
-        setChildren(<Step2 {...{ prevAction, formDataHandler, formData }}/>)
+        setChildren(<Step2 {...{ prevAction, formDataHandler, formData, nextAction, transactionDataHandler }}/>)
         break
       case 2:
-        setChildren(<Step3 {...{ nextAction }}/>)
+        setChildren(<Step3 {...{ nextAction, transactionData }}/>)
         break
       case 3:
         setChildren(<Step4/>)
         break
     }
-  }, [action, formDataHandler, formData])
+  }, [action, formDataHandler, formData, transactionData])
 
   return (
     <main

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import paymentOption from '@/components/paymentOption'
 import { Icon } from '@iconify/react'
+import { postPembelian } from '@/data/pembelian'
 
-export default function Step2 ({ formDataHandler, formData, prevAction }) {
+export default function Step2 ({ formDataHandler, formData, prevAction, nextAction, transactionDataHandler }) {
   const [metodeBayar, setMetodeBayar] = useState('')
   const [hargaDl, setHargaDl] = useState(0)
   const [hargaBgl, setHargaBgl] = useState(0)
   const { dl, bgl, total } = formData
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setHargaBgl(330000)
@@ -17,10 +19,22 @@ export default function Step2 ({ formDataHandler, formData, prevAction }) {
   const submitHandler = (e) => {
     e.preventDefault()
     if (metodeBayar === '') {
-      setError(true)
+      setError('Silakan isi pilih salah satu metode pembayaran')
     } else {
-      setError(false)
+      setError('')
+      setLoading(true)
       formDataHandler({ metodeBayar })
+      postPembelian({ ...formData, metodeBayar })
+        .then(({ data }) => {
+          if (data.data.status_code === '201') {
+            transactionDataHandler(data.data)
+            nextAction()
+          } else {
+            setError(data.data.status_message)
+          }
+        })
+        .catch(err => setError(err.message))
+        .finally(() => setLoading(false))
     }
   }
 
@@ -30,7 +44,7 @@ export default function Step2 ({ formDataHandler, formData, prevAction }) {
         <h3 className='text-white font-grotesk mb-7'>Form Pembelian Diamond Lock</h3>
         <p className={`error-card ${error ? 'flex' : 'hidden'}`}>
           <Icon icon="material-symbols:error" className='text-3xl'/>
-          <span>Silakan isi pilih salah satu metode pembayaran</span>
+          <span>{error}</span>
         </p>
         <section className='flex flex-col text-primary-50 font-poppins'>
           <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
@@ -62,7 +76,7 @@ export default function Step2 ({ formDataHandler, formData, prevAction }) {
             </tbody>
           </table>
         </section>
-        <button className='btn-primary px-6 py-3 font-bold mt-5 w-full' type='submit'>Bayar</button>
+        <button className='btn-primary px-6 py-3 font-bold mt-5 w-full' type='submit' disabled={loading}>{loading ? 'Processing . . .' : 'Bayar'}</button>
         <button
           className='btn-primary px-6 py-3 self-start font-bold mt-5 block lg:hidden w-full'
           type='button'

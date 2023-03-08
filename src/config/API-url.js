@@ -1,4 +1,4 @@
-const url = 'http://localhost:3001'
+const url = 'https://api.dlcheap.com'
 
 const getAPIurl = () => {
   return url
