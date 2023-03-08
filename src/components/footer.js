@@ -19,7 +19,7 @@ export default function Footer () {
 
   useEffect(() => {
     getAllSocialMedia()
-      .then(val => setData(val.data))
+      .then(({ data }) => setData(data.data))
       .catch(err => console.log(err))
   }, [])
 
