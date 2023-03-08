@@ -57,7 +57,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
             <span className='flex flex-col lg:w-2/5 mb-2'>
               <label>Nomor Whatsapp (Contoh: 082xxxxxxxxx)</label>
               <input
-                type='number'
+                type='text'
                 className='input-field my-2'
                 placeholder='Masukkan Nomor Whatsapp'
                 value={whatsapp}

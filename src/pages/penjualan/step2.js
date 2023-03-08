@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
+import { postPenjualan } from '@/data/penjualan'
 
 const allowedFormat = [
   'image/jpeg',
@@ -10,6 +11,7 @@ const allowedFormat = [
 export default function Step2 ({ nextAction, prevAction, formDataHandler, formData }) {
   const [file, setFile] = useState(formData.file || null)
   const [errorMessage, setErrorMessage] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     window.scroll(0, 0)
@@ -17,7 +19,6 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
 
   const fileHandler = (e) => {
     const { size, type } = e.target.files[0]
-    console.log(size)
     const sizeOnMb = size / 1024 ** 2
     if (sizeOnMb > 5) {
       setErrorMessage('Ukuran file terlalu besar')
@@ -30,13 +31,21 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   }
 
   const submitHandler = e => {
+    setLoading(true)
     e.preventDefault()
     if (file.name !== '') {
       setErrorMessage('')
       formDataHandler({ file })
-      nextAction()
+      postPenjualan({ ...formData, file })
+        .then(() => {
+          setErrorMessage('')
+          nextAction()
+        })
+        .catch(err => console.log(err))
+        .finally(() => setLoading(false))
     } else {
       setErrorMessage('Silakan upload screenshot bukti penjualan')
+      setLoading(false)
     }
   }
 
@@ -90,11 +99,11 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
           </span>
         </section>
         <section className='flex justify-between'>
-          <button className='btn-primary px-5 lg:px-12 py-4 font-bold' type='button' onClick={prevHandler}>Kembali</button>
+          <button className='btn-primary px-5 lg:px-12 py-4 font-bold' disabled={loading} type='button' onClick={prevHandler}>Kembali</button>
           <button
             className='btn-primary px-5 lg:px-12 py-4 font-bold'
             type='submit'
-            disabled={errorMessage !== ''}>Jual</button>
+            disabled={errorMessage !== ''}>{loading ? 'Loading . . .' : 'Jual'}</button>
         </section>
       </form>
     </main>
