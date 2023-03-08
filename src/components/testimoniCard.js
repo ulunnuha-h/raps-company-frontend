@@ -11,7 +11,7 @@ const TestimoniCard = ({ val }) => {
         </h2>
         <p className='text-center my-9 mx-2'>{val.text}</p>
         <section className='flex gap-2'>
-          <Image src={val.emote} alt='emote1' width='48' height='48'></Image>
+          <Image src={val.emote} alt='emote1' width='48' height='48' />
           <aside className='flex flex-col'>
             <span className='font-bold'>{val.title}</span>
             <span className='text-xs'>{val.subtitle}</span>

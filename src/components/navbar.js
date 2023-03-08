@@ -71,7 +71,7 @@ export default function Navbar () {
 
   return (
     <div className={`fixed w-full ${bgStyle()} duration-300`}>
-      <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all'>
+      <nav className='flex justify-between py-3 px-7 lg:px-20 container mx-auto transition-all'>
         <Link href='./' as='./' className='flex z-10'>
           <Image src={logo} alt="logo"/>
         </Link>

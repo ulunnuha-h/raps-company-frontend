@@ -1,3 +1,10 @@
+import payment0 from '../../public/assets/paymentMethod/0.png'
+import payment1 from '../../public/assets/paymentMethod/1.png'
+import payment2 from '../../public/assets/paymentMethod/2.png'
+import payment6 from '../../public/assets/paymentMethod/6.png'
+import payment8 from '../../public/assets/paymentMethod/8.png'
+import payment4 from '../../public/assets/paymentMethod/4.png'
+
 const paymentMethod = [
   {
     category: 'Dompet Digital',
@@ -5,17 +12,17 @@ const paymentMethod = [
       {
         name: 'qris',
         idx: 1,
-        img: '/assets/paymentMethod/0.png'
+        img: payment0
       },
       {
         name: 'gopay',
         idx: 2,
-        img: '/assets/paymentMethod/1.png'
+        img: payment1
       },
       {
         name: 'shopeepay',
         idx: 3,
-        img: '/assets/paymentMethod/2.png'
+        img: payment2
       }
     ]
   },
@@ -25,17 +32,17 @@ const paymentMethod = [
       {
         name: 'bca',
         idx: 4,
-        img: '/assets/paymentMethod/3.png'
+        img: payment8
       },
       {
         name: 'bri',
         idx: 5,
-        img: '/assets/paymentMethod/4.png'
+        img: payment4
       },
       {
         name: 'bni',
         idx: 6,
-        img: '/assets/paymentMethod/6.png'
+        img: payment6
       }
     ]
   }

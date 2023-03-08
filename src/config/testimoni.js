@@ -1,25 +1,28 @@
+import emote1 from '../../public/emotes/emote1.png'
+import emote2 from '../../public/emotes/emote2.png'
+import emote3 from '../../public/emotes/emote3.png'
+
 const testimoni = [
   {
-    emote: '/emotes/emote1.png',
+    emote: emote1,
     title: 'jenkins',
     subtitle: 'DL Cheap Customer',
     text: '“Diamond Lock dengan kualitas terbaik!”'
   },
   {
-    emote: '/emotes/emote2.png',
+    emote: emote2,
     title: 'Jhon Lennon',
     subtitle: 'DL Cheap Customer',
     text: '“Diamond Lock dengan kualitas terbaik!”'
   },
   {
-    emote: '/emotes/emote3.png',
+    emote: emote3,
     title: 'jenkins',
     subtitle: 'DL Cheap Customer',
     text: '“Diamond Lock dengan kualitas terbaik!”'
   },
   {
-    emote: '/emotes/emote1.png',
-    title: 'jenkins',
+    emote: emote1,
     subtitle: 'DL Cheap Customer',
     text: '“Diamond Lock dengan kualitas terbaik!”'
   }
