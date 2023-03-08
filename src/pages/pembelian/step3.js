@@ -29,7 +29,7 @@ export default function Step3 ({ nextAction, transactionData }) {
       const newTime = new Date(expire - Date.now())
       setTime(newTime.getMinutes() + ' : ' + newTime.getSeconds().toString().padStart(2, '0'))
     }, 1000)
-  }, [])
+  }, [transactionData.expiry_time])
 
   return (
     <main className='container mx-auto py-16 flex flex-col-reverse lg:flex-row lg:gap-6 gap-3'>

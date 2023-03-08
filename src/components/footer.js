@@ -10,7 +10,7 @@ const navButton = navLink.map((val, idx) => (
     <li
       key={idx}
       className="text-white hover:font-bold active:bg-primary-900 rounded-sm transition-all md:ml-7 px-2 my-5 md:my-0">
-      <Link href={val.href} scroll={false}>{val.name}</Link>
+      <Link href={val.href} as={val.href} scroll={false}>{val.name}</Link>
     </li>
 ))
 
