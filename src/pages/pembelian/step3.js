@@ -28,7 +28,13 @@ export default function Step3 ({ nextAction, transactionData }) {
     setInterval(() => {
       const expire = new Date(transactionData.expiry_time).getTime()
       const newTime = new Date(expire - Date.now())
-      setTime(newTime.getMinutes() + ' : ' + newTime.getSeconds().toString().padStart(2, '0'))
+      if (expire > Date.now()) {
+        setTime(newTime.getMinutes() + ' : ' + newTime.getSeconds().toString().padStart(2, '0'))
+        console.log(expire, Date.now())
+      } else {
+        setTime(0)
+        location.reload()
+      }
     }, 1000)
   }, [transactionData.expiry_time])
 

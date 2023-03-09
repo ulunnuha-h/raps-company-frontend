@@ -7,9 +7,9 @@ import { useEffect } from 'react'
 
 export default function App ({ Component, pageProps }) {
   useEffect(() => {
-    // const x = document.getElementById('audio')
-    // x.autoplay = true
-    // x.load()
+    const x = document.getElementById('audio')
+    x.autoplay = true
+    x.load()
   }, [])
 
   return (
