@@ -54,7 +54,7 @@ export default function Home () {
           </section>
           <section className='m-12 md:m-0'>
             <span className='mx-auto bg-secondary-500 bg-opacity-20 border-[20px] border-secondary-500 block'>
-              <Image src={dl} alt='DiamondLock' className='p-7 lg:p-10 lg:pb-0 lg:pt-16 lg:animate-bounce'></Image>
+              <Image src={dl.src} alt='DiamondLock' className='p-7 lg:p-10 lg:pb-0 lg:pt-16 lg:animate-bounce' width='350' height='350'></Image>
             </span>
           </section>
           <InfiniteScrollText/>
@@ -79,7 +79,7 @@ export default function Home () {
           style={ { backgroundImage: `url(${priceBg.src})` } }
           className='container lg:my-12 my-7 mx-auto flex lg:justify-between justify-around items-center border-[10px] border-secondary-500 relative bg-cover py-6 px-4'>
           <span className='p-6 bg-secondary-500 translate-x-12 -translate-y-12 lg:block hidden'>
-            <Image src={dl} className='p-6 lg:animate-pulse' alt='dl' width='300'></Image>
+            <Image src={dl.src} className='p-6 lg:animate-pulse' alt='dl' width='300' height='300'></Image>
           </span>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Take</h2>
@@ -120,7 +120,7 @@ export default function Home () {
             </section>
           </section>
           <span className='xl:p-9 p-3 bg-secondary-500 xl:-translate-x-12 xl:-translate-y-12 min-w-fit m-5 xl:my-0'>
-            <Image src={bgl} className='p-6 xl:animate-pulse' alt='bgl' width='300'></Image>
+            <Image src={bgl.src} className='p-6 xl:animate-pulse' alt='bgl' width='300' height='300'></Image>
           </span>
         </div>
         <span id='langkah'/>
@@ -134,7 +134,7 @@ export default function Home () {
           <section
             key={idx}
             className='basis-1/3 flex flex-col items-center justify-end bg-secondary-500 bg-opacity-20 lg:py-16 p-7'>
-            <Image src={val.img.src} alt='illustration' width={'200'} height={'200'}></Image>
+            <Image src={val.img} alt='illustration' width='200' height='200'></Image>
             <h5 className='text-white font-grotesk my-3'>{val.name}</h5>
             <p className='text-base text-center'>{val.desc}</p>
           </section>
