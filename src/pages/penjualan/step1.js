@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react'
 import paymentOption from '@/components/paymentOption'
 import { Icon } from '@iconify/react'
 import phoneNumberFormatter from '@/utilities/phoneNumberFormatter'
+import { getHarga } from '@/data/harga'
 
 export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [jumlah, setJumlah] = useState(formData.jumlah || 0)
   const [whatsapp, setWhatsapp] = useState(formData.whatsapp || '')
   const [norekening, setNorekening] = useState(formData.norekening || '')
   const [metodeBayar, setMetodeBayar] = useState(formData.metodeBayar)
-  const [hargaDl, setHargaDl] = useState()
+  const [hargaDl, setHargaDl] = useState(0)
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    setHargaDl(3200)
+    getHarga()
+      .then(({ data }) => setHargaDl(data.data.harga_jual_dl))
   }, [])
 
   const submitHandler = (e) => {

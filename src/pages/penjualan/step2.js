@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { postPenjualan } from '@/data/penjualan'
+import { getEnvironment } from '@/data/environment'
 
 const allowedFormat = [
   'image/jpeg',
@@ -12,6 +13,13 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   const [file, setFile] = useState(formData.file || null)
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [environment, setEnvironment] = useState({})
+
+  useEffect(() => {
+    // getEnvironment()
+    //   .then(({ data }) => setEnvironment(data.data))
+    //   .catch(err => console.log(err))
+  }, [])
 
   useEffect(() => {
     window.scroll(0, 0)
