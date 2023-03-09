@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import testimoni from '@/config/testimoni'
+import React, { useEffect, useRef, useState } from 'react'
+import { getTestimoni } from '@/config/testimoni'
 import { Icon } from '@iconify/react'
 import TestimoniCard from './testimoniCard'
 
@@ -8,6 +8,7 @@ const TestimoniSlide = () => {
   const [scroll, setScroll] = useState('')
   const [leftArrow, setLeftArrow] = useState(false)
   const [rightArrow, setRightArrow] = useState(true)
+  const [testimoni, setTestimoni] = useState([])
 
   const moveLeft = () => {
     setScroll(slider.current.children[0].clientWidth)
@@ -29,6 +30,11 @@ const TestimoniSlide = () => {
     if (currentScroll > 1) setLeftArrow(true)
     else setLeftArrow(false)
   }
+
+  useEffect(() => {
+    getTestimoni()
+      .then(({ data }) => setTestimoni(data.data))
+  }, [])
 
   return (
     <main className='flex items-center'>

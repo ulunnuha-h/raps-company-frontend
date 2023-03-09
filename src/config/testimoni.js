@@ -1,28 +1,10 @@
-const testimoni = [
-  {
-    emote: '/emotes/emote1.png',
-    title: 'jenkins',
-    subtitle: 'DL Cheap Customer',
-    text: '“Diamond Lock dengan kualitas terbaik!”'
-  },
-  {
-    emote: '/emotes/emote2.png',
-    title: 'Jhon Lennon',
-    subtitle: 'DL Cheap Customer',
-    text: '“Diamond Lock dengan kualitas terbaik!”'
-  },
-  {
-    emote: '/emotes/emote3.png',
-    title: 'jenkins',
-    subtitle: 'DL Cheap Customer',
-    text: '“Diamond Lock dengan kualitas terbaik!”'
-  },
-  {
-    emote: '/emotes/emote1.png',
-    title: 'jenkins',
-    subtitle: 'DL Cheap Customer',
-    text: '“Diamond Lock dengan kualitas terbaik!”'
-  }
-]
+import axios from 'axios'
+import getAPIurl from './API-url'
 
-export default testimoni
+const getTestimoni = () => {
+  return axios.get(`${getAPIurl()}/api/v1/testimonis`)
+}
+
+export {
+  getTestimoni
+}

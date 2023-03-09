@@ -8,8 +8,15 @@ const nextConfig = {
         hostname: 'api.veritrans.co.id',
         port: '',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'tuzfjdyigbxavulfrgjv.supabase.co',
+        port: '',
+        pathname: '/**'
       }
-    ]
+    ],
+    domains: ['tuzfjdyigbxavulfrgjv.supabase.co', 'api.veritrans.co.id']
   }
 }
 
