@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import paymentOption from '@/components/paymentOption'
 import { Icon } from '@iconify/react'
 import { postPembelian } from '@/data/pembelian'
+import { getHarga } from '@/data/harga'
 
 export default function Step2 ({ formDataHandler, formData, prevAction, nextAction, transactionDataHandler }) {
   const [metodeBayar, setMetodeBayar] = useState('')
@@ -12,8 +13,11 @@ export default function Step2 ({ formDataHandler, formData, prevAction, nextActi
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    setHargaBgl(330000)
-    setHargaDl(3400)
+    getHarga()
+      .then(({ data }) => {
+        setHargaBgl(data.data.harga_beli_bgl)
+        setHargaDl(data.data.harga_beli_dl)
+      })
   }, [])
 
   const submitHandler = (e) => {
