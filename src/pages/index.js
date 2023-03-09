@@ -10,9 +10,13 @@ import langkahTransaksi from '@/config/langkahTransaksi'
 import TestimoniSlide from '@/components/testimoniSlide'
 import InfiniteScrollText from '@/components/infiniteScrollText'
 import Link from 'next/link'
+import { getHarga } from '@/data/harga'
 
 export default function Home () {
   const [parallaxProgres, setParallaxProgres] = useState(120)
+  const [hargaBeliDl, setHargaBeliDl] = useState('-')
+  const [hargaJualDl, setHargaJualDl] = useState('-')
+  const [hargaBgl, setHargaBgl] = useState('-')
   const handleScroll = useCallback(() => {
     const { scrollY, innerHeight } = window
     if (scrollY < 1.4 * innerHeight) {
@@ -25,6 +29,15 @@ export default function Home () {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [parallaxProgres, handleScroll])
+
+  useEffect(() => {
+    getHarga()
+      .then(({ data }) => {
+        setHargaBeliDl(data.data.harga_beli_dl)
+        setHargaJualDl(data.data.harga_jual_dl)
+        setHargaBgl(data.data.harga_beli_bgl)
+      })
+  }, [])
 
   return (
     <>
@@ -70,12 +83,12 @@ export default function Home () {
           </span>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Take</h2>
-            <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. 3000</h2>
+            <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. {hargaJualDl.toLocaleString()}</h2>
             <Link href='./penjualan' as='./penjualan' className='btn-secondary lg:px-14 px-7 lg:py-3 py-1'>Jual</Link>
           </section>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Price</h2>
-            <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. 3400</h2>
+            <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. {hargaBeliDl.toLocaleString()}</h2>
             <Link href='./pembelian' as='./pembelian' className='btn-primary lg:px-14 px-7 lg:py-3 py-1'>Beli</Link>
           </section>
           <section className='h-[260px] lg:block hidden'>
@@ -96,10 +109,10 @@ export default function Home () {
           <section className='text-center text-primary-50 font-grotesk flex flex-col lg:w-1/2'>
             <h3 className='self-start mb-3 flex flex-col lg:flex-row'>
               <span>1 BGL = 100 DL</span>
-              <span className='text-primary-500 relative line-through lg:ml-3'> Rp 340.000 </span>
+              <span className='text-primary-500 relative line-through lg:ml-3'> Rp {(hargaBeliDl * 100).toLocaleString()} </span>
             </h3>
             <h2 className='lg:self-end mb-9'>
-              NOW ONLY<br className='block lg:hidden'></br> <span className='text-primary-500'>Rp 330.000</span>
+              NOW ONLY<br className='block lg:hidden'></br> <span className='text-primary-500'>Rp {hargaBgl.toLocaleString()}</span>
             </h2>
             <section className='flex justify-center lg:justify-between items-center mb-5 lg:mb-0'>
               <span className='font-grotesk text-xl hidden lg:block'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
