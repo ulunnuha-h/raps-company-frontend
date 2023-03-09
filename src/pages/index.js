@@ -98,29 +98,29 @@ export default function Home () {
       </main>
 
       {/* Blue Gem Lock */}
-      <main className='bg-secondary-700 p-5 lg:p-12'>
-        <h3 className='font-grotesk text-primary-50 text-center block lg:hidden'>Blue Gem Lock (BGL)</h3>
+      <main className='bg-secondary-700 p-5 xl:p-12'>
+        <h3 className='font-grotesk text-primary-50 text-center block xl:hidden'>Blue Gem Lock (BGL)</h3>
         <div
           style={ { backgroundImage: `url(${priceBg.src})` } }
-          className='container my-12 mt-7 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover lg:flex-row flex-col-reverse'>
-          <section className='translate-y-32 lg:block hidden'>
+          className='container my-12 mt-7 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover xl:flex-row flex-col-reverse'>
+          <section className='translate-y-32 xl:block hidden'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap -rotate-90 font-grotesk ml-6'>Blue Gem Lock</h3>
           </section>
-          <section className='text-center text-primary-50 font-grotesk flex flex-col lg:w-1/2'>
-            <h3 className='self-start mb-3 flex flex-col lg:flex-row'>
-              <span>1 BGL = 100 DL</span>
-              <span className='text-primary-500 relative line-through lg:ml-3'> Rp {(hargaBeliDl * 100).toLocaleString()} </span>
+          <section className='text-center text-primary-50 font-grotesk flex flex-col xl:w-1/2'>
+            <h3 className='self-start mb-5 flex flex-col xl:flex-row'>
+              <span className='mb-3'>1 BGL = 100 DL</span>
+              <span className='text-primary-500 relative line-through xl:ml-3'> Rp {(hargaBeliDl * 100).toLocaleString()} </span>
             </h3>
-            <h2 className='lg:self-end mb-9'>
-              NOW ONLY<br className='block lg:hidden'></br> <span className='text-primary-500'>Rp {hargaBgl.toLocaleString()}</span>
+            <h2 className='xl:self-end mb-9'>
+              NOW ONLY<br className='block xl:hidden'></br> <span className='text-primary-500'>Rp {hargaBgl.toLocaleString()}</span>
             </h2>
-            <section className='flex justify-center lg:justify-between items-center mb-5 lg:mb-0'>
-              <span className='font-grotesk text-xl hidden lg:block'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
+            <section className='flex justify-center xl:justify-between items-center mb-5 xl:mb-0'>
+              <span className='font-grotesk text-xl hidden xl:block'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
               <Link href='./pembelian' as='./pembelian' className='btn-primary py-3 px-12 font-bold'>Beli</Link>
             </section>
           </section>
-          <span className='lg:p-9 p-3 bg-secondary-500 lg:-translate-x-12 lg:-translate-y-12 w-3/4 lg:w-fit my-5 lg:my-0'>
-            <Image src={bgl} className='p-6 lg:animate-pulse' alt='bgl' width='300'></Image>
+          <span className='xl:p-9 p-3 bg-secondary-500 xl:-translate-x-12 xl:-translate-y-12 min-w-fit m-5 xl:my-0'>
+            <Image src={bgl} className='p-6 xl:animate-pulse' alt='bgl' width='300'></Image>
           </span>
         </div>
         <span id='langkah'/>
