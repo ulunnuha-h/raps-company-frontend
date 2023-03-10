@@ -42,34 +42,32 @@ export default function Home () {
   return (
     <>
       {/* Hero Section */}
-      <main className='bg-cover lg:h-[140vh] relative bg-no-repeat lg:bg-fixed' style={{ backgroundImage: `url(${starBg.src})` }}>
+      <main className='bg-cover lg:h-[120vh] relative bg-no-repeat lg:bg-fixed bg-secondary-700'>
         <div className='z-10 container mx-auto h-screen flex items-center justify-center flex-col-reverse md:flex-row relative' id='hero' >
           <section className='md:basis-1/2 md:mr-12 mx-7'>
-            <h1 className='text-primary-50 font-grotesk md:mb-5 text-center md:text-left'>JUAL/BELI DIAMOND LOCK OPEN 24 JAM</h1>
-            <p className='md:mb-12 mb-5 text-center md:text-left'>Dapatkan Diamond Lock dengan harga terbaik!</p>
-            <section className='flex justify-center md:justify-start mb-9 lg:mb-0'>
-              <Link href='./penjualan' as='./penjualan' className='btn-secondary px-10 py-2 mr-5'>Jual</Link>
-              <Link href='./pembelian' as='./pembelian' className='btn-primary px-10 py-2'>Beli</Link>
+            <h1 className='text-primary-800 font-grotesk md:mb-5 text-center'>OPEN 24 HOUR</h1>
+            <h1 className='text-primary-50 font-grotesk md:mb-5 text-center'>TRUSTED & FAST DROP</h1>
+            <p className='text-center'>BUY & SELL DIAMOND LOCK GROWTOPIA</p>
+            <p className='text-center'>ALL PAYMENT</p>
+            <section className='flex justify-center my-9'>
+              <Link href='./penjualan' as='./penjualan' className='btn-secondary px-10 py-2 mr-5 w-full text-center font-bold'>Jual Diamond Lock</Link>
+              <Link href='./pembelian' as='./pembelian' className='btn-primary px-10 py-2 w-full text-center font-bold'>Beli Diamond Lock</Link>
             </section>
-          </section>
-          <section className='m-12 md:m-0'>
-            <span className='mx-auto bg-secondary-500 bg-opacity-20 border-[20px] border-secondary-500 block'>
-              <Image src={dl.src} alt='DiamondLock' className='p-7 lg:p-10 lg:pb-0 lg:pt-16 lg:animate-bounce' width='350' height='350'></Image>
-            </span>
           </section>
           <InfiniteScrollText/>
         </div>
         <h1 className='text-primary-50 w-full mt-5 z-10 relative'>
           <Icon icon="material-symbols:arrow-circle-down-outline" className='mx-auto'/>
         </h1>
-        <Image
+        <video src='/hero.mp4' className='absolute top-0 h-screen object-cover brightness-75' autoPlay muted loop></video>
+        {/* <Image
           src={bg}
           className='bottom-0 object-cover lg:block hidden absolute'
           width='100px'
           height='80px'
           alt='parallax'
           style={{ height: `${parallaxProgres}vh` }}
-          />
+          /> */}
       </main>
 
       {/* Diamond Lock Section */}
