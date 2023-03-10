@@ -39,13 +39,13 @@ export default function Home () {
     <>
       {/* Hero Section */}
       <main className='bg-cover lg:h-[120vh] relative bg-no-repeat lg:bg-fixed bg-secondary-700'>
-        <div className='z-10 container mx-auto h-screen flex items-center justify-center flex-col-reverse md:flex-row relative' id='hero' >
+        <div className='z-10 container mx-auto h-screen flex items-center justify-center pt-16 lg:pt-0 flex-col-reverse md:flex-row relative' id='hero' >
           <section className='md:basis-1/2 md:mr-12 mx-7'>
             <h1 className='text-primary-800 font-grotesk md:mb-5 text-center'>OPEN 24 HOUR</h1>
             <h1 className='text-primary-50 font-grotesk md:mb-5 text-center'>TRUSTED & FAST DROP</h1>
             <p className='text-center'>BUY & SELL DIAMOND LOCK GROWTOPIA</p>
             <p className='text-center'>ALL PAYMENT</p>
-            <section className='flex justify-center my-9'>
+            <section className='flex justify-center my-9 lg:flex-row flex-col gap-5 lg:gap-0'>
               <Link href='./penjualan' as='./penjualan' className='btn-secondary px-10 py-2 mr-5 w-full text-center font-bold'>Jual Diamond Lock</Link>
               <Link href='./pembelian' as='./pembelian' className='btn-primary px-10 py-2 w-full text-center font-bold'>Beli Diamond Lock</Link>
             </section>
@@ -55,7 +55,10 @@ export default function Home () {
         <h1 className='text-primary-50 w-full mt-5 z-10 relative'>
           <Icon icon="material-symbols:arrow-circle-down-outline" className='mx-auto'/>
         </h1>
-        <video src='/hero.mp4' className='absolute top-0 h-screen w-full object-cover brightness-75' autoPlay muted loop></video>
+        <video
+          src='/hero.mp4'
+          className='absolute top-[60px] h-screen xl:h-[100vh - 20px] object-cover brightness-75 w-full'
+          autoPlay muted loop></video>
       </main>
 
       {/* Diamond Lock Section */}
