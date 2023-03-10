@@ -16,9 +16,9 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   const [environment, setEnvironment] = useState({})
 
   useEffect(() => {
-    // getEnvironment()
-    //   .then(({ data }) => setEnvironment(data.data))
-    //   .catch(err => console.log(err))
+    getEnvironment()
+      .then(({ data }) => setEnvironment(data.data))
+      .catch(err => console.log(err))
   }, [])
 
   useEffect(() => {
@@ -81,9 +81,9 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
             <li>Pastikan kamu membawa DL yang akan dijual di inventory kamu.</li>
             <li>Buka aplikasi Growtopia dan kunjungi world sesuai informasi berikut:
               <ol className='list-disc ml-5'>
-                <li>World: -</li>
-                <li>Password: -</li>
-                <li>Owner: -</li>
+                <li>World: {environment.world}</li>
+                <li>Password: {environment.password}</li>
+                <li>Owner: {environment.owner}</li>
               </ol>
             </li>
             <li>Setelah kamu mengunjungi world tersebut, kirim DL milikmu.</li>
