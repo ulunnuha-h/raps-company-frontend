@@ -87,7 +87,7 @@ export default function Navbar () {
   return (
     <div className={`fixed w-full ${bgStyle()} duration-300`}>
       <div className='bg-secondary-700'>
-        <section className='text-primary-300 container mx-auto py-2 font-poppins flex justify-between'>
+        <section className='text-primary-300 container mx-auto py-3 font-poppins flex justify-between'>
           <span className='flex gap-3'>
           {sosmed.map((val, idx) => {
             return (
