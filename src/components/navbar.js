@@ -31,7 +31,7 @@ export default function Navbar () {
   const [urlParam, setUrlParam] = useState('')
 
   const bgStyle = () => (showBg ? 'bg-secondary-900 lg:bg-secondary-700' : 'lg:bg-transparent bg-secondary-900')
-  const btnStyle = () => (showBtn ? 'w-full' : 'lg:w-0 block')
+  const btnStyle = () => (showBtn ? 'w-full block' : 'lg:w-0 block lg:hidden')
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -111,7 +111,7 @@ export default function Navbar () {
         </button>
         <ul className={`lg:flex font-poppins responsive-nav gap-2 duration-300 ${openStyle()}`}>
           {navButton}
-          <section className={`${btnStyle()} flex justify-center gap-5 lg:ml-5 lg:mt-0 mt-5 m-0 transition-all overflow-hidden duration-300 lg:hidden`}>
+          <section className={`${btnStyle()} flex justify-center gap-5 lg:ml-5 lg:mt-0 mt-5 m-0 transition-all overflow-hidden duration-300`}>
             <Link href='./penjualan' as='./penjualan' className='btn-secondary px-7 py-1 text-base h-fit'>Jual</Link>
             <Link href='./pembelian' as='./pembelian' className='btn-primary px-7 py-1 text-base h-fit'>Beli</Link>
           </section>

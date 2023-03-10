@@ -8,6 +8,7 @@ export default function Step3 ({ nextAction, transactionData }) {
   const [QRCode, setQRCode] = useState('')
   const [link, setLink] = useState('')
   const [time, setTime] = useState(0)
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     if (transactionData.payment_type === 'bank_transfer') {
@@ -32,7 +33,6 @@ export default function Step3 ({ nextAction, transactionData }) {
         setTime(0)
         location.reload()
       }
-      console.log('testing')
     }, 1000)
 
     const checkStatus = setInterval(() => {
@@ -44,6 +44,8 @@ export default function Step3 ({ nextAction, transactionData }) {
         })
     }, 5000)
 
+    setTotal(transactionData.gross_amount)
+
     return () => {
       clearInterval(checkTime)
       clearInterval(checkStatus)
@@ -53,7 +55,7 @@ export default function Step3 ({ nextAction, transactionData }) {
   return (
     <main className='container mx-auto py-16 flex flex-col-reverse lg:flex-row lg:gap-6 gap-3'>
       <div className='lg:w-3/5 flex gap-2 flex-col'>
-        <div className='p-3 bg-yellow-500 bg-opacity-50 mx-2 lg:mx-0 text-primary-50 flex h-fit items-center gap-1'>
+        <div className='p-3 bg-yellow-500 bg-opacity-50 mx-2 lg:mx-0 text-primary-50 flex h-fit items-center gap-2'>
           <Icon icon="bi:exclamation-triangle" />
           <span>Silakan Screenshot Nomor Virtual Number/Gambar QR Code</span>
         </div>
@@ -66,6 +68,10 @@ export default function Step3 ({ nextAction, transactionData }) {
               {time}
             </h4>
           </section>
+        </div>
+        <div className='p-3 mx-2 bg-[#ACB8DE] bg-opacity-20 lg:mx-0 text-primary-50 flex h-fit items-center gap-2'>
+          <Icon icon="fluent-mdl2:payment-card" />
+          <span>Total Pembayaran: Rp. {parseInt(total).toLocaleString()}</span>
         </div>
       </div>
       <div className='p-12 bg-[#ACB8DE] bg-opacity-20 lg:w-2/5 mx-2 lg:mx-0 text-primary-50 flex flex-col items-center font-poppins h-fit'>
