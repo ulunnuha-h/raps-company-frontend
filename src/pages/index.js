@@ -57,7 +57,7 @@ export default function Home () {
         </h1>
         <video
           src='/hero.mp4'
-          className='absolute top-[60px] h-screen xl:h-[100vh - 20px] object-cover brightness-75 w-full'
+          className='absolute top-[40px] h-screen xl:h-[100vh - 20px] object-cover brightness-75 w-full'
           autoPlay muted loop></video>
       </main>
 
