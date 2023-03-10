@@ -13,7 +13,7 @@ export default function Navbar () {
   const openHandler = () => setOpen(!open)
   const openStyle = () => {
     if (open) {
-      return 'top-0 opacity-100'
+      return 'top-12 opacity-100'
     } else {
       return '-top-96 opacity-0 lg:top-0 lg:opacity-100'
     }
