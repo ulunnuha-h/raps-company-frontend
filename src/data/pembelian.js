@@ -15,6 +15,11 @@ const postPembelian = (data) => {
   return axios.post(`${getAPIurl()}/api/v1/pembelian`, pembelianPayload)
 }
 
+const getPembelianStatus = (id) => {
+  return axios.get(`${getAPIurl()}/api/v1/pembelian/status/${id}`)
+}
+
 export {
-  postPembelian
+  postPembelian,
+  getPembelianStatus
 }

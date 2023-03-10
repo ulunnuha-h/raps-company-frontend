@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import { getPembelianStatus } from '@/data/pembelian'
 
 export default function Step3 ({ nextAction, transactionData }) {
   const [rekening, setRekening] = useState()
@@ -22,10 +23,7 @@ export default function Step3 ({ nextAction, transactionData }) {
         }
       })
     }
-  }, [transactionData])
-
-  useEffect(() => {
-    setInterval(() => {
+    const checkTime = setInterval(() => {
       const expire = new Date(transactionData.expiry_time).getTime()
       const newTime = new Date(expire - Date.now())
       if (expire > Date.now()) {
@@ -34,8 +32,23 @@ export default function Step3 ({ nextAction, transactionData }) {
         setTime(0)
         location.reload()
       }
+      console.log('testing')
     }, 1000)
-  }, [transactionData.expiry_time])
+
+    const checkStatus = setInterval(() => {
+      getPembelianStatus(transactionData.transaction_id)
+        .then(({ data }) => {
+          if (data.data.transaction_status === 'settlement') {
+            nextAction()
+          }
+        })
+    }, 5000)
+
+    return () => {
+      clearInterval(checkTime)
+      clearInterval(checkStatus)
+    }
+  }, [transactionData, nextAction])
 
   return (
     <main className='container mx-auto py-16 flex flex-col-reverse lg:flex-row lg:gap-6 gap-3'>
