@@ -5,6 +5,7 @@ import { Icon } from '@iconify/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import navLink from '@/config/navLink'
+import { getAllSocialMedia } from '@/data/platforms'
 
 export default function Navbar () {
   // Open untuk mengindikasikan navbar responsive terbuka atau tidak
@@ -62,6 +63,13 @@ export default function Navbar () {
       .catch(err => console.log(err))
   }
 
+  // Setting sosial media di navbar
+  const [sosmed, setSosmed] = useState([])
+  useEffect(() => {
+    getAllSocialMedia()
+      .then(({ data }) => setSosmed(data.data))
+  }, [])
+
   const navButton = navLink.map((val, idx) => (
     <li
       key={idx}
@@ -69,7 +77,7 @@ export default function Navbar () {
       <Link
         href={val.href}
         as={val.href}
-        className='hover:bg-secondary-700 lg:hover:font-bold active:bg-primary-900 transition-all lg:py-0 py-3 px-2 rounded-sm mx-auto lg:m-0 w-full text-center'
+        className='lg:hover:font-bold active:bg-primary-900 transition-all lg:py-0 py-3 rounded-sm mx-auto lg:m-0 w-full text-center'
         scroll={false}>
         {val.name}
       </Link>
@@ -78,6 +86,20 @@ export default function Navbar () {
 
   return (
     <div className={`fixed w-full ${bgStyle()} duration-300`}>
+      <div className='bg-secondary-700'>
+        <section className='text-primary-300 container mx-auto py-1 font-poppins flex justify-between'>
+          <span>
+          {sosmed.map((val, idx) => {
+            return (
+              <a key={idx} href={val.link} target="_blank">
+                <Icon icon={`fa6-brands:${val.platform.toLowerCase()}`} className='text-2xl'/>
+              </a>
+            )
+          })}
+          </span>
+          <span>Raps Company</span>
+        </section>
+      </div>
       <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all' onLoad={() => autoPlayAudio()}>
         <audio controls id='audio' loop autoPlay src='/Growtopia.mp3' className='hidden'
         />
@@ -87,9 +109,9 @@ export default function Navbar () {
         <button className='block lg:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
           <h2><Icon icon="octicon:three-bars" /></h2>
         </button>
-        <ul className={`lg:flex font-poppins responsive-nav duration-300 ${openStyle()}`}>
+        <ul className={`lg:flex font-poppins responsive-nav gap-2 duration-300 ${openStyle()}`}>
           {navButton}
-          <section className={`${btnStyle()} flex justify-center gap-5 lg:ml-5 lg:mt-0 mt-5 m-0 transition-all overflow-hidden duration-300`}>
+          <section className={`${btnStyle()} flex justify-center gap-5 lg:ml-5 lg:mt-0 mt-5 m-0 transition-all overflow-hidden duration-300 lg:hidden`}>
             <Link href='./penjualan' as='./penjualan' className='btn-secondary px-7 py-1 text-base h-fit'>Jual</Link>
             <Link href='./pembelian' as='./pembelian' className='btn-primary px-7 py-1 text-base h-fit'>Beli</Link>
           </section>
