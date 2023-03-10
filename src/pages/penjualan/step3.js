@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Step3 () {
   return (
@@ -12,7 +13,7 @@ export default function Step3 () {
         </section>
         <section className='flex justify-around w-full flex-col lg:flex-row gap-5'>
           <button className='btn-primary lg:px-5 py-2'>Buka Aplikasi Growtopia</button>
-          <button className='btn-primary lg:px-5 py-2'>Kembali ke Beranda</button>
+          <Link className='btn-primary lg:px-5 py-2' href='/'>Kembali ke Beranda</Link>
         </section>
       </div>
     </main>

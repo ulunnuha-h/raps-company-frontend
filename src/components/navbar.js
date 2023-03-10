@@ -55,6 +55,13 @@ export default function Navbar () {
     setUrlParam(router.pathname)
   }, [router])
 
+  const autoPlayAudio = () => {
+    const audio = document.getElementById('audio')
+    audio.play()
+      .then(val => console.log(val))
+      .catch(err => console.log(err))
+  }
+
   const navButton = navLink.map((val, idx) => (
     <li
       key={idx}
@@ -71,7 +78,9 @@ export default function Navbar () {
 
   return (
     <div className={`fixed w-full ${bgStyle()} duration-300`}>
-      <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all'>
+      <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all' onLoad={() => autoPlayAudio()}>
+        <audio controls id='audio' loop autoPlay src='/Growtopia.mp3' className='hidden'
+        />
         <Link href='./' as='./' className='flex z-10'>
           <Image src={logo} alt="logo"/>
         </Link>

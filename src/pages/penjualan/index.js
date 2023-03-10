@@ -6,7 +6,7 @@ import Step2 from './step2'
 import Step3 from './step3'
 
 export default function Penjualan () {
-  const [action, setAction] = useState(1)
+  const [action, setAction] = useState(0)
   const [children, setChildren] = useState('')
   const [formData, setFormData] = useState({})
 

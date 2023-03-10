@@ -30,7 +30,6 @@ export default function Step3 ({ nextAction, transactionData }) {
       const newTime = new Date(expire - Date.now())
       if (expire > Date.now()) {
         setTime(newTime.getMinutes() + ' : ' + newTime.getSeconds().toString().padStart(2, '0'))
-        console.log(expire, Date.now())
       } else {
         setTime(0)
         location.reload()

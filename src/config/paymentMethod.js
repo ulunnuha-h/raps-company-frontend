@@ -16,6 +16,16 @@ const paymentMethod = [
         name: 'shopeepay',
         idx: 3,
         img: '/assets/paymentMethod/2.png'
+      },
+      {
+        name: 'dana',
+        idx: 11,
+        img: '/assets/paymentMethod/10.png'
+      },
+      {
+        name: 'ovo',
+        idx: 21,
+        img: '/assets/paymentMethod/20.png'
       }
     ]
   },
@@ -35,7 +45,7 @@ const paymentMethod = [
       {
         name: 'bni',
         idx: 6,
-        img: '/assets/paymentMethod/6.png'
+        img: '/assets/paymentMethod/5.png'
       }
     ]
   }

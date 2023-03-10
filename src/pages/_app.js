@@ -3,15 +3,8 @@ import '@/styles/animation.css'
 import Head from 'next/head'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import { useEffect } from 'react'
 
 export default function App ({ Component, pageProps }) {
-  useEffect(() => {
-    const x = document.getElementById('audio')
-    x.autoplay = true
-    x.load()
-  }, [])
-
   return (
     <>
       <Head>
@@ -24,9 +17,6 @@ export default function App ({ Component, pageProps }) {
       </Head>
       <div className='absolute w-full z-50'>
         <Navbar/>
-        <audio id='audio' loop>
-          <source src="/Growtopia.mp3" type="audio/mpeg"/>
-        </audio>
       </div>
       <Component {...pageProps}/>
       <Footer/>
