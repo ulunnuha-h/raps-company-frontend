@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getTestimoni } from '@/config/testimoni'
+import { getTestimoni } from '@/data/testimoni'
 import { Icon } from '@iconify/react'
 import TestimoniCard from './testimoniCard'
 

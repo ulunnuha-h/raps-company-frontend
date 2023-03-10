@@ -70,7 +70,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
           {/* Memilih metode pembayaran */}
           <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
           <section>
-            {paymentOption(metodeBayar, setMetodeBayar)}
+            {paymentOption(metodeBayar, setMetodeBayar, 'qris')}
           </section>
           {/* Input no rekening atau e-wallet */}
           <span className='flex flex-col lg:w-2/5 my-5'>

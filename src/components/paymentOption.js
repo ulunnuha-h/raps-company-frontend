@@ -1,13 +1,15 @@
 import paymentMethod from '@/config/paymentMethod'
 import Image from 'next/image'
 
-const paymentOption = (metodeBayar, setMetodeBayar) => {
+const paymentOption = (metodeBayar, setMetodeBayar, exclude) => {
   return paymentMethod.map((val, idx) => (
     <div key={idx} className='mt-5'>
       <label className='flex'>{val.category}</label>
       <section className='flex flex-wrap lg:gap-6 gap-2'>
-        {val.list.map((val, idx) => (
-          <label htmlFor={val.name} className='my-3 cursor-pointer' key={idx}>
+        {val.list.map((val, idx) => {
+          if (val.name !== exclude) {
+            return (
+            <label htmlFor={val.name} className='my-3 cursor-pointer' key={idx}>
             <input
               type='radio'
               id={val.name}
@@ -23,7 +25,10 @@ const paymentOption = (metodeBayar, setMetodeBayar) => {
               alt={val.name}
               width='150'
               height='100'/>
-          </label>)
+          </label>
+            )
+          } else return null
+        }
         )}
       </section>
     </div>
