@@ -1,6 +1,7 @@
 import phoneNumberFormatter from '@/utilities/phoneNumberFormatter'
 import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
+import { getHarga } from '@/data/harga'
 
 export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [world, setWorld] = useState(formData.world || '')
@@ -61,8 +62,11 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   }
 
   useEffect(() => {
-    setHargaDl(3400)
-    setHargaBgl(330000)
+    getHarga()
+      .then(({ data }) => {
+        setHargaDl(data.data.harga_beli_dl)
+        setHargaBgl(data.data.harga_beli_bgl)
+      })
   }, [])
 
   const submitHandler = (e) => {
@@ -170,8 +174,8 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
           {/* harga dan input total harga */}
           <section className='flex lg:gap-12 gap-5 mb-7 flex-col-reverse lg:flex-row font-grotesk'>
             <span className='flex gap-3 lg:gap-7 flex-col w-full lg:w-2/5 justify-center'>
-              <h3>DL Price: <span className='text-primary-500'>Rp 3.400</span></h3>
-              <h3>BGL Price: <span className='text-primary-500'>Rp 330.000</span></h3>
+              <h3>DL Price: <span className='text-primary-500'>Rp {hargaDl.toLocaleString()}</span></h3>
+              <h3>BGL Price: <span className='text-primary-500'>Rp {hargaBgl.toLocaleString()}</span></h3>
             </span>
             <span className='flex flex-col w-full lg:w-2/5'>
               <label>Total Harga</label>
