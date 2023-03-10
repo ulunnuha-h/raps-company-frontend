@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import bg from '../../../public/assets/backgroundPolos.jpg'
+import bg from '../../../public/assets/backgroundPolos.svg'
 import { Icon } from '@iconify/react'
 import Step1 from './step1'
 import Step2 from './step2'
