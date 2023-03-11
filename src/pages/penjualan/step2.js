@@ -77,17 +77,18 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
         }
         <section className='bg-secondary-500 text-primary-900 p-5 lg:p-12 mb-7'>
           <h3 className='font-grotesk text-center mb-5'>Tutorial Mengirim Diamond Lock</h3>
-          <ol className='ml-5 font-poppins text-sm lg:text-xl list-decimal'>
-            <li>Pastikan kamu membawa DL yang akan dijual di inventory kamu.</li>
-            <li>Buka aplikasi Growtopia dan kunjungi world sesuai informasi berikut:
-              <ol className='list-disc ml-5'>
+          <ol className='ml-5 font-poppins text-sm lg:text-xl list-decimal '>
+            <li>Buka aplikasi Growtopia dan kunjungi sesuai informasi berikut :
+              <ol className='list-[lower-latin] ml-5'>
                 <li>World: {environment.world}</li>
-                <li>Password: {environment.password}</li>
                 <li>Owner: {environment.owner}</li>
+                <li>Password: {environment.password}</li>
               </ol>
             </li>
-            <li>Setelah kamu mengunjungi world tersebut, kirim DL milikmu.</li>
-            <li>Transaksi penjualan selesai, Admin akan mengirimkan hasil penjualan kamu melalui nomor metode pembayaran yang telah kamu pilih.</li>
+            <li>Drop Diamond Lock kamu ke Donation Box (WAJIB TULIS NO WA PADA DONATION BOX YA!).</li>
+            <li>Screenshot lalu masukan bukti screenshot ke website ya.</li>
+            <li>Admin akan melakukan pengecekan dan mengirimkan hasil penjualan kamu melalui nomor metode pembayaran yang telah kamu pilih.</li>
+            <li>Transaksi Sukses, Terimakasih.</li>
           </ol>
         </section>
         <section className='text-primary-50 font-poppins flex flex-col'>

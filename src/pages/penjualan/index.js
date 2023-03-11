@@ -8,7 +8,7 @@ import { loadFull } from 'tsparticles'
 import particleConfig from '@/config/particleConfig'
 
 export default function Penjualan () {
-  const [action, setAction] = useState(0)
+  const [action, setAction] = useState(1)
   const [children, setChildren] = useState('')
   const [formData, setFormData] = useState({})
 
