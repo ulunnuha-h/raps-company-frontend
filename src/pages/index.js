@@ -57,10 +57,10 @@ export default function Home () {
         <h1 className='text-primary-50 w-full mt-5 z-10 relative'>
           <Icon icon="material-symbols:arrow-circle-down-outline" className='mx-auto'/>
         </h1>
-        {/* <video
+        <video
           src={require('../../public/Hero.mp4')}
           className='absolute top-[40px] h-screen xl:h-[100vh - 20px] object-cover brightness-75 w-full'
-          autoPlay muted loop/> */}
+          autoPlay muted loop/>
       </main>
 
       {/* Diamond Lock Section */}
