@@ -2,7 +2,6 @@ import getAPIurl from '@/config/API-url'
 import axios from 'axios'
 
 const postPembelian = (data) => {
-  console.log(data)
   const pembelianPayload = {
     world: data.world,
     nama: data.name,
