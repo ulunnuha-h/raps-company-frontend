@@ -27,8 +27,8 @@ export default function Step2 ({ formDataHandler, formData, prevAction, nextActi
     } else {
       setError('')
       setLoading(true)
-      formDataHandler({ metodeBayar: (metodeBayar % 10) })
-      postPembelian({ ...formData, metodeBayar: (metodeBayar % 10) })
+      formDataHandler({ metodeBayar: 1 })
+      postPembelian({ ...formData, metodeBayar: 1 })
         .then(({ data }) => {
           if (data.data.status_code === '201') {
             transactionDataHandler(data.data)

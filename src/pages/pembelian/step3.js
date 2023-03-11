@@ -57,7 +57,7 @@ export default function Step3 ({ nextAction, transactionData }) {
       <div className='lg:w-3/5 flex gap-2 flex-col'>
         <div className='p-3 bg-yellow-500 bg-opacity-50 mx-2 lg:mx-0 text-primary-50 flex h-fit items-center gap-2'>
           <Icon icon="bi:exclamation-triangle" />
-          <span>Silakan Screenshot Nomor Virtual Number/Gambar QR Code</span>
+          <span>Silakan Screenshot Gambar QR Code</span>
         </div>
         <div className='p-5 lg:p-12 bg-[#ACB8DE] bg-opacity-20  mx-2 lg:mx-0 text-primary-50 flex flex-col h-fit'>
           <h3 className='font-grotesk lg:mb-7 mb-3'>Pembayaran</h3>
