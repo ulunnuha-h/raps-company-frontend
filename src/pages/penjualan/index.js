@@ -1,14 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import bg from '../../../public/assets/backgroundPolos.svg'
 import { Icon } from '@iconify/react'
 import Step1 from './step1'
 import Step2 from './step2'
 import Step3 from './step3'
+import Particles from 'react-tsparticles'
+import { loadFull } from 'tsparticles'
+import particleConfig from '@/config/particleConfig'
 
 export default function Penjualan () {
   const [action, setAction] = useState(0)
   const [children, setChildren] = useState('')
   const [formData, setFormData] = useState({})
+
+  const particlesInit = useCallback(async engine => {
+    await loadFull(engine)
+  }, [])
 
   const formDataHandler = useCallback((data) => {
     let newData = formData
@@ -47,16 +53,16 @@ export default function Penjualan () {
   }, [action, formData, formDataHandler])
 
   return (
+    <>
     <main
-        style={ { backgroundImage: `url(${bg.src})` }}
-        className='bg-no-repeat bg-[#021331] pt-12 bg-cover'>
+        className='bg-no-repeat pt-12 bg-cover z-10 relative'>
         <div className='pt-16 container mx-auto'>
             <section className='flex justify-between px-2 lg:px-0 items-center'>
               <p className='basis-1/3 text-left'>Isi Form</p>
               <p className={`basis-1/3 text-center ${actionIndicator(0, '', 'text-neutral-500')}`}>Upload Bukti Diamond Lock</p>
               <p className={`basis-1/3 text-right ${actionIndicator(1, '', 'text-neutral-500')}`}>Jual</p>
             </section>
-            <section className='flex justify-between w-full items-center lg:px-5 px-9'>
+            <section className='flex justify-between w-full items-center lg:px-5 px-9 relative z-10'>
               <h2 className='-mx-5 z-10 text-primary-500'>
                   <Icon icon="material-symbols:square" />
               </h2>
@@ -76,5 +82,7 @@ export default function Penjualan () {
         </div>
         {children}
     </main>
+    <Particles id="tsparticles" options={particleConfig} init={particlesInit}/>
+    </>
   )
 }

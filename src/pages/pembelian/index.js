@@ -1,16 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import bg from '../../../public/assets/backgroundPolos.svg'
 import { Icon } from '@iconify/react'
 import Step1 from './step1'
 import Step2 from './step2'
 import Step3 from './step3'
 import Step4 from './step4'
+import Particles from 'react-tsparticles'
+import { loadFull } from 'tsparticles'
+import particleConfig from '@/config/particleConfig'
 
 export default function Penjualan () {
   const [action, setAction] = useState(0)
   const [children, setChildren] = useState()
   const [formData, setFormData] = useState({})
   const [transactionData, setTransactionData] = useState({})
+
+  const particlesInit = useCallback(async engine => {
+    await loadFull(engine)
+  }, [])
 
   const transactionDataHandler = (data) => {
     setTransactionData(data)
@@ -56,9 +62,9 @@ export default function Penjualan () {
   }, [action, formDataHandler, formData, transactionData])
 
   return (
+    <>
     <main
-        style={ { backgroundImage: `url(${bg.src})` }}
-        className='bg-no-repeat bg-[#021331] pt-12 bg-cover'>
+        className='bg-no-repeat pt-12 bg-cover'>
         <div className='pt-16 container mx-auto'>
             <section className='flex justify-between px-2 lg:px-0 items-center'>
               <p className='basis-1/3 text-left'>Isi Form</p>
@@ -85,5 +91,7 @@ export default function Penjualan () {
         </div>
         {children}
     </main>
+    <Particles id="tsparticles" options={particleConfig} init={particlesInit}/>
+    </>
   )
 }
