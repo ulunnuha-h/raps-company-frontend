@@ -2,6 +2,9 @@ import phoneNumberFormatter from '@/utilities/phoneNumberFormatter'
 import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { getHarga } from '@/data/harga'
+import gambarDl from '../../../public/assets/dl.svg'
+import gambarBgl from '../../../public/assets/bgl.svg'
+import Image from 'next/image'
 
 export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [world, setWorld] = useState(formData.world || '')
@@ -111,11 +114,11 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 placeholder='Masukkan World'/>
             </span>
             <span className='flex flex-col w-full lg:w-2/5'>
-              <label>Nomor GrowId</label>
+              <label>Grow ID</label>
               <input
                 type='text'
                 className='input-field my-2'
-                placeholder='Masukkan GrowId'
+                placeholder='Masukkan Grow ID'
                 value={growId}
                 onChange={e => setGrwowId(e.target.value) }/>
             </span>
@@ -144,18 +147,22 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
           </section>
           {/* Input tipe dan jumlah pembelian */}
           <section className='flex lg:gap-12 gap-3 mb-7 flex-col lg:flex-row'>
-            <span className='flex flex-col w-full lg:w-2/5'>
+            <span className='flex flex-col w-full lg:w-2/5 mb-7 lg:mb-0'>
               <label className='mb-3'>Jenis Pembelian</label>
-              <ul className='flex gap-5'>
-                <li>
+              <ul className='flex gap-4 flex-col'>
+                <li className='flex items-center w-fit'>
                     <input type='radio' id='dl' name='Jenis Pembelian' checked={isDl} className='cursor-pointer' onChange={() => isDlHandler(true)}></input>
-                    <label htmlFor='dl' className='mx-1'>Diamond Lock (DL)</label>
+                    <label htmlFor='dl' className='mx-1 flex items-center gap-2'>
+                      <span>Diamond Lock</span>
+                      <Image src={gambarDl} height='25' width='25' alt='Gambar DL' className='hover:scale-125 duration-300'></Image>
+                    </label>
                 </li>
-                <li>
+                <li className='flex items-center w-fit'>
                     <input type='radio' id='bgl' name='Jenis Pembelian' checked={!isDl} className='cursor-pointer' onChange={() => isDlHandler(false)}></input>
-                    <label htmlFor='bgl' className='mx-1'>
-                        <span>Blue Gem Lock (BGL)</span><br/>
-                        <span className='lg:ml-[80px] text-sm'>1 BGL = 100 DL</span>
+                    <label htmlFor='bgl' className='mx-1 flex items-center gap-2'>
+                        <span>Blue Gem Lock</span>
+                        <Image src={gambarBgl} height='25' width='25' alt='Gambar BGL' className='hover:scale-125 duration-300'></Image>
+                        <span className='text-xs'> 1 BGL = 100 DL</span>
                     </label>
                 </li>
               </ul>
