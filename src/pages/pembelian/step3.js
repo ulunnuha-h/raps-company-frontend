@@ -75,7 +75,7 @@ export default function Step3 ({ nextAction, transactionData }) {
         </div>
       </div>
       <div className='p-12 bg-[#ACB8DE] bg-opacity-20 lg:w-2/5 mx-2 lg:mx-0 text-primary-50 flex flex-col items-center font-poppins h-fit'>
-        { QRCode && <Image src={QRCode} alt='qrcode' width='500' height='500'/> }
+        { QRCode && <Image src={QRCode} alt='qrcode' width='500' height='500' priority unoptimized/> }
         { rekening && <span className='text-lg lg:text-2xl font-grotesk bg-primary-50 text-secondary-700 font-bold w-full text-center py-2'>
           Virtual Account {rekening.bank.toUpperCase()} {rekening.va_number}
         </span>}
