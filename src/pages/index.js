@@ -60,7 +60,7 @@ export default function Home () {
         <video
           src={require('../../public/Hero.mp4')}
           className='absolute top-[40px] h-screen xl:h-[100vh - 20px] object-cover brightness-75 w-full'
-          autoPlay muted loop/>
+          autoPlay muted loop playsInline/>
       </main>
 
       {/* Diamond Lock Section */}
