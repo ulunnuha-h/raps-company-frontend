@@ -19,7 +19,6 @@ export default function Penjualan () {
   const formDataHandler = useCallback((data) => {
     let newData = formData
     newData = { ...newData, ...data }
-    console.log(newData)
     setFormData(newData)
   }, [formData])
 

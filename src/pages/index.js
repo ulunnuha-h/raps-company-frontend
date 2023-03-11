@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 import priceBg from '../../public/assets/price-bg.svg'
 import { Icon } from '@iconify/react'
+import dl from '../../public/assets/dl.svg'
+import bgl from '../../public/assets/bgl.svg'
 import langkahTransaksi from '@/config/langkahTransaksi'
 import TestimoniSlide from '@/components/testimoniSlide'
 import InfiniteScrollText from '@/components/infiniteScrollText'
@@ -55,10 +57,10 @@ export default function Home () {
         <h1 className='text-primary-50 w-full mt-5 z-10 relative'>
           <Icon icon="material-symbols:arrow-circle-down-outline" className='mx-auto'/>
         </h1>
-        <video
-          src='/hero.mp4'
+        {/* <video
+          src={require('../../public/Hero.mp4')}
           className='absolute top-[40px] h-screen xl:h-[100vh - 20px] object-cover brightness-75 w-full'
-          autoPlay muted loop></video>
+          autoPlay muted loop/> */}
       </main>
 
       {/* Diamond Lock Section */}
@@ -68,7 +70,7 @@ export default function Home () {
           style={ { backgroundImage: `url(${priceBg.src})` } }
           className='container lg:my-12 my-7 mx-auto flex lg:justify-between justify-around items-center border-[10px] border-secondary-500 relative bg-cover py-6 px-4'>
           <span className='p-6 bg-secondary-500 translate-x-12 -translate-y-12 lg:block hidden'>
-            <Image src='/assets/dl.svg' className='p-6 lg:animate-pulse' alt='dl' width='300' height='300'></Image>
+            <Image src={dl} className='p-6 lg:animate-pulse' alt='dl' width='300' height='300'></Image>
           </span>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Take</h2>
@@ -109,7 +111,7 @@ export default function Home () {
             </section>
           </section>
           <span className='xl:p-9 p-3 bg-secondary-500 xl:-translate-x-12 xl:-translate-y-12 min-w-fit m-5 xl:my-0'>
-            <Image src='/assets/bgl.svg' className='p-6 xl:animate-pulse' alt='bgl' width='300' height='300'></Image>
+            <Image src={bgl} className='p-6 xl:animate-pulse' alt='bgl' width='300' height='300'></Image>
           </span>
         </div>
         <span id='langkah'/>

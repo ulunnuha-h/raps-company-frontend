@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const withVideos = require('next-videos')
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -17,7 +19,9 @@ const nextConfig = {
       }
     ],
     domains: ['tuzfjdyigbxavulfrgjv.supabase.co', 'api.veritrans.co.id']
+  },
+  withVideos: {
+    distDir: '../../.next'
   }
 }
-
 module.exports = nextConfig

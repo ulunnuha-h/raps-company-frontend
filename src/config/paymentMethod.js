@@ -1,3 +1,12 @@
+import payment0 from '../../public/assets/paymentMethod/0.svg'
+import payment1 from '../../public/assets/paymentMethod/1.svg'
+import payment2 from '../../public/assets/paymentMethod/2.svg'
+import payment3 from '../../public/assets/paymentMethod/3.svg'
+import payment4 from '../../public/assets/paymentMethod/4.svg'
+import payment5 from '../../public/assets/paymentMethod/5.svg'
+import payment10 from '../../public/assets/paymentMethod/10.svg'
+import payment20 from '../../public/assets/paymentMethod/20.svg'
+
 const paymentMethod = [
   {
     category: 'Dompet Digital',
@@ -5,27 +14,27 @@ const paymentMethod = [
       {
         name: 'qris',
         idx: 1,
-        img: '/assets/paymentMethod/0.svg'
+        img: payment0
       },
       {
         name: 'gopay',
         idx: 2,
-        img: '/assets/paymentMethod/1.svg'
+        img: payment1
       },
       {
         name: 'shopeepay',
         idx: 3,
-        img: '/assets/paymentMethod/2.svg'
+        img: payment2
       },
       {
         name: 'dana',
         idx: 11,
-        img: '/assets/paymentMethod/10.svg'
+        img: payment10
       },
       {
         name: 'ovo',
         idx: 21,
-        img: '/assets/paymentMethod/20.svg'
+        img: payment20
       }
     ]
   },
@@ -35,17 +44,17 @@ const paymentMethod = [
       {
         name: 'bca',
         idx: 4,
-        img: '/assets/paymentMethod/3.svg'
+        img: payment3
       },
       {
         name: 'bri',
         idx: 5,
-        img: '/assets/paymentMethod/4.svg'
+        img: payment4
       },
       {
         name: 'bni',
         idx: 6,
-        img: '/assets/paymentMethod/5.svg'
+        img: payment5
       }
     ]
   }
