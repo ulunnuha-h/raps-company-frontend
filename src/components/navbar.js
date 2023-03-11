@@ -56,13 +56,6 @@ export default function Navbar () {
     setUrlParam(router.pathname)
   }, [router])
 
-  const autoPlayAudio = () => {
-    const audio = document.getElementById('audio')
-    audio.play()
-      .then(val => console.log(val))
-      .catch(err => console.log(err))
-  }
-
   // Setting sosial media di navbar
   const [sosmed, setSosmed] = useState([])
   useEffect(() => {
@@ -100,7 +93,7 @@ export default function Navbar () {
           <span>Raps Company</span>
         </section>
       </div>
-      <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all' onLoad={() => autoPlayAudio()}>
+      <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all'>
         <audio controls id='audio' loop autoPlay src='/Growtopia.mp3' className='hidden'
         />
         <Link href='./' as='./' className='flex z-10'>
