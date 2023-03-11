@@ -8,6 +8,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const [jumlah, setJumlah] = useState(formData.jumlah || 0)
   const [whatsapp, setWhatsapp] = useState(formData.whatsapp || '')
   const [norekening, setNorekening] = useState(formData.norekening || '')
+  const [nama, setNama] = useState(formData.nama || '')
   const [metodeBayar, setMetodeBayar] = useState(formData.metodeBayar)
   const [hargaDl, setHargaDl] = useState(0)
   const [error, setError] = useState(false)
@@ -20,7 +21,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    if (jumlah === '' || norekening === '' || whatsapp === '' || metodeBayar === undefined) {
+    if (jumlah === '' || norekening === '' || whatsapp === '' || metodeBayar === undefined || nama === '') {
       setError(true)
       window.scroll(0, 0)
     } else {
@@ -28,7 +29,8 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
         jumlah,
         whatsapp: phoneNumberFormatter(whatsapp),
         norekening,
-        metodeBayar
+        metodeBayar,
+        nama
       })
       setError(false)
       nextAction()
@@ -67,6 +69,19 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 />
             </span>
           </section>
+          {/* Input nama */}
+          <section className='flex md:gap-12 gap-3 mb-7 flex-col md:flex-row'>
+            <span className='flex flex-col lg:w-2/5 mb-2'>
+              <label>Nama</label>
+              <input
+                type='text'
+                className='input-field my-2'
+                placeholder='Masukkan Nama'
+                value={nama}
+                onChange={e => setNama(e.target.value) }
+                />
+            </span>
+          </section>
           {/* Memilih metode pembayaran */}
           <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
           <section>
@@ -95,6 +110,7 @@ Step1.defaultProps = {
     jumlah: 0,
     whatsapp: '',
     norekening: '',
+    nama: '',
     metodeBayar: null
   }
 }
