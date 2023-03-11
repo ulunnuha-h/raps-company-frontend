@@ -19,8 +19,7 @@ const nextConfig = {
       }
     ],
     domains: ['tuzfjdyigbxavulfrgjv.supabase.co', 'api.veritrans.co.id']
-  },
-  distDir: './.next'
+  }
 }
 
 module.exports = withVideos(nextConfig)
