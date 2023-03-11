@@ -53,7 +53,7 @@ export default function Penjualan () {
         setChildren(<Step2 {...{ prevAction, formDataHandler, formData, nextAction, transactionDataHandler }}/>)
         break
       case 2:
-        setChildren(<Step3 {...{ nextAction, transactionData }}/>)
+        setChildren(<Step3 {...{ nextAction, transactionData, formData }}/>)
         break
       case 3:
         setChildren(<Step4/>)

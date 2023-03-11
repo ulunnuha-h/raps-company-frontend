@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react'
 import { getPembelianStatus } from '@/data/pembelian'
 import Image from 'next/image'
 
-export default function Step3 ({ nextAction, transactionData }) {
+export default function Step3 ({ nextAction, transactionData, formData }) {
   const [rekening, setRekening] = useState()
   const [QRCode, setQRCode] = useState('')
   const [link, setLink] = useState('')
@@ -23,7 +23,8 @@ export default function Step3 ({ nextAction, transactionData }) {
           setLink(val.url)
         }
       })
-    }
+    }    
+
     const checkTime = setInterval(() => {
       const expire = new Date(transactionData.expiry_time).getTime()
       const newTime = new Date(expire - Date.now())
@@ -55,23 +56,29 @@ export default function Step3 ({ nextAction, transactionData }) {
   return (
     <main className='container mx-auto py-16 flex flex-col-reverse lg:flex-row lg:gap-6 gap-3'>
       <div className='lg:w-3/5 flex gap-2 flex-col'>
-        <div className='p-3 bg-yellow-500 bg-opacity-50 mx-2 lg:mx-0 text-primary-50 flex h-fit items-center gap-2'>
+        <div className='p-3 bg-yellow-500 bg-opacity-50 mx-2 lg:mx-0 text-primary-50 flex h-fit items-center gap-2 font-poppins'>
           <Icon icon="bi:exclamation-triangle" />
           <span>Silakan Screenshot Gambar QR Code</span>
         </div>
+        <div className='p-3 mx-2 bg-[#ACB8DE] bg-opacity-20 lg:mx-0 text-primary-50 flex h-fit items-center gap-2 font-poppins'>
+          <Icon icon="fluent-mdl2:payment-card" />
+          <span>Total Pembayaran: Rp. {parseInt(total).toLocaleString()}</span>
+        </div>
         <div className='p-5 lg:p-12 bg-[#ACB8DE] bg-opacity-20  mx-2 lg:mx-0 text-primary-50 flex flex-col h-fit'>
           <h3 className='font-grotesk lg:mb-7 mb-3'>Pembayaran</h3>
-          {/* <p className='font-poppins lg:mb-16'>Cek Tata Cara Pembayaran via Gopay <a className='text-primary-500' href='#'>Disini</a></p> */}
+          <p className='font-poppins text-base'>
+            <ol className='list-decimal ml-3'>
+              <li>Buka aplikasi {getMetodePembayaranById(formData.metodeBayar)} yang sudah terinstal di smartphone kamu.</li>
+              <li>Pilih menu "Scan QR" atau "Bayar dengan QR" yang ada pada aplikasi dan arahkan kamera smartphone kamu ke arah QR Code QRIS yang terdapat di website ini. Kamu juga bisa mengupload QR Code tersebut berupa gambar hasil screenshoot halaman ini.</li>
+              <li>Ketika scan QR Code berhasil, akan muncul jumlah pembayaran sesuai dengan total pembayaran pembelian kamu dan klik "Bayar" serta masukkan password untuk menyelesaikan transaksi.</li>
+            </ol>
+          </p>
           <section className='font-poppins flex items-center gap-5 lg:mt-16 mt-8 self-end'>
             <span>Waktu pembayaran tersisa</span>
             <h4 className='font-grotesk py-2 px-5 bg-secondary-500 text-primary-900 w-36 text-center'>
               {time}
             </h4>
           </section>
-        </div>
-        <div className='p-3 mx-2 bg-[#ACB8DE] bg-opacity-20 lg:mx-0 text-primary-50 flex h-fit items-center gap-2'>
-          <Icon icon="fluent-mdl2:payment-card" />
-          <span>Total Pembayaran: Rp. {parseInt(total).toLocaleString()}</span>
         </div>
       </div>
       <div className='p-12 bg-[#ACB8DE] bg-opacity-20 lg:w-2/5 mx-2 lg:mx-0 text-primary-50 flex flex-col items-center font-poppins h-fit'>
@@ -86,4 +93,25 @@ export default function Step3 ({ nextAction, transactionData }) {
       </div>
     </main>
   )
+}
+
+const getMetodePembayaranById = id => {
+  switch(id){
+    case 1:
+      return 'Qris'
+    case 2:
+      return 'GoPay'
+    case 3:
+      return 'ShopeePay'
+    case 11:
+      return 'Dana'
+    case 21:
+      return 'OVO'
+    case 4:
+      return 'Bank BCA'
+    case 5:
+      return 'Bank BRI'
+    case 6:
+      return 'Bank BNI'
+  }
 }

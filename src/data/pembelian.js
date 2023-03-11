@@ -10,7 +10,7 @@ const postPembelian = (data) => {
     jenis_item: data.isDl,
     jumlah_dl: data.dl + data.bgl * 100,
     wa: data.whatsapp,
-    metode_transfer: data.metodeBayar
+    metode_transfer: 1
   }
   return axios.post(`${getAPIurl()}/api/v1/pembelian`, pembelianPayload)
 }
