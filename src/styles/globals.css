@@ -10,8 +10,6 @@ html{
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.cdnfonts.com/css/poppins');
-
 @layer base{
     h1{
         @apply text-3xl font-bold lg:text-6xl
