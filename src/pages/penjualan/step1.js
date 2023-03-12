@@ -69,9 +69,15 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 onChange={e => setWhatsapp(e.target.value) }
                 />
             </span>
+          </section>          
+          {/* Memilih metode pembayaran */}
+          <label className='mt-5'>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
+          <section>
+            {paymentOption(metodeBayar, setMetodeBayar, [1])}
           </section>
-          {/* Input nama */}
-          <section className='flex md:gap-12 gap-3 mb-7 flex-col md:flex-row'>
+          <label className='mb-5'>Kamu akan dikenakan biaya admin <b className='text-xl'>Rp. {getAdminFeeById(metodeBayar).toLocaleString()}</b></label>
+          {/* Input no rekening atau e-wallet dan nama lengkap*/}
+          <section className='flex md:gap-12 gap-3 my-7 flex-col md:flex-row'>
             <span className='flex flex-col lg:w-2/5 mb-2'>
               <label>Nama Lengkap</label>
               <input
@@ -82,24 +88,17 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 onChange={e => setNama(e.target.value) }
                 />
             </span>
+            <span className='flex flex-col lg:w-2/5'>
+              <label>Nomor Rekening Bank/Dompet Digital</label>
+              <input
+                type='text'
+                className='input-field my-2'
+                placeholder='Masukkan Nomor Rekening Bank/Dompet Digital'
+                value={norekening}
+                onChange={e => setNorekening(e.target.value)}
+              />
+            </span>
           </section>
-          {/* Memilih metode pembayaran */}
-          <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
-          <label>Kamu akan dikenakan biaya admin <b className='text-xl'>Rp. {getAdminFeeById(metodeBayar).toLocaleString()}</b></label>
-          <section>
-            {paymentOption(metodeBayar, setMetodeBayar, [1])}
-          </section>
-          {/* Input no rekening atau e-wallet */}
-          <span className='flex flex-col lg:w-2/5 my-5'>
-            <label>Nomor Rekening Bank/Dompet Digital</label>
-            <input
-              type='text'
-              className='input-field my-2'
-              placeholder='Masukkan Nomor Rekening Bank/Dompet Digital'
-              value={norekening}
-              onChange={e => setNorekening(e.target.value)}
-            />
-          </span>
           <button className='btn-primary px-6 py-4 self-end font-bold' type='submit'>Selanjutnya </button>
         </form>
       </div>
@@ -138,6 +137,6 @@ const getAdminFeeById = id => {
     case 8:
       return 2500 // Mandiri
     default:
-      return 0
+      return 0 //
   }
 }
