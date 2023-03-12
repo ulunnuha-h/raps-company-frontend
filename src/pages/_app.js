@@ -9,12 +9,13 @@ export default function App ({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
-        <meta name='description' content='Jual Beli DL murah 24 jam' />
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='true'/>
-        <title>Raps Company</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='description' content='Jual Beli Diamond Lock Growtopia (DL), World Lock Growtopia (WL) Termurah dan Terpercaya. Menerima all payment (Qris, ATM, Gopay, Dana, Shopeepay, Ovo)' />
+        <meta name='keywords' content='Growtopia, Diamond Lock, World Lock, Dlcheap, Rapsshop, Termurah, Terpercaya, all payment, rapswhite' />
+        <title>Jual Beli Diamond Lock Growtopia (DL) Termurah dan Terpercaya - DLCheap_ID</title>
       </Head>
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-N39S3BY23K"/>
       <Script
