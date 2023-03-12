@@ -85,8 +85,9 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
           </section>
           {/* Memilih metode pembayaran */}
           <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
+          <label>Kamu akan dikenakan biaya admin <b className='text-xl'>Rp. {getAdminFeeById(metodeBayar).toLocaleString()}</b></label>
           <section>
-            {paymentOption(metodeBayar, setMetodeBayar, 'qris')}
+            {paymentOption(metodeBayar, setMetodeBayar, [1])}
           </section>
           {/* Input no rekening atau e-wallet */}
           <span className='flex flex-col lg:w-2/5 my-5'>
@@ -113,5 +114,28 @@ Step1.defaultProps = {
     norekening: '',
     nama: '',
     metodeBayar: null
+  }
+}
+
+const getAdminFeeById = id => {
+  switch(id){    
+    case 2:
+      return 1000 // Gopay
+    case 3:
+      return 1000 // ShopeePay
+    case 11:
+      return 0 // Dana
+    case 21:
+      return 0 //OVO
+    case 4:
+      return 0 // BCA
+    case 5:
+      return 2500 // BRI
+    case 6:
+      return 2500 // BNI
+    case 7:
+      return 2500 // BSI
+    case 8:
+      return 2500 // Mandiri
   }
 }

@@ -53,7 +53,7 @@ export default function Step2 ({ formDataHandler, formData, prevAction, nextActi
         <section className='flex flex-col text-primary-50 font-poppins'>
           <label>Metode Pembayaran Hasil Penjualan (Pilih salah satu)</label>
             <section>
-              {paymentOption(metodeBayar, setMetodeBayar)}
+              {paymentOption(metodeBayar, setMetodeBayar, [7, 8])}
             </section>
             <button className='btn-primary px-6 py-3 self-start font-bold mt-5 hidden lg:block' type='button' onClick={prevAction}>Kembali</button>
         </section>

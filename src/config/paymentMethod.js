@@ -4,6 +4,8 @@ import payment2 from '../../public/assets/paymentMethod/2.svg'
 import payment3 from '../../public/assets/paymentMethod/3.svg'
 import payment4 from '../../public/assets/paymentMethod/4.svg'
 import payment5 from '../../public/assets/paymentMethod/5.svg'
+import payment6 from '../../public/assets/paymentMethod/6.svg'
+import payment7 from '../../public/assets/paymentMethod/7.svg'
 import payment10 from '../../public/assets/paymentMethod/10.svg'
 import payment20 from '../../public/assets/paymentMethod/20.svg'
 
@@ -55,6 +57,16 @@ const paymentMethod = [
         name: 'bni',
         idx: 6,
         img: payment5
+      },
+      {
+        name: 'bsi',
+        idx: 7,
+        img: payment6
+      },
+      {
+        name: 'mandiri',
+        idx: 8,
+        img: payment7
       }
     ]
   }

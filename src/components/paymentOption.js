@@ -7,7 +7,7 @@ const paymentOption = (metodeBayar, setMetodeBayar, exclude) => {
       <label className='flex'>{val.category}</label>
       <section className='flex flex-wrap lg:gap-6 gap-2'>
         {val.list.map((val, idx) => {
-          if (val.name !== exclude) {
+          if (!exclude.includes(val.idx)) {
             return (
             <label htmlFor={val.name} className='my-3 cursor-pointer' key={idx}>
             <input
