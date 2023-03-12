@@ -126,12 +126,12 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
           {/* Input nama dan nomor whatsapp */}
           <section className='flex lg:gap-12 gap-3 mb-7 flex-col lg:flex-row'>
             <span className='flex flex-col w-full lg:w-2/5'>
-              <label>Nama</label>
+              <label>Nama Lengkap</label>
               <input
                 type='text'
                 className='input-field my-2'
                 value={name} onChange={e => setName(e.target.value)}
-                placeholder='Masukkan Nama'
+                placeholder='Masukkan Nama Lengkap'
                 />
             </span>
             <span className='flex flex-col w-full lg:w-2/5'>

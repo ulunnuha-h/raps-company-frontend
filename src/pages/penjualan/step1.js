@@ -47,7 +47,7 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
         </p>
         <form className='flex flex-col text-primary-50 font-poppins' onSubmit={submitHandler}>
           {/* Input jumlah diamond lock dan nomor whatsapp */}
-          <section className='flex md:gap-12 gap-3 mb-7 flex-col md:flex-row'>
+          <section className='flex md:gap-12 gap-3 mb-3 flex-col md:flex-row'>
             <span className='flex flex-col lg:w-2/5 w-full mb-2'>
               <label>Jumlah Diamond Lock</label>
               <input
@@ -56,7 +56,8 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
                 value={jumlah} onChange={e => setJumlah(e.target.value)}
                 placeholder='Masukkan Jumlah Diamond Lock'
                 />
-              <span>Nominal yang akan didapatkan: <b>Rp. {(jumlah * hargaDl || 0).toLocaleString('en-US')}</b></span>
+              <span>Nominal yang akan didapatkan:</span>
+              <b className='text-2xl'>Rp. {(jumlah * hargaDl || 0).toLocaleString('en-US')}</b>
             </span>
             <span className='flex flex-col lg:w-2/5 mb-2'>
               <label>Nomor Whatsapp (Contoh: 082xxxxxxxxx)</label>
@@ -72,11 +73,11 @@ export default function Step1 ({ nextAction, formDataHandler, formData }) {
           {/* Input nama */}
           <section className='flex md:gap-12 gap-3 mb-7 flex-col md:flex-row'>
             <span className='flex flex-col lg:w-2/5 mb-2'>
-              <label>Nama</label>
+              <label>Nama Lengkap</label>
               <input
                 type='text'
                 className='input-field my-2'
-                placeholder='Masukkan Nama'
+                placeholder='Masukkan Nama Lengkap'
                 value={nama}
                 onChange={e => setNama(e.target.value) }
                 />
