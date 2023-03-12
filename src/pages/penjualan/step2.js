@@ -26,39 +26,47 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   }, [errorMessage])
 
   const fileHandler = (e) => {
-    const { size, type } = e.target.files[0]
-    const sizeOnMb = size / 1024 ** 2
-    if (sizeOnMb > 5) {
-      setErrorMessage('Ukuran file terlalu besar')
-    } else if (!allowedFormat.some(val => val === type)) {
-      setErrorMessage('Format file tidak sesuai')
-    } else {
-      setErrorMessage('')
-      setFile(e.target.files[0])
-    }
+    // const { size, type } = e.target.files[0]
+    // const sizeOnMb = size / 1024 ** 2
+    // if (sizeOnMb > 5) {
+    //   setErrorMessage('Ukuran file terlalu besar')
+    // } else if (!allowedFormat.some(val => val === type)) {
+    //   setErrorMessage('Format file tidak sesuai')
+    // } else {
+    //   setErrorMessage('')
+    // }
+    setFile(e.target.files[0])
+  }
+
+  const errorHandler = (msg) => {
+    setErrorMessage(msg)
+    window.scroll(0,0)
   }
 
   const submitHandler = e => {
-    setLoading(true)
     e.preventDefault()
-    if (file.name !== '') {
-      setErrorMessage('')
+    setLoading(true)
+    if (file) {
+      errorHandler('')
       formDataHandler({ file })
       postPenjualan({ ...formData, file })
         .then(() => {
-          setErrorMessage('')
+          errorHandler('')
           nextAction()
         })
-        .catch(err => console.log(err))
+        .catch(({response}) => {
+          errorHandler(response.data.message)
+          console.log(response)
+        })
         .finally(() => setLoading(false))
     } else {
-      setErrorMessage('Silakan upload screenshot bukti penjualan')
+      errorHandler('Silakan upload screenshot bukti penjualan')
       setLoading(false)
     }
   }
 
   const prevHandler = () => {
-    if (file.name !== '') {
+    if (file) {
       formDataHandler({ file })
     }
     prevAction()
@@ -103,7 +111,6 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
               name='file'
               onChange={fileHandler}
               accept=".jpg, .jpeg, .png"
-              files={[file]}
               ></input>
           </span>
         </section>
