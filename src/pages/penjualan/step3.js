@@ -8,7 +8,7 @@ export default function Step3 () {
     <main className='container mx-auto py-16'>
       <div className='p-7 lg:p-16 bg-[#ACB8DE] flex gap-12 items-center w-fit mx-auto flex-col'>
         <Image src={illustration} alt='illustration' width='350' height='350'></Image>
-        <section className='font-grotesk text-primary-900 text-center'>
+        <section className='font-grotesk text-primary-900 text-center flex flex-col'>
           <h3 className='mb-5'>Permintaan Penjualan Berhasil Terkirim</h3>
           <span className='text-2xl'>Admin akan mengecek DL mu, dan memproses transaksi mu!</span>
           <span className='text-2xl'>SEGERA CEK SALDO MU DALAM WAKTU 60 DETIK</span>
