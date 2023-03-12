@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react'
 import { getPembelianStatus } from '@/data/pembelian'
 import Image from 'next/image'
 
-export default function Step3 ({ nextAction, transactionData, formData }) {
+export default function Step3 ({ nextAction, transactionData, formData = {metodeBayar: ''} }) {
   const [rekening, setRekening] = useState()
   const [QRCode, setQRCode] = useState('')
   const [link, setLink] = useState('')

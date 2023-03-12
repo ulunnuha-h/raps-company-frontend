@@ -137,5 +137,7 @@ const getAdminFeeById = id => {
       return 2500 // BSI
     case 8:
       return 2500 // Mandiri
+    default:
+      return 0
   }
 }
