@@ -10,7 +10,7 @@ export default function Step3 () {
         <Image src={illustration} alt='illustration' width='350' height='350'></Image>
         <section className='font-grotesk text-primary-900 text-center'>
           <h3 className='mb-5'>Permintaan Penjualan Berhasil Terkirim</h3>
-          <span className='text-2xl'>Segera kirim DL kamu di World yang telah tersedia!</span>
+          <span className='text-2xl'>Admin akan mengecek DL mu, dan memproses transaksi mu!</span>
         </section>
         <section className='flex justify-around w-full flex-col lg:flex-row gap-5'>
           <button className='btn-primary lg:px-5 py-2'>Buka Aplikasi Growtopia</button>
