@@ -18,7 +18,6 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   useEffect(() => {
     getEnvironment()
       .then(({ data }) => setEnvironment(data.data))
-      .catch(err => console.log(err))
   }, [])
 
   useEffect(() => {
@@ -26,15 +25,6 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
   }, [errorMessage])
 
   const fileHandler = (e) => {
-    // const { size, type } = e.target.files[0]
-    // const sizeOnMb = size / 1024 ** 2
-    // if (sizeOnMb > 5) {
-    //   setErrorMessage('Ukuran file terlalu besar')
-    // } else if (!allowedFormat.some(val => val === type)) {
-    //   setErrorMessage('Format file tidak sesuai')
-    // } else {
-    //   setErrorMessage('')
-    // }
     setFile(e.target.files[0])
   }
 
@@ -56,7 +46,6 @@ export default function Step2 ({ nextAction, prevAction, formDataHandler, formDa
         })
         .catch(({response}) => {
           errorHandler(response.data.message)
-          console.log(response)
         })
         .finally(() => setLoading(false))
     } else {
