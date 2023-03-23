@@ -5,9 +5,9 @@ const particleConfig = {
       "value": "#021331"
     },
     "image": "",
-    "position": "",
-    "repeat": "",
-    "size": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover",
     "opacity": 1
   },
   "backgroundMask": {
@@ -24,7 +24,7 @@ const particleConfig = {
   "delay": 0,
   "fullScreen": {
     "enable": true,
-    "zIndex": -1
+    "zIndex": 1
   },
   "detectRetina": true,
   "duration": 0,
@@ -34,7 +34,7 @@ const particleConfig = {
     "events": {
       "onClick": {
         "enable": false,
-        "mode": []
+        "mode": "repulse"
       },
       "onDiv": {
         "selectors": [],
@@ -43,12 +43,12 @@ const particleConfig = {
         "type": "circle"
       },
       "onHover": {
-        "enable": false,
-        "mode": [],
+        "enable": true,
+        "mode": "bubble",
         "parallax": {
           "enable": false,
-          "force": 2,
-          "smooth": 10
+          "force": 100,
+          "smooth": 100
         }
       },
       "resize": {
@@ -69,9 +69,11 @@ const particleConfig = {
         "distance": 200
       },
       "bubble": {
-        "distance": 200,
-        "duration": 0.4,
+        "distance": 400,
+        "duration": 0.3,
         "mix": false,
+        "opacity": 1,
+        "size": 4,
         "divs": {
           "distance": 200,
           "duration": 0.4,
@@ -87,11 +89,11 @@ const particleConfig = {
         "radius": 60
       },
       "grab": {
-        "distance": 100,
+        "distance": 400,
         "links": {
           "blink": false,
           "consent": false,
-          "opacity": 1
+          "opacity": 0.5
         }
       },
       "push": {
@@ -231,10 +233,10 @@ const particleConfig = {
       },
       "attract": {
         "distance": 200,
-        "enable": true,
+        "enable": false,
         "rotate": {
-          "x": 3000,
-          "y": 3000
+          "x": 600,
+          "y": 1200
         }
       },
       "center": {
@@ -244,20 +246,18 @@ const particleConfig = {
         "radius": 0
       },
       "decay": 0,
-      "distance": {
-        "horizontal": null
-      },
-      "direction": "none",
+      "distance": {},
+      "direction": "bottom",
       "drift": 0,
-      "enable": false,
+      "enable": true,
       "gravity": {
         "acceleration": 9.81,
-        "enable": true,
+        "enable": false,
         "inverse": false,
         "maxSpeed": 50
       },
       "path": {
-        "clamp": false,
+        "clamp": true,
         "delay": {
           "random": {
             "enable": false,
@@ -265,19 +265,15 @@ const particleConfig = {
           },
           "value": 0
         },
-        "enable": true,
-        "options": {
-          "sides": 6,
-          "turnSteps": 30,
-          "angle": 30
-        }
+        "enable": false,
+        "options": {}
       },
       "outModes": {
         "default": "out",
         "bottom": "out",
         "left": "out",
         "right": "out",
-        "top": "destroy"
+        "top": "out"
       },
       "random": false,
       "size": false,
@@ -290,11 +286,7 @@ const particleConfig = {
       "trail": {
         "enable": false,
         "length": 10,
-        "fill": {
-          "color": {
-            "value": "#000"
-          }
-        }
+        "fill": {}
       },
       "vibrate": false,
       "warp": false
@@ -306,25 +298,26 @@ const particleConfig = {
         "height": 1080
       },
       "limit": 0,
-      "value": 200
+      "value": 400
     },
     "opacity": {
       "random": {
-        "enable": false,
+        "enable": true,
         "minimumValue": 0.1
       },
       "value": {
         "min": 0.1,
-        "max": 1
+        "max": 0.5
       },
       "animation": {
         "count": 0,
-        "enable": true,
-        "speed": 0.25,
+        "enable": false,
+        "speed": 1,
         "decay": 0,
         "sync": false,
         "destroy": "none",
-        "startValue": "random"
+        "startValue": "random",
+        "minimumValue": 0.1
       }
     },
     "reduceDuplicates": false,
@@ -345,18 +338,22 @@ const particleConfig = {
     },
     "size": {
       "random": {
-        "enable": false,
+        "enable": true,
         "minimumValue": 1
       },
-      "value": 3,
+      "value": {
+        "min": 1,
+        "max": 10
+      },
       "animation": {
         "count": 0,
         "enable": false,
-        "speed": 5,
+        "speed": 40,
         "decay": 0,
         "sync": false,
         "destroy": "none",
-        "startValue": "random"
+        "startValue": "random",
+        "minimumValue": 0.1
       }
     },
     "stroke": {
@@ -462,13 +459,13 @@ const particleConfig = {
     },
     "twinkle": {
       "lines": {
-        "enable": true,
+        "enable": false,
         "frequency": 0.05,
         "opacity": 1
       },
       "particles": {
-        "enable": true,
-        "frequency": 100,
+        "enable": false,
+        "frequency": 0.05,
         "opacity": 1
       }
     },
@@ -502,13 +499,13 @@ const particleConfig = {
     "links": {
       "blink": false,
       "color": {
-        "value": "#fff"
+        "value": "#ffffff"
       },
       "consent": false,
-      "distance": 100,
+      "distance": 500,
       "enable": false,
       "frequency": 1,
-      "opacity": 1,
+      "opacity": 0.4,
       "shadow": {
         "blur": 5,
         "color": {
@@ -520,7 +517,7 @@ const particleConfig = {
         "enable": false,
         "frequency": 1
       },
-      "width": 1,
+      "width": 2,
       "warp": false
     },
     "repulse": {
@@ -542,8 +539,7 @@ const particleConfig = {
   "smooth": false,
   "style": {},
   "themes": [],
-  "zLayers": 100,
-  "emitters": []
+  "zLayers": 100
 }
 
 export default particleConfig

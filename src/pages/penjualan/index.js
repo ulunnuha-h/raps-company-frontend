@@ -3,8 +3,8 @@ import { Icon } from '@iconify/react'
 import Step1 from './step1'
 import Step2 from './step2'
 import Step3 from './step3'
-import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
+import Particles from "react-particles";
 import particleConfig from '@/config/particleConfig'
 
 export default function Penjualan () {
@@ -55,7 +55,7 @@ export default function Penjualan () {
   return (
     <>
     <main
-        className='bg-no-repeat pt-12 bg-cover z-10 relative'>
+        className='bg-no-repeat py-12 bg-cover z-10 relative'>
         <div className='pt-16 container mx-auto'>
             <section className='flex justify-between px-2 lg:px-0 items-center'>
               <p className='basis-1/3 text-left'>Isi Form</p>
@@ -82,7 +82,7 @@ export default function Penjualan () {
         </div>
         {children}
     </main>
-    <Particles id="tsparticles" options={particleConfig} init={particlesInit}/>
+    <Particles options={particleConfig} init={particlesInit}/>
     </>
   )
 }

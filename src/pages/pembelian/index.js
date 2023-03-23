@@ -64,7 +64,7 @@ export default function Penjualan () {
   return (
     <>
     <main
-        className='bg-no-repeat pt-12 bg-cover'>
+        className='bg-no-repeat pt-12 bg-cover z-10 relative'>
         <div className='pt-16 container mx-auto'>
             <section className='flex justify-between px-2 lg:px-0 items-center'>
               <p className='basis-1/3 text-left'>Isi Form</p>
@@ -91,7 +91,7 @@ export default function Penjualan () {
         </div>
         {children}
     </main>
-    <Particles id="tsparticles" options={particleConfig} init={particlesInit}/>
+    <Particles options={particleConfig} init={particlesInit}/>
     </>
   )
 }

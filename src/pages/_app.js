@@ -17,6 +17,7 @@ export default function App ({ Component, pageProps }) {
         <meta name='keywords' content='Growtopia, Diamond Lock, World Lock, Dlcheap, Rapsshop, Termurah, Terpercaya, all payment, rapswhite' />
         <title>Jual Beli Diamond Lock Growtopia (DL) Termurah dan Terpercaya - DLCheap_ID</title>
       </Head>
+      {/* <Script src='https://cdn.jsdelivr.net/npm/tsparticles-preset-snow@2/tsparticles.preset.snow.bundle.min.js'></Script> */}
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-N39S3BY23K"/>
       <Script
         id='google-analytics'
