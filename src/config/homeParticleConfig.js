@@ -1,4 +1,4 @@
-const particleConfig = {
+const homeParticleConfig = {
   autoPlay: true,
   background: {
     color: {
@@ -24,7 +24,7 @@ const particleConfig = {
   delay: 0,
   fullScreen: {
     enable: true,
-    zIndex: -1,
+    zIndex: 0,
   },
   detectRetina: true,
   duration: 0,
@@ -195,15 +195,15 @@ const particleConfig = {
       },
     },
     color: {
-      value: "#FF0000",
+      value: "#00ff00",
       animation: {
         h: {
           count: 0,
           enable: true,
           offset: 0,
-          speed: 10,
+          speed: 50,
           decay: 0,
-          sync: true,
+          sync: false,
         },
         s: {
           count: 0,
@@ -231,10 +231,10 @@ const particleConfig = {
       },
       attract: {
         distance: 200,
-        enable: true,
+        enable: false,
         rotate: {
-          x: 2000,
-          y: 2000,
+          x: 3000,
+          y: 3000,
         },
       },
       center: {
@@ -243,19 +243,19 @@ const particleConfig = {
         mode: "percent",
         radius: 0,
       },
-      decay: 0,
+      decay: 0.1,
       distance: {},
       direction: "none",
       drift: 0,
       enable: true,
       gravity: {
-        acceleration: 9.81,
-        enable: false,
+        acceleration: 10,
+        enable: true,
         inverse: false,
         maxSpeed: 50,
       },
       path: {
-        clamp: false,
+        clamp: true,
         delay: {
           random: {
             enable: false,
@@ -263,44 +263,38 @@ const particleConfig = {
           },
           value: 0,
         },
-        enable: true,
-        options: {
-          sides: 6,
-          turnSteps: 30,
-          angle: 30,
-        },
-        generator: "polygonPathGenerator",
+        enable: false,
+        options: {},
       },
       outModes: {
         default: "destroy",
         bottom: "destroy",
         left: "destroy",
         right: "destroy",
-        top: "destroy",
+        top: "none",
       },
       random: false,
       size: false,
-      speed: 3,
+      speed: {
+        min: 10,
+        max: 20,
+      },
       spin: {
         acceleration: 0,
         enable: false,
       },
       straight: false,
       trail: {
-        enable: true,
-        length: 20,
-        fill: {
-          color: {
-            value: "#000",
-          },
-        },
+        enable: false,
+        length: 10,
+        fill: {},
       },
       vibrate: false,
       warp: false,
     },
     number: {
       density: {
-        enable: true,
+        enable: false,
         width: 1920,
         height: 1080,
       },
@@ -312,15 +306,19 @@ const particleConfig = {
         enable: false,
         minimumValue: 0.1,
       },
-      value: 1,
+      value: {
+        min: 0,
+        max: 1,
+      },
       animation: {
         count: 0,
-        enable: false,
+        enable: true,
         speed: 2,
         decay: 0,
         sync: false,
-        destroy: "none",
-        startValue: "random",
+        destroy: "min",
+        startValue: "max",
+        minimumValue: 0,
       },
     },
     reduceDuplicates: false,
@@ -337,14 +335,17 @@ const particleConfig = {
     },
     shape: {
       options: {},
-      type: "circle",
+      type: "square",
     },
     size: {
       random: {
-        enable: false,
-        minimumValue: 1,
+        enable: true,
+        minimumValue: 2,
       },
-      value: 2,
+      value: {
+        min: 2,
+        max: 4,
+      },
       animation: {
         count: 0,
         enable: false,
@@ -369,7 +370,7 @@ const particleConfig = {
       velocityRate: 1,
     },
     life: {
-      count: 0,
+      count: 1,
       delay: {
         random: {
           enable: false,
@@ -383,8 +384,8 @@ const particleConfig = {
           enable: false,
           minimumValue: 0.0001,
         },
-        value: 0,
-        sync: false,
+        value: 5,
+        sync: true,
       },
     },
     rotate: {
@@ -392,14 +393,17 @@ const particleConfig = {
         enable: false,
         minimumValue: 0,
       },
-      value: 0,
+      value: {
+        min: 0,
+        max: 360,
+      },
       animation: {
         enable: true,
-        speed: 5,
+        speed: 60,
         decay: 0,
         sync: false,
       },
-      direction: "clockwise",
+      direction: "random",
       path: false,
     },
     destroy: {
@@ -430,31 +434,37 @@ const particleConfig = {
     },
     roll: {
       darken: {
-        enable: false,
-        value: 0,
+        enable: true,
+        value: 25,
       },
-      enable: false,
+      enable: true,
       enlighten: {
         enable: false,
         value: 0,
       },
       mode: "vertical",
-      speed: 25,
+      speed: {
+        min: 15,
+        max: 25,
+      },
     },
     tilt: {
       random: {
         enable: false,
         minimumValue: 0,
       },
-      value: 0,
+      value: {
+        min: 0,
+        max: 360,
+      },
       animation: {
-        enable: false,
-        speed: 0,
+        enable: true,
+        speed: 60,
         decay: 0,
         sync: false,
       },
-      direction: "clockwise",
-      enable: false,
+      direction: "random",
+      enable: true,
     },
     twinkle: {
       lines: {
@@ -469,10 +479,13 @@ const particleConfig = {
       },
     },
     wobble: {
-      distance: 5,
-      enable: false,
+      distance: 30,
+      enable: true,
       speed: {
-        angle: 50,
+        angle: {
+          min: -15,
+          max: 15,
+        },
         move: 10,
       },
     },
@@ -544,10 +557,13 @@ const particleConfig = {
     fill: true,
     life: {
       wait: false,
+      count: 0,
+      delay: 0.4,
+      duration: 0.1,
     },
     rate: {
-      quantity: 1,
-      delay: 0.25,
+      quantity: 150,
+      delay: 0.1,
     },
     shape: "square",
     startCount: 0,
@@ -556,13 +572,9 @@ const particleConfig = {
       height: 0,
       width: 0,
     },
-    direction: "none",
     particles: {},
-    position: {
-      x: 50,
-      y: 50,
-    },
+    position: {},
   },
 };
 
-export default particleConfig;
+export default homeParticleConfig;
