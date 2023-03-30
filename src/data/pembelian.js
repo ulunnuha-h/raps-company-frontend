@@ -11,7 +11,6 @@ const postPembelian = (data) => {
     wa: data.whatsapp,
     metode_transfer: data.metodeBayar,
   };
-  console.log(pembelianPayload);
   return axios.post(`${getAPIurl()}/api/v1/new/pembelian`, pembelianPayload);
 };
 

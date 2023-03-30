@@ -29,7 +29,6 @@ export default function Step2({
 
     getAllPayments().then(({ data }) => {
       setPayment(data.data);
-      console.log(data.data);
     });
   }, []);
 

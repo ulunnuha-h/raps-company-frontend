@@ -8,21 +8,23 @@ import { useRouter } from "next/router";
 
 export default function Step3({
   nextAction,
-  transactionData = {index_pembayaran: 0},
-  formData = { metodeBayar: "", total:"" },
+  transactionData = { index_pembayaran: 0 },
+  formData = { metodeBayar: "", total: "" },
 }) {
-  const router = useRouter();
-
   const payHandler = (id) => {
     patchPayment(id).then(() => {
       nextAction();
     });
   };
 
+  const copyText = () => {
+    navigator.clipboard.writeText(transactionData.kredensial_pembayaran);
+  };
+
   return (
     <main className="container mx-auto py-16 flex flex-col-reverse lg:flex-row lg:gap-6 gap-3">
       <div className="lg:w-3/5 flex gap-2 flex-col">
-        <section className="p-9 bg-[#ACB8DE] bg-opacity-20 text-primary-50 font-poppins overflow-auto mx-2">
+        <section className="p-4 lg:p-9 bg-[#ACB8DE] bg-opacity-20 text-primary-50 font-poppins overflow-auto mx-2">
           <h3 className="mb-8">Data pembelian</h3>
           <table className=" border-2 text-lg w-full">
             <tr>
@@ -63,33 +65,54 @@ export default function Step3({
           </table>
         </section>
       </div>
-      <div className="p-9 bg-[#ACB8DE] bg-opacity-20 lg:w-2/5 mx-2 lg:mx-0 text-primary-50 flex flex-col font-poppins h-fit">
-        <table>
-          <tr className="mb-5">
-            <td className="w-40">Jenis Pembayaran</td>
-            <td>:</td>
-            <td>
-              <Image
-                src={`/assets/paymentMethod/${
-                  transactionData.index_pembayaran - 1
-                }.svg`}
-                className="bg-secondary-500 bg-opacity-50 p-2"
-                alt="image"
-                width="100"
-                height="200"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td className="w-40">Nama</td>
-            <td>:</td>
-            <td>{transactionData.pemilik}</td>
-          </tr>
-          <tr>
-            <td className="w-40">Nomor</td>
-            <td>:</td>
-            <td>{transactionData.kredensial_pembayaran}</td>
-          </tr>
+      <div className=" p-4 lg:p-9 bg-[#ACB8DE] bg-opacity-20 lg:w-2/5 mx-2 lg:mx-0 text-primary-50 flex flex-col font-poppins h-fit">
+        <table className="w-full">
+          <tbody className="w-full">
+            <tr className="mb-5">
+              <td className="w-24">Jenis Pembayaran</td>
+              <td>:</td>
+              <td>
+                <Image
+                  src={`/assets/paymentMethod/${
+                    transactionData.index_pembayaran - 1
+                  }.svg`}
+                  className="bg-secondary-500 bg-opacity-50 p-2"
+                  alt="image"
+                  width="100"
+                  height="200"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className="w-24">Nama</td>
+              <td>:</td>
+              <td>{transactionData.pemilik}</td>
+            </tr>
+            {transactionData.jenis_pembayaran === "qris" ? (
+              <tr className="w-full">
+                <td colSpan={3} className="w-full my-3 py-5">
+                  <Image
+                    src={transactionData.kredensial_pembayaran}
+                    width="500"
+                    height="300"
+                  ></Image>
+                </td>
+              </tr>
+            ) : (
+              <tr>
+                <td className="w-24">Nomor</td>
+                <td>:</td>
+                <td className="flex items-center gap-1">
+                  <span>{transactionData.kredensial_pembayaran}</span>
+                  <Icon
+                    icon="material-symbols:content-copy"
+                    className="cursor-pointer hover:scale-110 active:brightness-75"
+                    onClick={copyText}
+                  />
+                </td>
+              </tr>
+            )}
+          </tbody>
         </table>
         <button
           onClick={() => payHandler(transactionData.id)}
