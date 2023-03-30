@@ -57,7 +57,7 @@ export default function Penjualan () {
     <main
         className='bg-no-repeat py-12 bg-cover z-10 relative'>
         <div className='pt-16 container mx-auto'>
-            <section className='flex justify-between px-2 lg:px-0 items-center'>
+            <section className='flex justify-between px-2 lg:px-12 items-center'>
               <p className='basis-1/3 text-left'>Isi Form</p>
               <p className={`basis-1/3 text-center ${actionIndicator(0, '', 'text-neutral-500')}`}>Upload Bukti Diamond Lock</p>
               <p className={`basis-1/3 text-right ${actionIndicator(1, '', 'text-neutral-500')}`}>Jual</p>

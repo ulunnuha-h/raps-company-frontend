@@ -80,7 +80,7 @@ export default function Navbar () {
   return (
     <div className={`fixed w-full ${bgStyle()} duration-300`}>
       <div className='bg-secondary-700'>
-        <section className='text-primary-300 container mx-auto py-3 font-poppins flex justify-between px-7 lg:px-0'>
+        <section className='text-primary-300 container mx-auto py-3 font-poppins flex justify-between px-7 lg:px-12'>
           <span className='flex gap-3'>
           {sosmed.map((val, idx) => {
             return (
@@ -93,7 +93,7 @@ export default function Navbar () {
           <span>Raps Company</span>
         </section>
       </div>
-      <nav className='flex justify-between py-3 px-7 lg:px-0 container mx-auto transition-all'>
+      <nav className='flex justify-between py-3 px-7 lg:px-12 container mx-auto transition-all'>
         <audio controls id='audio' loop autoPlay src='/Growtopia.mp3' className='hidden'
         />
         <Link href='./' as='./' className='flex z-10'>

@@ -8,8 +8,8 @@ import { useRouter } from "next/router";
 
 export default function Step3({
   nextAction,
-  transactionData,
-  formData = { metodeBayar: "" },
+  transactionData = {index_pembayaran: 0},
+  formData = { metodeBayar: "", total:"" },
 }) {
   const router = useRouter();
 

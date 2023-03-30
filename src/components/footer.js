@@ -23,7 +23,7 @@ export default function Footer () {
   }, [])
 
   return (
-    <div className='bg-secondary-900 text-primary-50 z-10 relative'>
+    <div className='bg-secondary-900 text-primary-50 z-10 relative px-0 lg:px-12'>
       <footer className='container mx-auto items-center'>
         <section className='flex flex-col lg:flex-row lg:justify-between py-7'>
           <a href='#' className='mx-auto lg:m-0'>
