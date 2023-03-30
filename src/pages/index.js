@@ -11,7 +11,7 @@ import Link from "next/link";
 import { getHarga } from "@/data/harga";
 import { loadFull } from "tsparticles";
 import Particles from "react-particles";
-import homeParticleConfig from "@/config/homeParticleConfig";
+import homeParticleConfig from "@/config/particleConfig";
 
 export default function Home() {
   const [parallaxProgres, setParallaxProgres] = useState(120);

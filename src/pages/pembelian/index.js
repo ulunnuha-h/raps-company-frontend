@@ -77,8 +77,8 @@ export default function Penjualan() {
   return (
     <>
       <main className="bg-no-repeat pt-12 bg-cover z-10 relative">
-        <div className="pt-16 container mx-auto">
-          <section className="flex justify-between px-2 lg:px-12 items-center">
+        <div className="pt-16 container mx-auto lg:px-12">
+          <section className="flex justify-between px-2 lg:px-0 items-center">
             <p className="basis-1/3 text-left">Isi Form</p>
             <p
               className={`basis-1/3 text-center ${actionIndicator(
