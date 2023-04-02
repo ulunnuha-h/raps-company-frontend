@@ -14,10 +14,10 @@ const postPembelian = (data) => {
   return axios.post(`${getAPIurl()}/api/v1/new/pembelian`, pembelianPayload);
 };
 
-const postImagePembelian = (img) => {
+const postImagePembelian = (img, id) => {
   const formData = new FormData();
   formData.append("file", img);
-  return axios.post(`${getAPIurl()}/api/v1/upload`, formData);
+  return axios.patch(`${getAPIurl()}/api/v1/upload/${id}`, formData);
 };
 
 const getPembelianStatus = (id) => {

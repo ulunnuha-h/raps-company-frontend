@@ -12,19 +12,22 @@ export default function Step3({
   formData = { metodeBayar: "", total: "" },
 }) {
   const [file, setFile] = useState({ size: 0 });
+  const [loading, setLoading] = useState(false);
 
   const fileHandler = (e) => {
     if (e.target.files[0]) setFile(e.target.files[0]);
   };
 
   const payHandler = (id) => {
-    postImagePembelian(file)
+    setLoading(true);
+    postImagePembelian(file, id)
       .then(() => {
         patchPayment(id).then(() => {
           nextAction();
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   const copyText = () => {
@@ -134,7 +137,7 @@ export default function Step3({
           className="btn-primary py-1 text-center"
           disabled={file.size < 1}
         >
-          Sudah Bayar
+          {loading ? "Processing . . ." : "Sudah Bayar"}
         </button>
       </div>
     </main>
