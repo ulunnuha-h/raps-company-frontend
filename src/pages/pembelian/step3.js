@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import { getPembelianStatus } from "@/data/pembelian";
+import { getPembelianStatus, postImagePembelian } from "@/data/pembelian";
 import Image from "next/image";
 import Link from "next/link";
 import { patchPayment } from "@/data/payment";
@@ -11,10 +11,20 @@ export default function Step3({
   transactionData = { index_pembayaran: 0 },
   formData = { metodeBayar: "", total: "" },
 }) {
+  const [file, setFile] = useState({ size: 0 });
+
+  const fileHandler = (e) => {
+    if (e.target.files[0]) setFile(e.target.files[0]);
+  };
+
   const payHandler = (id) => {
-    patchPayment(id).then(() => {
-      nextAction();
-    });
+    postImagePembelian(file)
+      .then(() => {
+        patchPayment(id).then(() => {
+          nextAction();
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   const copyText = () => {
@@ -114,9 +124,15 @@ export default function Step3({
             )}
           </tbody>
         </table>
+        <input
+          type="file"
+          className="btn-primary my-3"
+          onChange={fileHandler}
+        ></input>
         <button
           onClick={() => payHandler(transactionData.id)}
-          className="btn-primary py-1 mt-5 text-center"
+          className="btn-primary py-1 text-center"
+          disabled={file.size < 1}
         >
           Sudah Bayar
         </button>

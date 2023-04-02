@@ -5,6 +5,7 @@ import { postPembelian } from "@/data/pembelian";
 import { getHarga } from "@/data/harga";
 import { getAllPayments } from "@/data/payment";
 import Image from "next/image";
+import { ConfirmModal } from "@/components/confirmModal";
 
 export default function Step2({
   formDataHandler,
@@ -20,6 +21,9 @@ export default function Step2({
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [payment, setPayment] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const openHandler = () => setOpen(!open);
 
   useEffect(() => {
     getHarga().then(({ data }) => {
@@ -47,7 +51,7 @@ export default function Step2({
               ...data.data.payment,
               id: data.data.id_transaksi,
             });
-            nextAction();
+            openHandler();
           } else {
             setError(data.data.status_message);
           }
@@ -62,6 +66,7 @@ export default function Step2({
       className="container mx-auto py-16 flex lg:flex-row flex-col gap-6"
       onSubmit={submitHandler}
     >
+      {open ? <ConfirmModal close={openHandler} next={nextAction} /> : null}
       <div className="form-card lg:w-3/5">
         <h3 className="text-white font-grotesk mb-7">
           Form Pembelian Diamond Lock
