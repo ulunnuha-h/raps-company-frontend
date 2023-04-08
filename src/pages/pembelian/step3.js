@@ -22,10 +22,8 @@ export default function Step3({
       setLoading(true);
       postImagePembelian(newFile, transactionData.id)
         .then(() => {
-          patchPayment(transactionData.id).then(() => {
-            setFile(e.target.files[0]);
-            setUrl(URL.createObjectURL(e.target.files[0]));
-          });
+          setFile(e.target.files[0]);
+          setUrl(URL.createObjectURL(e.target.files[0]));
         })
         .catch(({ response }) => {
           Swal.fire({
@@ -34,14 +32,26 @@ export default function Step3({
             icon: "error",
             confirmButtonText: "Okay",
           });
-          console.log(response);
         })
         .finally(() => setLoading(false));
     }
   };
 
   const payHandler = () => {
-    if (file) nextAction();
+    if (file.size > 0) {
+      setLoading(true);
+      patchPayment(transactionData.id)
+        .then(() => nextAction())
+        .catch(({ response }) => {
+          Swal.fire({
+            title: `Error ${response.status}!`,
+            text: "Something is wrong",
+            icon: "error",
+            confirmButtonText: "Okay",
+          });
+        })
+        .finally(() => setLoading(false));
+    }
   };
 
   const copyText = () => {
@@ -147,12 +157,16 @@ export default function Step3({
           accept=".jpg, .jpeg, .png"
           onChange={fileHandler}
         ></input>
-        {/* <Image
-          src={url}
-          width={300}
-          height={300}
-          className="w-full h-32 object-cover mb-3"
-        ></Image> */}
+        {url ? (
+          <section
+            style={{ backgroundImage: `url(${url})` }}
+            className="w-full h-16 mb-3 bg-cover bg-opacity-0 flex items-center justify-center"
+          >
+            <a href={url} target="_blank" className="btn-primary px-4 py-1">
+              Lihat Bukti
+            </a>
+          </section>
+        ) : null}
         <button
           onClick={payHandler}
           className="btn-primary py-1 text-center"
