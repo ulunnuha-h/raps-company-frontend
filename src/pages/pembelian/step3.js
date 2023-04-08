@@ -170,7 +170,7 @@ export default function Step3({
         <button
           onClick={payHandler}
           className="btn-primary py-1 text-center"
-          disabled={file.size < 1}
+          disabled={file.size < 1 || loading}
         >
           {loading ? "Processing . . ." : "Sudah Bayar"}
         </button>
