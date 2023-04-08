@@ -15,6 +15,7 @@ const postPembelian = (data) => {
 };
 
 const postImagePembelian = (img, id) => {
+  console.log(img, id);
   const formData = new FormData();
   formData.append("file", img);
   return axios.patch(`${getAPIurl()}/api/v1/upload/${id}`, formData);

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { patchPayment } from "@/data/payment";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 export default function Step3({
   nextAction,
@@ -13,21 +14,34 @@ export default function Step3({
 }) {
   const [file, setFile] = useState({ size: 0 });
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
 
   const fileHandler = (e) => {
-    if (e.target.files[0]) setFile(e.target.files[0]);
+    if (e.target.files[0]) {
+      const newFile = e.target.files[0];
+      setLoading(true);
+      postImagePembelian(newFile, transactionData.id)
+        .then(() => {
+          patchPayment(transactionData.id).then(() => {
+            setFile(e.target.files[0]);
+            setUrl(URL.createObjectURL(e.target.files[0]));
+          });
+        })
+        .catch(({ response }) => {
+          Swal.fire({
+            title: `Error ${response.status}!`,
+            text: "Something is wrong with your file, It must be .jpg .jpeg or .png and less than 10mb",
+            icon: "error",
+            confirmButtonText: "Okay",
+          });
+          console.log(response);
+        })
+        .finally(() => setLoading(false));
+    }
   };
 
-  const payHandler = (id) => {
-    setLoading(true);
-    postImagePembelian(file, id)
-      .then(() => {
-        patchPayment(id).then(() => {
-          nextAction();
-        });
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+  const payHandler = () => {
+    if (file) nextAction();
   };
 
   const copyText = () => {
@@ -130,10 +144,17 @@ export default function Step3({
         <input
           type="file"
           className="btn-primary my-3"
+          accept=".jpg, .jpeg, .png"
           onChange={fileHandler}
         ></input>
+        {/* <Image
+          src={url}
+          width={300}
+          height={300}
+          className="w-full h-32 object-cover mb-3"
+        ></Image> */}
         <button
-          onClick={() => payHandler(transactionData.id)}
+          onClick={payHandler}
           className="btn-primary py-1 text-center"
           disabled={file.size < 1}
         >
