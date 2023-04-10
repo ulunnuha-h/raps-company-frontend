@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import { getPembelianStatus, postImagePembelian } from "@/data/pembelian";
+import { postImagePembelian } from "@/data/pembelian";
 import Image from "next/image";
-import Link from "next/link";
 import { patchPayment } from "@/data/payment";
-import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
 export default function Step3({
@@ -25,15 +23,21 @@ export default function Step3({
           setFile(e.target.files[0]);
           setUrl(URL.createObjectURL(e.target.files[0]));
         })
-        .catch(({ response }) => {
+        .catch((error) => {
+          console.log(error);
           Swal.fire({
-            title: `Error ${response.status}!`,
+            title: `Error!`,
             text: "Something is wrong with your file, It must be .jpg .jpeg or .png and less than 10mb",
             icon: "error",
             confirmButtonText: "Okay",
           });
+          setFile({ size: 0 });
+          setUrl("");
         })
         .finally(() => setLoading(false));
+    } else {
+      setFile({ size: 0 });
+      setUrl("");
     }
   };
 
@@ -151,6 +155,9 @@ export default function Step3({
             )}
           </tbody>
         </table>
+        <span className="text-sm mt-4">
+          Ukuran maksimal file : 10 mb, Format file : .png, .jpeg atau .jpg
+        </span>
         <input
           type="file"
           className="btn-primary my-3"
