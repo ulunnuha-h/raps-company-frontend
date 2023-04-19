@@ -30,8 +30,8 @@ export default function Step2 ({ formDataHandler, formData, prevAction, nextActi
       formDataHandler({ metodeBayar })
       postPembelian({ ...formData, metodeBayar })
         .then(({ data }) => {
-          if (data.data.status_code === '201') {
-            transactionDataHandler(data.data)
+          if (data.status_code === 201) {
+            transactionDataHandler(data.data)            
             nextAction()
           } else {
             setError(data.data.status_message)

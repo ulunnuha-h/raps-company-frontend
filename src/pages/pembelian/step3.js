@@ -11,6 +11,7 @@ export default function Step3 ({ nextAction, transactionData, formData = {metode
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
+    console.log(transactionData)
     if (transactionData.payment_type === 'bank_transfer') {
       setRekening(transactionData.va_numbers[0])
     } else {
