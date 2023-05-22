@@ -48,7 +48,7 @@ export default function Home () {
   return (
     <>
       {/* Hero Section */}
-      <main className='bg-cover lg:h-[120vh] relative bg-no-repeat lg:bg-fixed bg-secondary-700'>
+      <main className='bg-cover lg:h-[120vh] relative bg-no-repeat lg:bg-fixed'>
         <div className='z-10 container mx-auto h-screen flex items-center justify-center pt-16 lg:pt-0 flex-col-reverse md:flex-row relative' id='hero' >
           <section className='md:basis-1/2 md:mr-12 mx-7'>
             <h1 className='text-primary-800 font-grotesk md:mb-5 text-center'>OPEN 24 HOUR</h1>
@@ -81,19 +81,19 @@ export default function Home () {
         <h3 className='font-grotesk text-primary-50 text-center block lg:hidden'>Diamond Lock (DL)</h3>
         <div
           style={ { backgroundImage: `url(${priceBg.src})` } }
-          className='container lg:my-12 my-7 mx-auto flex lg:justify-between justify-around items-center border-[10px] border-secondary-500 relative bg-cover py-6 px-4'>
-          <span className='p-6 bg-secondary-500 translate-x-12 -translate-y-12 lg:block hidden'>
+          className='container lg:my-12 my-7 mx-auto flex lg:justify-between justify-around items-center border-[10px] border-primary-300 relative bg-cover py-6 px-4'>
+          <span className='p-6 bg-primary-300 translate-x-12 -translate-y-12 lg:block hidden'>
             <Image src={dl} className='p-6 lg:animate-pulse' alt='dl' width='300' height='300'></Image>
           </span>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Take</h2>
             <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. {hargaJualDl.toLocaleString()}</h2>
-            <Link href='./penjualan' as='./penjualan' className='btn-secondary lg:px-14 px-7 lg:py-3 py-1'>Jual</Link>
+            <Link href='./penjualan' as='./penjualan' className='btn-secondary border-primary-300 text-primary-300 lg:px-14 px-7 lg:py-3 py-1'>Jual</Link>
           </section>
           <section className='text-center'>
             <h2 className='font-grotesk text-primary-50'>Price</h2>
             <h2 className='font-grotesk lg:my-7 mb-5 text-primary-500'>Rp. {hargaBeliDl.toLocaleString()}</h2>
-            <Link href='./pembelian' as='./pembelian' className='btn-primary lg:px-14 px-7 lg:py-3 py-1'>Beli</Link>
+            <Link href='./pembelian' as='./pembelian' className='btn-primary bg-primary-300 border-primary-300 text-white lg:px-14 px-7 lg:py-3 py-1'>Beli</Link>
           </section>
           <section className='h-[260px] lg:block hidden'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap rotate-90 font-grotesk mr-6'>Diamond Lock</h3>
@@ -106,24 +106,24 @@ export default function Home () {
         <h3 className='font-grotesk text-primary-50 text-center block xl:hidden'>Blue Gem Lock (BGL)</h3>
         <div
           style={ { backgroundImage: `url(${priceBg.src})` } }
-          className='container my-12 mt-7 mx-auto flex justify-between items-center border-[10px] border-secondary-500 relative bg-cover xl:flex-row flex-col-reverse'>
+          className='container my-12 mt-7 mx-auto flex justify-between items-center border-[10px] border-yellow-300 relative bg-cover xl:flex-row flex-col-reverse'>
           <section className='translate-y-32 xl:block hidden'>
             <h3 className='text-primary-50 text-center w-8 whitespace-nowrap -rotate-90 font-grotesk ml-6'>Blue Gem Lock</h3>
           </section>
           <section className='text-center text-primary-50 font-grotesk flex flex-col xl:w-1/2'>
             <h3 className='self-start mb-5 flex flex-col xl:flex-row'>
               <span className='mb-3'>1 BGL = 100 DL</span>
-              <span className='text-primary-500 relative line-through xl:ml-3'> Rp {(hargaBeliDl * 100).toLocaleString()} </span>
+              <span className='text-yellow-300 relative line-through xl:ml-3'> Rp {(hargaBeliDl * 100).toLocaleString()} </span>
             </h3>
             <h2 className='xl:self-end mb-9'>
-              NOW ONLY<br className='block xl:hidden'></br> <span className='text-primary-500'>Rp {hargaBgl.toLocaleString()}</span>
+              NOW ONLY<br className='block xl:hidden'></br> <span className='text-yellow-300'>Rp {hargaBgl.toLocaleString()}</span>
             </h2>
             <section className='flex justify-center xl:justify-between items-center mb-5 xl:mb-0'>
               <span className='font-grotesk text-xl hidden xl:block'>&quot;Sama Jumlahnya, Beda Harganya&quot;</span>
-              <Link href='./pembelian' as='./pembelian' className='btn-primary py-3 px-12 font-bold'>Beli</Link>
+              <Link href='./pembelian' as='./pembelian' className='btn-primary bg-yellow-300 border-yellow-300 py-3 px-12 font-bold'>Beli</Link>
             </section>
           </section>
-          <span className='xl:p-9 p-3 bg-secondary-500 xl:-translate-x-12 xl:-translate-y-12 min-w-fit m-5 xl:my-0'>
+          <span className='xl:p-9 p-3 bg-yellow-300 xl:-translate-x-12 xl:-translate-y-12 min-w-fit m-5 xl:my-0'>
             <Image src={bgl} className='p-6 xl:animate-pulse' alt='bgl' width='300' height='300'></Image>
           </span>
         </div>
@@ -137,10 +137,10 @@ export default function Home () {
         {langkahTransaksi.map((val, idx) => (
           <section
             key={idx}
-            className='basis-1/3 flex flex-col items-center justify-end bg-secondary-500 bg-opacity-20 lg:py-16 p-7'>
+            className={`basis-1/3 flex flex-col items-center justify-end lg:py-16 p-7 ${idx & 1 ? "bg-yellow-300" : "bg-primary-300"}`}>
             <Image src={val.img} alt='illustration' width='200' height='200'></Image>
-            <h5 className='text-white font-grotesk my-3'>{val.name}</h5>
-            <p className='text-base text-center'>{val.desc}</p>
+            <h5 className='text-primary-900 font-grotesk my-3'>{val.name}</h5>
+            <p className='text-base text-center text-primary-900'>{val.desc}</p>
           </section>
         ))}
         </div>

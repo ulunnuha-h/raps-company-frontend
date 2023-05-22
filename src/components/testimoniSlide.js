@@ -43,7 +43,7 @@ const TestimoniSlide = () => {
       </h1>
       <div className='w-full whitespace-nowrap overflow-hidden snap-x' ref={slider} id='slider'>
         {testimoni.map((val, idx) => (
-          <TestimoniCard val={val} key={idx}/>
+          <TestimoniCard val={val} key={idx} idx={idx}/>
         ))}
       </div>
       <h1 onClick={moveRight} className={`text-secondary-500 ${rightArrow ? 'cursor-pointer' : 'text-opacity-25'}`}>

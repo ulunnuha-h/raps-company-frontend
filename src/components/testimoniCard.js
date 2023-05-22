@@ -2,10 +2,10 @@ import React from 'react'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 
-const TestimoniCard = ({ val }) => {
+const TestimoniCard = ({ val , idx }) => {
   return (
     <div className='w-full sm:w-1/2 lg:w-1/3 inline-block px-2 snap-center'>
-      <section className='testimoni-card flex flex-col items-center p-5 lg:px-5 lg:py-9 box-border w-full whitespace-normal'>
+      <section className={`testimoni-card ${idx & 1 ? "border-primary-300" : "border-yellow-300"} flex flex-col items-center p-5 lg:px-5 lg:py-9 box-border w-full whitespace-normal`}>
         <h2>
           <Icon icon="material-symbols:format-quote" />
         </h2>

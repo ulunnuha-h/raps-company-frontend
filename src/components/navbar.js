@@ -30,7 +30,7 @@ export default function Navbar () {
   const [showBtn, setShowBtn] = useState(false)
   const [urlParam, setUrlParam] = useState('')
 
-  const bgStyle = () => (showBg ? 'bg-secondary-900 lg:bg-secondary-700' : 'lg:bg-transparent bg-secondary-900')
+  const bgStyle = () => (showBg || urlParam !== '/' ? 'bg-primary-300 ' : 'lg:bg-transparent bg-primary-300')
   const btnStyle = () => (showBtn ? 'w-full block' : 'lg:w-0 block lg:hidden')
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function Navbar () {
   const navButton = navLink.map((val, idx) => (
     <li
       key={idx}
-      className="lg:ml-3 text-white flex items-center lg:my-2 my-1 transition-all">
+      className="lg:ml-3 text-primary-900 flex items-center lg:my-2 my-1 transition-all ">
       <Link
         href={val.href}
         as={val.href}
@@ -79,8 +79,8 @@ export default function Navbar () {
 
   return (
     <div className={`fixed w-full ${bgStyle()} duration-300`}>
-      <div className='bg-secondary-700'>
-        <section className='text-primary-300 container mx-auto py-3 font-poppins flex justify-between px-7 lg:px-12'>
+      <div className='bg-primary-300'>
+        <section className='text-secondary-700 container mx-auto py-3 font-poppins flex justify-between px-7 lg:px-12'>
           <span className='flex gap-3'>
           {sosmed.map((val, idx) => {
             return (
@@ -99,14 +99,14 @@ export default function Navbar () {
         <Link href='./' as='./' className='flex z-10'>
           <Image src={logo} alt="logo"/>
         </Link>
-        <button className='block lg:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
+        <button className='block lg:hidden text-primary-900 active:bg-primary-400 px-1 rounded-sm' onClick={openHandler}>
           <h2><Icon icon="octicon:three-bars" /></h2>
         </button>
         <ul className={`lg:flex font-poppins responsive-nav gap-2 duration-300 ${openStyle()}`}>
           {navButton}
           <section className={`${btnStyle()} flex justify-center gap-5 lg:ml-5 lg:mt-0 mt-5 m-0 transition-all overflow-hidden duration-300`}>
-            <Link href='./penjualan' as='./penjualan' className='btn-secondary px-7 py-1 text-base h-fit'>Jual</Link>
-            <Link href='./pembelian' as='./pembelian' className='btn-primary px-7 py-1 text-base h-fit'>Beli</Link>
+            <Link href='./penjualan' as='./penjualan' className='btn-secondary border-primary-900 text-primary-900 px-7 py-1 text-base h-fit'>Jual</Link>
+            <Link href='./pembelian' as='./pembelian' className='btn-primary bg-primary-900 text-primary-300 border-primary-900 px-7 py-1 text-base h-fit'>Beli</Link>
           </section>
         </ul>
       </nav>
