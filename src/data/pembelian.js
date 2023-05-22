@@ -1,5 +1,5 @@
-import getAPIurl from '@/config/API-url'
-import axios from 'axios'
+import getAPIurl from "@/config/API-url";
+import axios from "axios";
 
 const postPembelian = (data) => {
   const pembelianPayload = {
@@ -9,16 +9,20 @@ const postPembelian = (data) => {
     jenis_item: data.isDl,
     jumlah_dl: data.dl + data.bgl * 100,
     wa: data.whatsapp,
-    metode_transfer: 1
-  }
-  return axios.post(`${getAPIurl()}/api/v1/pembelian`, pembelianPayload)
-}
+    metode_transfer: data.metodeBayar,
+  };
+  return axios.post(`${getAPIurl()}/api/v1/new/pembelian`, pembelianPayload);
+};
+
+const postImagePembelian = (img, id) => {
+  console.log(img, id);
+  const formData = new FormData();
+  formData.append("file", img);
+  return axios.patch(`${getAPIurl()}/api/v1/upload/${id}`, formData);
+};
 
 const getPembelianStatus = (id) => {
-  return axios.get(`${getAPIurl()}/api/v1/pembelian/status/${id}`)
-}
+  return axios.get(`${getAPIurl()}/api/v1/pembelian/status/${id}`);
+};
 
-export {
-  postPembelian,
-  getPembelianStatus
-}
+export { postPembelian, getPembelianStatus, postImagePembelian };

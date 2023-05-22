@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { Icon } from '@iconify/react'
-import { getPembelianStatus } from '@/data/pembelian'
-import Image from 'next/image'
+import React, { useState } from "react";
+import { Icon } from "@iconify/react";
+import { postImagePembelian } from "@/data/pembelian";
+import Image from "next/image";
+import { patchPayment } from "@/data/payment";
+import Swal from "sweetalert2";
 
-export default function Step3 ({ nextAction, transactionData, formData = {metodeBayar: ''} }) {
-  const [rekening, setRekening] = useState()
-  const [QRCode, setQRCode] = useState('')
-  const [link, setLink] = useState('')
-  const [time, setTime] = useState(0)
-  const [total, setTotal] = useState(0)
+export default function Step3({
+  nextAction,
+  transactionData = { index_pembayaran: 0 },
+  formData = { metodeBayar: "", total: "" },
+}) {
+  const [file, setFile] = useState({ size: 0 });
+  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
 
+<<<<<<< HEAD
   useEffect(() => {
     console.log(transactionData)
     if (transactionData.payment_type === 'bank_transfer') {
@@ -43,76 +48,176 @@ export default function Step3 ({ nextAction, transactionData, formData = {metode
           if (data.data.transaction_status === 'settlement') {
             nextAction()
           }
+=======
+  const fileHandler = (e) => {
+    if (e.target.files[0]) {
+      const newFile = e.target.files[0];
+      setLoading(true);
+      postImagePembelian(newFile, transactionData.id)
+        .then(() => {
+          setFile(e.target.files[0]);
+          setUrl(URL.createObjectURL(e.target.files[0]));
+>>>>>>> 9825174282e243c99a21af17f80784530e80a4f3
         })
-    }, 5000)
-
-    setTotal(transactionData.gross_amount)
-
-    return () => {
-      clearInterval(checkTime)
-      clearInterval(checkStatus)
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            title: `Error!`,
+            text: "Something is wrong with your file, It must be .jpg .jpeg or .png and less than 10mb",
+            icon: "error",
+            confirmButtonText: "Okay",
+          });
+          setFile({ size: 0 });
+          setUrl("");
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setFile({ size: 0 });
+      setUrl("");
     }
-  }, [transactionData, nextAction])
+  };
+
+  const payHandler = () => {
+    if (file.size > 0) {
+      setLoading(true);
+      patchPayment(transactionData.id)
+        .then(() => nextAction())
+        .catch(({ response }) => {
+          Swal.fire({
+            title: `Error ${response.status}!`,
+            text: "Something is wrong",
+            icon: "error",
+            confirmButtonText: "Okay",
+          });
+        })
+        .finally(() => setLoading(false));
+    }
+  };
+
+  const copyText = () => {
+    navigator.clipboard.writeText(transactionData.kredensial_pembayaran);
+  };
 
   return (
-    <main className='container mx-auto py-16 flex flex-col-reverse lg:flex-row lg:gap-6 gap-3'>
-      <div className='lg:w-3/5 flex gap-2 flex-col'>
-        <div className='p-3 bg-yellow-500 bg-opacity-50 mx-2 lg:mx-0 text-primary-50 flex h-fit items-center gap-2 font-poppins'>
-          <Icon icon="bi:exclamation-triangle" />
-          <span>Silakan Screenshot Gambar QR Code</span>
-        </div>
-        <div className='p-3 mx-2 bg-[#ACB8DE] bg-opacity-20 lg:mx-0 text-primary-50 flex h-fit items-center gap-2 font-poppins'>
-          <Icon icon="fluent-mdl2:payment-card" />
-          <span>Total Pembayaran: Rp. {parseInt(total).toLocaleString()}</span>
-        </div>
-        <div className='p-5 lg:p-12 bg-[#ACB8DE] bg-opacity-20  mx-2 lg:mx-0 text-primary-50 flex flex-col h-fit'>
-          <h3 className='font-grotesk lg:mb-7 mb-3'>Pembayaran</h3>
-          <p className='font-poppins text-base'>
-            <ol className='list-decimal ml-3'>
-              <li>Buka aplikasi {getMetodePembayaranById(formData.metodeBayar)} yang sudah terinstal di smartphone kamu.</li>
-              <li>Pilih menu "Scan QR" atau "Bayar dengan QR" yang ada pada aplikasi dan arahkan kamera smartphone kamu ke arah QR Code QRIS yang terdapat di website ini. Kamu juga bisa mengupload QR Code tersebut berupa gambar hasil screenshoot halaman ini.</li>
-              <li>Ketika scan QR Code berhasil, akan muncul jumlah pembayaran sesuai dengan total pembayaran pembelian kamu dan klik "Bayar" serta masukkan password untuk menyelesaikan transaksi.</li>
-            </ol>
-          </p>
-          <section className='font-poppins flex items-center gap-5 lg:mt-16 mt-8 self-end'>
-            <span>Waktu pembayaran tersisa</span>
-            <h4 className='font-grotesk py-2 px-5 bg-secondary-500 text-primary-900 w-36 text-center'>
-              {time}
-            </h4>
-          </section>
-        </div>
+    <main className="container mx-auto py-16 flex flex-col-reverse lg:flex-row lg:gap-6 gap-3">
+      <div className="lg:w-3/5 flex gap-2 flex-col">
+        <section className="p-4 lg:p-9 bg-[#ACB8DE] bg-opacity-20 text-primary-50 font-poppins overflow-auto mx-2">
+          <h3 className="mb-8">Data pembelian</h3>
+          <table className=" border-2 text-lg w-full">
+            <tr>
+              <td className="w-46 py-2 px-3">Nama</td>
+              <td>:</td>
+              <td className="px-3">{formData.name}</td>
+            </tr>
+            <tr className="border-2 border-opacity-20">
+              <td className="w-46 py-2 px-3">Grow ID</td>
+              <td>:</td>
+              <td className="px-3">{formData.growId}</td>
+            </tr>
+            <tr>
+              <td className="w-46 py-2 px-3">World</td>
+              <td>:</td>
+              <td className="px-3">{formData.world}</td>
+            </tr>
+            <tr className="border-2">
+              <td className="w-46 py-2 px-3">Whatsapp</td>
+              <td>:</td>
+              <td className="px-3">{formData.whatsapp}</td>
+            </tr>
+            <tr>
+              <td className="w-46 py-2 px-3">Item yang dibeli</td>
+              <td>:</td>
+              <td className="px-3">{formData.isDl ? "DL" : "BGL"}</td>
+            </tr>
+            <tr className="border-2">
+              <td className="w-46 py-2 px-3">Jumlah yang dibeli</td>
+              <td>:</td>
+              <td className="px-3">{formData.jumlah}</td>
+            </tr>
+            <tr>
+              <td className="w-46 py-2 px-3">Total</td>
+              <td>:</td>
+              <td className="px-3">Rp {formData.total.toLocaleString()}</td>
+            </tr>
+          </table>
+        </section>
       </div>
-      <div className='p-12 bg-[#ACB8DE] bg-opacity-20 lg:w-2/5 mx-2 lg:mx-0 text-primary-50 flex flex-col items-center font-poppins h-fit'>
-        { QRCode && <Image src={QRCode} alt='qrcode' width='500' height='500' priority unoptimized/> }
-        { rekening && <span className='text-lg lg:text-2xl font-grotesk bg-primary-50 text-secondary-700 font-bold w-full text-center py-2'>
-          Virtual Account {rekening.bank.toUpperCase()} {rekening.va_number}
-        </span>}
-        { ((rekening || QRCode) && link) && <span className='my-5'>Atau</span>}
-        {link && <a href={link} target="_blank" className='btn-primary px-6 py-3 font-bold w-full text-center'>Buka Aplikasi</a>}
-        { QRCode && <span className='my-5'>Atau</span>}
-        {QRCode && <a href={QRCode} target="_blank" className='btn-primary px-6 py-3 font-bold w-full text-center'>Lihat QR Code</a>}
+      <div className=" p-4 lg:p-9 bg-[#ACB8DE] bg-opacity-20 lg:w-2/5 mx-2 lg:mx-0 text-primary-50 flex flex-col font-poppins h-fit">
+        <table className="w-full">
+          <tbody className="w-full">
+            <tr className="mb-5">
+              <td className="w-24">Jenis Pembayaran</td>
+              <td>:</td>
+              <td>
+                <Image
+                  src={`/assets/paymentMethod/${
+                    transactionData.index_pembayaran - 1
+                  }.svg`}
+                  className="bg-secondary-500 bg-opacity-50 p-2"
+                  alt="image"
+                  width="100"
+                  height="200"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className="w-24">Nama</td>
+              <td>:</td>
+              <td>{transactionData.pemilik}</td>
+            </tr>
+            {transactionData.jenis_pembayaran === "qris" ? (
+              <tr className="w-full">
+                <td colSpan={3} className="w-full my-3 py-5">
+                  <Image
+                    src={transactionData.kredensial_pembayaran}
+                    width="500"
+                    height="300"
+                  ></Image>
+                </td>
+              </tr>
+            ) : (
+              <tr>
+                <td className="w-24">Nomor</td>
+                <td>:</td>
+                <td className="flex items-center gap-1">
+                  <span>{transactionData.kredensial_pembayaran}</span>
+                  <Icon
+                    icon="material-symbols:content-copy"
+                    className="cursor-pointer hover:scale-110 active:brightness-75"
+                    onClick={copyText}
+                  />
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+        <span className="text-sm mt-4">
+          Ukuran maksimal file : 10 mb, Format file : .png, .jpeg atau .jpg
+        </span>
+        <input
+          type="file"
+          className="btn-primary my-3"
+          accept=".jpg, .jpeg, .png"
+          onChange={fileHandler}
+        ></input>
+        {url ? (
+          <section
+            style={{ backgroundImage: `url(${url})` }}
+            className="w-full h-16 mb-3 bg-cover bg-opacity-0 flex items-center justify-center"
+          >
+            <a href={url} target="_blank" className="btn-primary px-4 py-1">
+              Lihat Bukti
+            </a>
+          </section>
+        ) : null}
+        <button
+          onClick={payHandler}
+          className="btn-primary py-1 text-center"
+          disabled={file.size < 1 || loading}
+        >
+          {loading ? "Processing . . ." : "Sudah Bayar"}
+        </button>
       </div>
     </main>
-  )
-}
-
-const getMetodePembayaranById = id => {
-  switch(id){
-    case 1:
-      return 'Qris'
-    case 2:
-      return 'GoPay'
-    case 3:
-      return 'ShopeePay'
-    case 11:
-      return 'Dana'
-    case 21:
-      return 'OVO'
-    case 4:
-      return 'Bank BCA'
-    case 5:
-      return 'Bank BRI'
-    case 6:
-      return 'Bank BNI'
-  }
+  );
 }
