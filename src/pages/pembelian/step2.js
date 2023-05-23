@@ -47,16 +47,11 @@ export default function Step2({
       postPembelian({ ...formData, metodeBayar })
         .then(({ data }) => {
           if (data.status_code === 201) {
-<<<<<<< HEAD
-            transactionDataHandler(data.data)            
-            nextAction()
-=======
             transactionDataHandler({
               ...data.data.payment,
               id: data.data.id_transaksi,
             });
             openHandler();
->>>>>>> 9825174282e243c99a21af17f80784530e80a4f3
           } else {
             setError(data.data.status_message);
           }
@@ -176,12 +171,6 @@ Step2.defaultProps = {
     total: 0,
     dl: 0,
     bgl: 0,
-<<<<<<< HEAD
-    isDl: true
-  }
-}
-=======
     isDl: true,
   },
 };
->>>>>>> 9825174282e243c99a21af17f80784530e80a4f3

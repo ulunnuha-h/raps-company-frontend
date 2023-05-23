@@ -14,41 +14,6 @@ export default function Step3({
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
 
-<<<<<<< HEAD
-  useEffect(() => {
-    console.log(transactionData)
-    if (transactionData.payment_type === 'bank_transfer') {
-      setRekening(transactionData.va_numbers[0])
-    } else {
-      transactionData.actions.forEach(val => {
-        if (val.name === 'generate-qr-code') {
-          setQRCode(val.url)
-        }
-
-        if (val.name === 'deeplink-redirect') {
-          setLink(val.url)
-        }
-      })
-    }    
-
-    const checkTime = setInterval(() => {
-      const expire = new Date(transactionData.expiry_time).getTime()
-      const newTime = new Date(expire - Date.now())
-      if (expire > Date.now()) {
-        setTime(newTime.getMinutes() + ' : ' + newTime.getSeconds().toString().padStart(2, '0'))
-      } else {
-        setTime(0)
-        location.reload()
-      }
-    }, 1000)
-
-    const checkStatus = setInterval(() => {
-      getPembelianStatus(transactionData.transaction_id)
-        .then(({ data }) => {
-          if (data.data.transaction_status === 'settlement') {
-            nextAction()
-          }
-=======
   const fileHandler = (e) => {
     if (e.target.files[0]) {
       const newFile = e.target.files[0];
@@ -57,7 +22,6 @@ export default function Step3({
         .then(() => {
           setFile(e.target.files[0]);
           setUrl(URL.createObjectURL(e.target.files[0]));
->>>>>>> 9825174282e243c99a21af17f80784530e80a4f3
         })
         .catch((error) => {
           console.log(error);
