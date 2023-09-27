@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import logo from '../../public/assets/logo.svg'
+import logoSmall from '../../public/assets/logosmall.svg'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { useRouter } from 'next/router'
@@ -97,7 +98,8 @@ export default function Navbar () {
         <audio controls id='audio' loop autoPlay src='/Growtopia.mp3' className='hidden'
         />
         <Link href='./' as='./' className='flex z-10'>
-          <Image src={logo} alt="logo"/>
+          <Image src={logo} alt="logo" className='hidden lg:block'/>
+          <Image src={logoSmall} alt="logo" className='block lg:hidden'/>
         </Link>
         <button className='block lg:hidden text-white active:bg-primary-700 px-1 rounded-sm' onClick={openHandler}>
           <h2><Icon icon="octicon:three-bars" /></h2>

@@ -29,7 +29,7 @@ export default function Footer() {
       <footer className="container mx-auto items-center">
         <section className="flex flex-col lg:flex-row lg:justify-between py-7">
           <a href="#" className="mx-auto lg:m-0">
-            <Image src={logo} alt="logo" height={35} />
+            <Image src={logo} alt="logo" />
           </a>
           <ul className="flex font-poppins items-center flex-row mx-auto mt-5 lg:m-0">
             {navButton}
